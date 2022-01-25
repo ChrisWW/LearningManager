@@ -1,10 +1,10 @@
-package com.example.learningmanager.inspirationquotes.domain
+package com.example.learningmanager.fragments.inspirationquotes.domain
 
 import com.example.learningmanager.base.domain.BaseApiRequestUseCase
 import com.example.learningmanager.base.domain.BaseFlowUseCase
 import com.example.learningmanager.base.ext.flowSingle
-import com.example.learningmanager.inspirationquotes.data.InspirationQuotesDetailsResponse
-import com.example.learningmanager.inspirationquotes.data.remote.InspirationQuotesApi
+import com.example.learningmanager.fragments.inspirationquotes.data.InspirationQuotesDetailsResponse
+import com.example.learningmanager.fragments.inspirationquotes.data.remote.InspirationQuotesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject

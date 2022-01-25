@@ -3,11 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_main_graph"
-    app:startDestination="@id/inspirationQuotesFragment">
+    app:startDestination="@id/viewPagerFragment">
 
     <fragment
-        android:id="@+id/inspirationQuotesFragment"
-        android:name="com.example.learningmanager.inspirationquotes.ui.InspirationQuotesFragment"
-        android:label="fragment_inspiration_quotes"
-        tools:layout="@layout/fragment_inspiration_quotes" /><action android:id="@+id/action_global_inspirationQuotesFragment" app:destination="@id/inspirationQuotesFragment"/>
+        android:id="@+id/viewPagerFragment"
+        android:name="com.example.learningmanager.fragments.ViewPagerFragment"
+        android:label="fragment_view_pager"
+        tools:layout="@layout/fragment_view_pager" />
+    <action android:id="@+id/action_global_viewPagerFragment" app:destination="@id/viewPagerFragment" />
 </navigation>

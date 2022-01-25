@@ -1,7 +1,7 @@
-package com.example.learningmanager.inspirationquotes.data.local
+package com.example.learningmanager.fragments.inspirationquotes.data.local
 
 import androidx.room.Query
-import com.example.learningmanager.inspirationquotes.data.InspirationQuotesData
+import com.example.learningmanager.fragments.inspirationquotes.data.InspirationQuotesData
 
 abstract class InspirationQuotesDao {
 

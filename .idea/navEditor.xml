@@ -8,6 +8,11 @@
             <LayoutPositions>
               <option name="myPositions">
                 <map>
+                  <entry key="action_global_inspirationQuotesFragment">
+                    <value>
+                      <LayoutPositions />
+                    </value>
+                  </entry>
                   <entry key="inspirationQuotesFragment">
                     <value>
                       <LayoutPositions>
@@ -15,6 +20,18 @@
                           <Point>
                             <option name="x" value="-125" />
                             <option name="y" value="46" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="viewPagerFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="-397" />
+                            <option name="y" value="36" />
                           </Point>
                         </option>
                       </LayoutPositions>

@@ -1,7 +1,7 @@
-package com.example.learningmanager.inspirationquotes.data.remote
+package com.example.learningmanager.fragments.inspirationquotes.data.remote
 
-import com.example.learningmanager.inspirationquotes.data.InspirationQuotesData
-import com.example.learningmanager.inspirationquotes.data.InspirationQuotesDetailsResponse
+import com.example.learningmanager.fragments.inspirationquotes.data.InspirationQuotesData
+import com.example.learningmanager.fragments.inspirationquotes.data.InspirationQuotesDetailsResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
 

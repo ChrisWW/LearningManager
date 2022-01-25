@@ -63,6 +63,7 @@ dependencies {
 
     implementation hilt_deps.hilt
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.4.0'
     kapt hilt_deps.compiler
 
     implementation room_deps.room
@@ -76,6 +77,7 @@ dependencies {
     annotationProcessor glide_deps.compiler
 
     implementation dotloader
+    implementation viewpager
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

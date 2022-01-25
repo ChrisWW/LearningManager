@@ -1,4 +1,4 @@
-package com.example.learningmanager.inspirationquotes.data
+package com.example.learningmanager.fragments.inspirationquotes.data
 
 data class InspirationQuotesDetailsResponse(
     val fileSizeBytes: Int,

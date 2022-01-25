@@ -3,7 +3,10 @@ package com.example.learningmanager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatDelegate
-import com.example.learningmanager.inspirationquotes.ui.InspirationQuotesFragment
+import androidx.fragment.app.Fragment
+import com.example.learningmanager.fragments.inspirationquotes.ui.InspirationQuotesFragment
+import com.example.learningmanager.fragments.notesmanager.ui.NotesManagerFragment
+import com.example.learningmanager.fragments.setgoals.ui.SetGoalsFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -11,6 +14,12 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+//        val fragmentList = arrayListOf<Fragment>(
+//            InspirationQuotesFragment(),
+//            NotesManagerFragment(),
+//            SetGoalsFragment()
+//        )
 
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
     }

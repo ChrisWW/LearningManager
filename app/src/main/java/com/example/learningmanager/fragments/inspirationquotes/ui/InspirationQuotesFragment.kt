@@ -1,4 +1,4 @@
-package com.example.learningmanager.inspirationquotes.ui
+package com.example.learningmanager.fragments.inspirationquotes.ui
 
 import android.graphics.drawable.AnimationDrawable
 import android.os.Bundle
@@ -11,7 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.example.learningmanager.base.ui.BaseFragment
 import com.example.learningmanager.databinding.FragmentInspirationQuotesBinding
-import com.example.learningmanager.inspirationquotes.data.InspirationQuotesDetailsResponse
+import com.example.learningmanager.fragments.inspirationquotes.data.InspirationQuotesDetailsResponse
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.MutableStateFlow

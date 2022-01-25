@@ -1,6 +1,6 @@
-package com.example.learningmanager.inspirationquotes.di
+package com.example.learningmanager.fragments.inspirationquotes.di
 
-import com.example.learningmanager.inspirationquotes.data.remote.InspirationQuotesApi
+import com.example.learningmanager.fragments.inspirationquotes.data.remote.InspirationQuotesApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

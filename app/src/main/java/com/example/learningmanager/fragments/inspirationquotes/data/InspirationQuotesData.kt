@@ -1,4 +1,4 @@
-package com.example.learningmanager.inspirationquotes.data
+package com.example.learningmanager.fragments.inspirationquotes.data
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

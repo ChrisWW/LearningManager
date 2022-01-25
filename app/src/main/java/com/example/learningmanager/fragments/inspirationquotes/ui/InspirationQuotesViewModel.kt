@@ -1,12 +1,12 @@
-package com.example.learningmanager.inspirationquotes.ui
+package com.example.learningmanager.fragments.inspirationquotes.ui
 
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.viewModelScope
 import com.example.learningmanager.base.ui.BaseViewModel
-import com.example.learningmanager.inspirationquotes.data.InspirationQuotesDetailsResponse
-import com.example.learningmanager.inspirationquotes.domain.GetPictureItemUseCase
-import com.example.learningmanager.inspirationquotes.domain.GetRandomPictureItemUseCase
+import com.example.learningmanager.fragments.inspirationquotes.data.InspirationQuotesDetailsResponse
+import com.example.learningmanager.fragments.inspirationquotes.domain.GetPictureItemUseCase
+import com.example.learningmanager.fragments.inspirationquotes.domain.GetRandomPictureItemUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
