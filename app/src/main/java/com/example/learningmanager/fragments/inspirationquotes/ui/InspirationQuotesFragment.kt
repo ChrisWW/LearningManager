@@ -16,7 +16,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collect
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class InspirationQuotesFragment :
@@ -30,6 +29,12 @@ class InspirationQuotesFragment :
         backgroundAnimation()
         getRandomPicture()
         onFloatingActionClick()
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+
     }
 
     private fun getRandomPicture() {
