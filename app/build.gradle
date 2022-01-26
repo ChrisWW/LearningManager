@@ -78,6 +78,14 @@ dependencies {
 
     implementation dotloader
     implementation viewpager
+    implementation thebluealliance
+    implementation markdownedittext
+
+    implementation markwon.core
+    implementation markwon.extstrike
+    implementation markwon.exttasklist
+    implementation recyclerviewanimator
+
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

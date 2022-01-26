@@ -8,6 +8,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import com.agrawalsuneet.dotsloader.loaders.LazyLoader
 import com.bumptech.glide.Glide
 import com.example.learningmanager.base.ui.BaseFragment
 import com.example.learningmanager.databinding.FragmentInspirationQuotesBinding
@@ -22,7 +23,6 @@ class InspirationQuotesFragment :
     BaseFragment<FragmentInspirationQuotesBinding, InspirationQuotesViewModel>
         (FragmentInspirationQuotesBinding::inflate) {
     override val vm: InspirationQuotesViewModel by viewModels()
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -33,6 +33,8 @@ class InspirationQuotesFragment :
 
     override fun onResume() {
         super.onResume()
+
+        layout.dotsLoading.initView()
 
 
     }

@@ -36,8 +36,8 @@ ext {
 
     room_version = "2.3.0"
     room_deps = [
-            room: "androidx.room:room-runtime:$room_version",
-            ktx: "androidx.room:room-ktx:$room_version",
+            room         : "androidx.room:room-runtime:$room_version",
+            ktx          : "androidx.room:room-ktx:$room_version",
             room_compiler: "androidx.room:room-compiler:$room_version"
     ]
 
@@ -48,8 +48,8 @@ ext {
             retrofit_gson: "com.squareup.retrofit2:converter-gson:$retrofit_version"
     ]
     okhttp = [
-            okhttp : "com.squareup.okhttp3:okhttp:4.9.0",
-            interceptor : 'com.squareup.okhttp3:logging-interceptor:4.9.0']
+            okhttp     : "com.squareup.okhttp3:okhttp:4.9.0",
+            interceptor: 'com.squareup.okhttp3:logging-interceptor:4.9.0']
     gson = 'com.google.code.gson:gson:2.8.7'
 
     glide_version = "4.12.0"
@@ -60,6 +60,21 @@ ext {
 
     dotloader = 'com.agrawalsuneet.androidlibs:dotsloader:1.4'
     viewpager = 'androidx.viewpager2:viewpager2:1.0.0'
+
+    //color picker library
+    thebluealliance = 'com.thebluealliance:spectrum:0.7.1'
+
+    markdownedittext = 'com.yahiaangelo.markdownedittext:markdownedittext:1.1.1'
+
+    markwon = [
+            core          : "io.noties.markwon:core:4.6.0",
+            extstrike  : "io.noties.markwon:ext-strikethrough:4.6.0",
+            exttasklist: "io.noties.markwon:ext-tasklist:4.6.0"]
+
+    // RecyclerView Animator
+    recyclerviewanimator = 'jp.wasabeef:recyclerview-animators:3.0.0'
+
+
 //
 //    shimmers = 'com.facebook.shimmer:shimmer:0.5.0'
 //

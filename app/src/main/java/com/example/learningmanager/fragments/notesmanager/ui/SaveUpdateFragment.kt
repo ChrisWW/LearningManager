@@ -7,10 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.learningmanager.R
 
-class NotesManagerFragment : Fragment() {
-
+class SaveUpdateFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
     }
-
 }
