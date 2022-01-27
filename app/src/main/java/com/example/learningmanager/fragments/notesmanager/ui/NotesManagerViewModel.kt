@@ -1,4 +1,6 @@
 package com.example.learningmanager.fragments.notesmanager.ui
 
-class NotesManagerViewModel {
+import com.example.learningmanager.base.ui.BaseViewModel
+
+class NotesManagerViewModel : BaseViewModel() {
 }
