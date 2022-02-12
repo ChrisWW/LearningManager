@@ -10,6 +10,7 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.21"
         classpath hilt_deps.classpath_plugin
         classpath nav_component_deps.classpath_safeargs
+
 //        classpath firebase_deps.classpath
 //        classpath firebase_deps.crashlytics_classpath
         // NOTE: Do not place your application dependencies here; they belong

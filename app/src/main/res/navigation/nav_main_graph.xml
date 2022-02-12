@@ -9,6 +9,28 @@
         android:id="@+id/viewPagerFragment"
         android:name="com.example.learningmanager.fragments.ViewPagerFragment"
         android:label="fragment_view_pager"
-        tools:layout="@layout/fragment_view_pager" />
-    <action android:id="@+id/action_global_viewPagerFragment" app:destination="@id/viewPagerFragment" />
+        tools:layout="@layout/fragment_view_pager">
+        <action
+            android:id="@+id/action_viewPagerFragment_to_saveUpdateFragment2"
+            app:destination="@id/saveUpdateFragment2" />
+    </fragment>
+    <action
+        android:id="@+id/action_global_viewPagerFragment"
+        app:destination="@id/viewPagerFragment" />
+    <fragment
+        android:id="@+id/saveUpdateFragment2"
+        android:name="com.example.learningmanager.fragments.notesmanager.ui.SaveUpdateFragment"
+        android:label="fragment_save_update"
+        tools:layout="@layout/fragment_save_update">
+        <action
+            android:id="@+id/action_saveUpdateFragment2_to_viewPagerFragment"
+            app:destination="@id/viewPagerFragment" />
+        <argument
+            android:name="Note"
+            android:defaultValue="@null"
+            app:argType="com.example.learningmanager.fragments.notesmanager.data.NoteData"
+            app:nullable="true">
+
+        </argument>
+    </fragment>
 </navigation>

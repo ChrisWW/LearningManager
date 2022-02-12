@@ -8,18 +8,18 @@
             <LayoutPositions>
               <option name="myPositions">
                 <map>
-                  <entry key="action_global_inspirationQuotesFragment">
+                  <entry key="action_global_viewPagerFragment">
                     <value>
                       <LayoutPositions />
                     </value>
                   </entry>
-                  <entry key="inspirationQuotesFragment">
+                  <entry key="saveUpdateFragment2">
                     <value>
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="-125" />
-                            <option name="y" value="46" />
+                            <option name="x" value="-90" />
+                            <option name="y" value="-2" />
                           </Point>
                         </option>
                       </LayoutPositions>
@@ -30,8 +30,8 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="-397" />
-                            <option name="y" value="36" />
+                            <option name="x" value="-469" />
+                            <option name="y" value="-45" />
                           </Point>
                         </option>
                       </LayoutPositions>
@@ -47,26 +47,44 @@
             <LayoutPositions>
               <option name="myPositions">
                 <map>
-                  <entry key="notesManagerFragment2">
+                  <entry key="notesManagerFragment">
                     <value>
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="-102" />
-                            <option name="y" value="44" />
+                            <option name="x" value="292" />
+                            <option name="y" value="12" />
                           </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_notesManagerFragment_to_saveUpdateFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
                         </option>
                       </LayoutPositions>
                     </value>
                   </entry>
-                  <entry key="saveUpdateFragment2">
+                  <entry key="saveUpdateFragment">
                     <value>
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="253" />
-                            <option name="y" value="35" />
+                            <option name="x" value="12" />
+                            <option name="y" value="12" />
                           </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_saveUpdateFragment_to_notesManagerFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
                         </option>
                       </LayoutPositions>
                     </value>
