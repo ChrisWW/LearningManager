@@ -34,6 +34,7 @@ class InspirationQuotesFragment :
     override fun onResume() {
         super.onResume()
 
+        //too many times
         layout.dotsLoading.initView()
 
 

@@ -100,10 +100,11 @@ class NotesManagerFragment @Inject constructor() :
                     if (query.isNotEmpty()) {
                         // livedata with observe to change
                             Log.d("query", "QUERY IS: $query")
-                        vm.searchNote(query)
+//                        vm.searchNote(query)
 
                         Log.d("query", "LIST IS: ${vm.searchDataList.value}")
-                        rvNotesAdapter.submitList(vm.searchDataList.value)
+//                        rvNotesAdapter.submitList(vm.searchDataList.value)
+                        collectSearchItems(query)
 
                     } else {
                         collectNotesItems()
@@ -260,6 +261,18 @@ class NotesManagerFragment @Inject constructor() :
                 rvNotesAdapter.items = it
                 rvNotesAdapter.submitList(vm.noteDataList.value)
 //                rvNotesAdapter.notifyDataSetChanged()
+            }
+        }
+    }
+
+    private fun collectSearchItems(query: String) {
+        vm.searchNote(query)
+        vm.searchDataList.collectWith(viewLifecycleOwner) {
+            if(it.isEmpty()) {
+            }
+            else {
+                rvNotesAdapter.items = it
+                rvNotesAdapter.submitList(it)
             }
         }
     }

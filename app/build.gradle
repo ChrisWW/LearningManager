@@ -2,8 +2,10 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id 'kotlin-parcelize'
     id 'dagger.hilt.android.plugin'
     id 'androidx.navigation.safeargs'
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -27,6 +29,7 @@ android {
         debug {
             initWith debug
             buildConfigField "String", "BASE_URL", '"https://random.dog"'
+            buildConfigField "String", "webclient_id", webclient_id
         }
         localDebug {
             initWith debug
@@ -86,6 +89,18 @@ dependencies {
     implementation markwon.extstrike
     implementation markwon.exttasklist
     implementation recyclerviewanimator
+
+    implementation platform(firebase_deps.bom)
+    implementation firebase_deps.core
+    implementation firebase_deps.analytics_ktx
+    implementation firebase_deps.auth_ktx
+    implementation firebase_deps.firestore_ktx
+
+    implementation coroutines.play_services
+    implementation coroutines.core
+    implementation coroutines.android
+
+    implementation services_auth
 
 
     testImplementation 'junit:junit:4.+'

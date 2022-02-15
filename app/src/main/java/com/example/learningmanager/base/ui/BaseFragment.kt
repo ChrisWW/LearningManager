@@ -5,7 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
+import com.example.learningmanager.base.ext.collectWith
 import com.example.learningmanager.fragments.notesmanager.data.NoteData
 
 // What is typealias exactly, for what exactly we use inflate?
@@ -31,12 +33,20 @@ abstract class BaseFragment<VB : ViewBinding, VM : BaseViewModel>(private val in
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //navigation events
+collectNavigationEvents()
         //alert events
         //etc?
     }
 
-    //
+    private fun collectNavigationEvents() {
+        vm.navDestination.collectWith(viewLifecycleOwner) {
+            findNavController().navigate(it.createDirections())
+        }
+
+        vm.shouldNavBack.collectWith(viewLifecycleOwner) {
+            findNavController().popBackStack()
+        }
+    }
 
     override fun onDestroyView() {
         binding = null
