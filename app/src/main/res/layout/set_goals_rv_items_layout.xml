@@ -36,6 +36,38 @@
 
             </TextView>
 
+            <TextView
+                android:id="@+id/idTvItemIntense"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginStart="15dp"
+                android:layout_marginBottom="6dp"
+                android:gravity="top"
+                android:padding="4dp"
+                android:text="10 min/day"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/idTvItemNameMain">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/idTvItemTimeGoal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginStart="15dp"
+                android:layout_marginBottom="6dp"
+                android:gravity="top"
+                android:padding="4dp"
+                android:text="20 days left"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/idTvItemIntense">
+
+            </TextView>
+
             <ImageView
                 android:id="@+id/idTvDeleteMain"
                 android:layout_width="wrap_content"

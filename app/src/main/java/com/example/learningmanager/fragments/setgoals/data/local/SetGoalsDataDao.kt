@@ -10,7 +10,7 @@ abstract class SetGoalsDataDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     abstract suspend fun addGoal(goal: SetGoalsData)
 
-    @Query("SELECT * FROM setgoalsdata ORDER BY id")
+    @Query("SELECT * FROM setgoalsdata ORDER BY id DESC")
     abstract suspend fun getAllGoals() : List<SetGoalsData>
 
     @Delete

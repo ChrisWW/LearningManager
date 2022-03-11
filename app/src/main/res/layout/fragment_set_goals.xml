@@ -13,7 +13,8 @@
         android:layout_marginTop="50dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/set_goals_rv_items" />
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/set_goals_rv_items_layout" />
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
