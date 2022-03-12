@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.learningmanager.fragments.setgoals.data.SetGoalsData
 
-@Database(entities = [SetGoalsData::class], version = 1, exportSchema = false)
+@Database(entities = [SetGoalsData::class], version = 5)
 abstract class SetGoalsDatabase : RoomDatabase() {
 
     abstract fun setGoalsDataDao(): SetGoalsDataDao

@@ -13,23 +13,31 @@ import com.example.learningmanager.base.ext.collectWith
 import com.example.learningmanager.base.ui.BaseFragment
 import com.example.learningmanager.databinding.FragmentSetGoalsBinding
 import com.example.learningmanager.fragments.setgoals.adapters.SetGoalsAdapter
+import com.google.android.material.transition.MaterialElevationScale
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class SetGoalsFragment @Inject constructor() : BaseFragment<FragmentSetGoalsBinding, SetGoalsViewModel>(
     FragmentSetGoalsBinding::inflate
 ) {
     override val vm: SetGoalsViewModel by viewModels()
-    private lateinit var setGoalsAdapter: SetGoalsAdapter
+    private val setGoalsAdapter: SetGoalsAdapter by initItemsAdapter()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setGoalsAdapter = SetGoalsAdapter(vm::deleteItem, vm::onItemClicked)
+//        setGoalsAdapter = SetGoalsAdapter(vm::deleteItem, vm::onItemClicked)
 
 //        backgroundAnimation()
-        onFabClicked()
         initItemsRecyclerView()
-
         collectGoalsItems()
+        onFabClicked()
+    }
+
+    override fun onDestroyView() {
+        layout.idRvItemsMain.adapter = null
+
+        super.onDestroyView()
     }
 
     private fun initItemsRecyclerView() {
@@ -46,6 +54,7 @@ class SetGoalsFragment @Inject constructor() : BaseFragment<FragmentSetGoalsBind
     }
 
     private fun collectGoalsItems() {
+        vm.getActualState()
         vm.setGoalsData.collectWith(viewLifecycleOwner) {
             if (it.isEmpty()) {
             } else {
@@ -59,5 +68,9 @@ class SetGoalsFragment @Inject constructor() : BaseFragment<FragmentSetGoalsBind
         layout.idFabGoals.setOnClickListener {
             vm.onNavigateToSave()
         }
+    }
+
+    private fun initItemsAdapter() = lazy {
+        SetGoalsAdapter(vm::deleteItem, vm::onItemClicked)
     }
 }

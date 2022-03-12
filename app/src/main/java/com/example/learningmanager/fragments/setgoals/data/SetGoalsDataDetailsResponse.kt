@@ -5,6 +5,7 @@ data class SetGoalsDataDetailsResponse(
     val goal: String,
     val intenseGoal: String,
     val timeGoal: String,
-    val date: String,
+    val editDate: String,
+    val initialDate: String,
     val color: Int
 )

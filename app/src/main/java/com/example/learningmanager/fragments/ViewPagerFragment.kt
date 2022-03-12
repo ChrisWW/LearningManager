@@ -15,16 +15,28 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class ViewPagerFragment @Inject constructor() : BaseFragment<FragmentViewPagerBinding, ViewPagerViewModel>(
-    FragmentViewPagerBinding::inflate
-) {
+class ViewPagerFragment @Inject constructor() :
+    BaseFragment<FragmentViewPagerBinding, ViewPagerViewModel>(
+        FragmentViewPagerBinding::inflate
+    ) {
 
     override val vm: ViewPagerViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initViewPager()
+        initTabs()
 
-        // viewpager with list of fragments
+    }
+
+    override fun onDestroyView() {
+        layout.viewPager.adapter = null
+
+        super.onDestroyView()
+    }
+
+    // initialize viewpager with list of fragments
+    private fun initViewPager() {
         val fragmentList = arrayListOf<Fragment>(
             InspirationQuotesFragment(),
             NotesManagerFragment(),
@@ -37,9 +49,13 @@ class ViewPagerFragment @Inject constructor() : BaseFragment<FragmentViewPagerBi
             lifecycle
         )
         layout.viewPager.adapter = adapter
+//        layout.viewPager.isUserInputEnabled = false
+    }
 
-        // initialize tablayout with names
-        TabLayoutMediator(layout.tabLayout, layout.viewPager) {tab, position ->
+    // initialize tablayout with names
+    private fun initTabs() {
+
+        TabLayoutMediator(layout.tabLayout, layout.viewPager) { tab, position ->
             when (position) {
                 0 -> tab.text = "Inspiration"
                 1 -> tab.text = "Notes"
@@ -47,10 +63,11 @@ class ViewPagerFragment @Inject constructor() : BaseFragment<FragmentViewPagerBi
             }
         }.attach()
 
-//         listener if tab changes and it is possible to make specific action
-        layout.tabLayout.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener {
+        //         listener if tab changes and it is possible to make specific action
+        layout.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
             }
+
             override fun onTabUnselected(tab: TabLayout.Tab?) {
             }
 
@@ -58,5 +75,6 @@ class ViewPagerFragment @Inject constructor() : BaseFragment<FragmentViewPagerBi
             }
         })
     }
+
 
 }

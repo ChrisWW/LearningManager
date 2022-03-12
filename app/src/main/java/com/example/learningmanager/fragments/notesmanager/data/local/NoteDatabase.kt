@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.learningmanager.fragments.notesmanager.data.NoteData
 
-@Database(entities = [NoteData::class], version = 3, exportSchema = false)
+@Database(entities = [NoteData::class], version = 5)
 abstract class NoteDatabase : RoomDatabase() {
 
     abstract fun noteDataDao(): NoteDataDao

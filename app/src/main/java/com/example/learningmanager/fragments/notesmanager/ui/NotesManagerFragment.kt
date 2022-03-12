@@ -151,6 +151,19 @@ class NotesManagerFragment @Inject constructor() :
 
     }
 
+    override fun onResume() {
+        Log.d("notesmanager", "onRESUME")
+        collectNotesItems()
+
+        super.onResume()
+    }
+
+    override fun onDestroyView() {
+        layout.rvNote.adapter = null
+
+        super.onDestroyView()
+    }
+
     private fun swipeToDelete(rvNote: RecyclerView) {
         val swipeToDeleteCallBack = object : SwipeToDelete() {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
@@ -251,6 +264,7 @@ class NotesManagerFragment @Inject constructor() :
 //        collectNotesItems()
     }
     private fun collectNotesItems() {
+        vm.getActualState()
         vm.noteDataList.collectWith(viewLifecycleOwner) {
             if(it.isEmpty()) {
                 Log.d("collect", " empty $it")

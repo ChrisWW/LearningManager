@@ -21,7 +21,7 @@ class SetGoalsViewModel @Inject constructor(
         getActualState()
     }
 
-    private fun getActualState() {
+    fun getActualState() {
         viewModelScope.launch {
             getGoalsItemDetailsUseCase.build(Unit).collect {
                 setGoalsData.value = it

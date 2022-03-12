@@ -6,9 +6,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.learningmanager.databinding.SetGoalsRvItemsLayoutBinding
 import com.example.learningmanager.fragments.setgoals.data.SetGoalsData
-import com.example.learningmanager.fragments.setgoals.data.SetGoalsDataDetailsResponse
-import java.text.SimpleDateFormat
+import java.math.RoundingMode
+import java.text.DecimalFormat
 import java.util.*
+import kotlin.math.roundToInt
 
 class SetGoalsAdapter(
     private val onItemDeleteClicked: (Int) -> Unit,
@@ -35,7 +36,7 @@ class SetGoalsAdapter(
         private val layout: SetGoalsRvItemsLayoutBinding
     ) : RecyclerView.ViewHolder(layout.root) {
         fun bind(item: SetGoalsData) = with(layout) {
-            val daysLeft = getDaysLeft(item.timeGoal, item.date)
+            val daysLeft = getDaysLeft(item.timeGoal, item.initialDate)
 
             idTvItemNameMain.text = item.goal
             idTvItemIntense.text = "${item.intenseGoal} min/day"
@@ -65,16 +66,28 @@ class SetGoalsAdapter(
         return calendar.time.toString()
     }
 
-    fun getDaysLeft(timeGoal: String, data: String): String {
+    fun getDaysLeft(timeGoalDays: String, initData: String): String {
+
+        val oneDayEpoch = 86400.toDouble()
         val now = Calendar.getInstance().timeInMillis / 1000
-        val days = (now - data.toInt()) / 86400
+        val endData = (initData.toDouble() + timeGoalDays.toDouble()*oneDayEpoch)
+        val days = ((endData - now) / (oneDayEpoch))
 //        val currentData = SimpleDateFormat.getInstance().format(Date())
 //        val date = SimpleDateFormat("dd-MM")
+//        val daysRoundOff = ((days*100).roundToInt() ) / 100
 
-        return if ((timeGoal.toInt() - days) >= days) {
+        val df = DecimalFormat("#.##")
+//        df.roundingMode = RoundingMode.UP
+        val daysRoundOff = df.format(days)
+
+
+        Log.d("days", "now: $now - endData: $endData -- days: $days and roundoff: $daysRoundOff --- timeGoalDays: $timeGoalDays")
+
+        return if ((days.toInt()) >= timeGoalDays.toInt() || days.toInt() <= 0) {
             "0"
         } else {
-            timeGoal.toString()
+            Log.d("days", "VLAUE: $daysRoundOff and $days")
+            daysRoundOff.toString()
         }
     }
 

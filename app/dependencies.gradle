@@ -34,7 +34,7 @@ ext {
             classpath_safeargs: "androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version"
     ]
 
-    room_version = "2.3.0"
+    room_version = "2.4.0-alpha04"
     room_deps = [
             room         : "androidx.room:room-runtime:$room_version",
             ktx          : "androidx.room:room-ktx:$room_version",

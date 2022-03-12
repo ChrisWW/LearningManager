@@ -12,7 +12,8 @@ class AddGoalsItemsUseCase @Inject constructor(private val setGoalsDataDao: SetG
             params.goal,
             params.intenseGoal,
             params.timeGoal,
-            params.date,
+            params.editDate,
+            params.initialDate,
             params.color
         )
         setGoalsDataDao.addGoal(setGoalsData)

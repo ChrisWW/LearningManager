@@ -53,6 +53,7 @@ class NotesManagerViewModel @Inject constructor(
     fun saveNote(newNoteData: NoteDataDetailsResponse) {
         viewModelScope.launch {
             addNotesItemsUseCase.create(newNoteData)
+            getActualState()
             Log.d("newNoteData", "$newNoteData")
         }
     }
