@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 5,
-    "identityHash": "c1c61e526f9ca4ae15ed0dfc93219943",
+    "identityHash": "086394cbc97db5fd9279d2dd776831e7",
     "entities": [
       {
         "tableName": "setgoalsdata",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `goal` TEXT NOT NULL, `intenseGoal` TEXT NOT NULL, `timeGoal` TEXT NOT NULL, `editDate` TEXT NOT NULL, `initialDate` TEXT NOT NULL, `color` INTEGER NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `goal` TEXT NOT NULL, `intenseGoal` TEXT NOT NULL, `timeGoal` TEXT NOT NULL, `editDate` TEXT NOT NULL, `initialDate` TEXT NOT NULL, `color` INTEGER NOT NULL, `expanded` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
@@ -49,6 +49,12 @@
             "columnName": "color",
             "affinity": "INTEGER",
             "notNull": true
+          },
+          {
+            "fieldPath": "expanded",
+            "columnName": "expanded",
+            "affinity": "INTEGER",
+            "notNull": true
           }
         ],
         "primaryKey": {
@@ -64,7 +70,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'c1c61e526f9ca4ae15ed0dfc93219943')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '086394cbc97db5fd9279d2dd776831e7')"
     ]
   }
 }

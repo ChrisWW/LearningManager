@@ -9,7 +9,7 @@ import com.example.learningmanager.fragments.setgoals.data.SetGoalsData
 import com.example.learningmanager.fragments.setgoals.data.local.SetGoalsDataDao
 
 @Database(
-    entities = [NoteData::class, SetGoalsData::class], version = 3
+    entities = [NoteData::class, SetGoalsData::class], version = 6
 )
 abstract class AppDatabase : RoomDatabase() {
     abstract fun noteDataDao(): NoteDataDao

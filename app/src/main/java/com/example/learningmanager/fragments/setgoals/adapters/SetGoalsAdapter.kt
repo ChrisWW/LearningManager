@@ -2,6 +2,7 @@ package com.example.learningmanager.fragments.setgoals.adapters
 
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.learningmanager.databinding.SetGoalsRvItemsLayoutBinding
@@ -9,6 +10,7 @@ import com.example.learningmanager.fragments.setgoals.data.SetGoalsData
 import java.math.RoundingMode
 import java.text.DecimalFormat
 import java.util.*
+import kotlin.math.exp
 import kotlin.math.roundToInt
 
 class SetGoalsAdapter(
@@ -23,6 +25,8 @@ class SetGoalsAdapter(
         return SetGoalsRvItemsLayoutBinding.inflate(inflater, parent, false)
             .let(::SetGoalsItemViewHolder)
         setListData(items)
+
+
     }
 
 
@@ -37,10 +41,20 @@ class SetGoalsAdapter(
     ) : RecyclerView.ViewHolder(layout.root) {
         fun bind(item: SetGoalsData) = with(layout) {
             val daysLeft = getDaysLeft(item.timeGoal, item.initialDate)
+            val percentageValue = getProgressPercentages(item.timeGoal, item.initialDate)
+            expandableLayout.visibility = View.GONE
+            idTvItemNameMain.setOnClickListener {
+                item.expanded = !item.expanded
+                val isExpanded = item.expanded
+                expandableLayout.visibility = if (isExpanded) View.VISIBLE else View.GONE
+            }
 
             idTvItemNameMain.text = item.goal
             idTvItemIntense.text = "${item.intenseGoal} min/day"
             idTvItemTimeGoal.text = "$daysLeft days left"
+            idTvStatusBar.isIndeterminate = false
+            idProgressText.text = percentageValue.roundToInt().toString() + " %"
+            idTvStatusBar.progress = percentageValue.roundToInt()
 
         }
 
@@ -95,6 +109,25 @@ class SetGoalsAdapter(
         this.items = emptyList()
         this.items = list
         notifyDataSetChanged()
+    }
+
+    fun getProgressPercentages(timeGoalDays: String, initData: String) : Double {
+        val oneDayEpoch = 86400.toDouble()
+        val now = Calendar.getInstance().timeInMillis / 1000
+        val endData = (initData.toDouble() + timeGoalDays.toDouble()*oneDayEpoch)
+        val days = ((endData - now) / (oneDayEpoch))
+
+        val percentageValue = ((timeGoalDays.toDouble() - days.toDouble())/timeGoalDays.toDouble())*100
+        Log.d("value", "percantage $percentageValue")
+        Log.d("value", "END DATA $endData")
+        Log.d("value", "now $now")
+        // epoch
+
+        if (percentageValue >= 100) {
+            return 100.toDouble()
+        }
+
+        return percentageValue
     }
 
 }

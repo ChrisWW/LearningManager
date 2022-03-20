@@ -13,5 +13,6 @@ data class SetGoalsData(
     @SerializedName("timeGoal") val timeGoal: String = "0",
     @SerializedName("date") val editDate: String = "",
     @SerializedName("date") val initialDate: String = "",
-    @SerializedName("color") val color: Int = -1
+    @SerializedName("color") val color: Int = -1,
+    @SerializedName("color") var expanded: Boolean = false
 ) : Serializable

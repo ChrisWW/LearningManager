@@ -59,7 +59,8 @@ class SaveGoalFragment @Inject constructor() :
                         layout.etPerDay.text.toString(),
                         currentData,
                         initialData,
-                        color
+                        color,
+                        false
                     )
                 )
             }

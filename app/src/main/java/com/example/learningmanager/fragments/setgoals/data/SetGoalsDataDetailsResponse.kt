@@ -7,5 +7,6 @@ data class SetGoalsDataDetailsResponse(
     val timeGoal: String,
     val editDate: String,
     val initialDate: String,
-    val color: Int
+    val color: Int,
+    val expanded: Boolean = false
 )
