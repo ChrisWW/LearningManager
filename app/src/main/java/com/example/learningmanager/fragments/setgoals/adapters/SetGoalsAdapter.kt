@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.learningmanager.databinding.SetGoalsRvItemsLayoutBinding
 import com.example.learningmanager.fragments.setgoals.data.SetGoalsData
+import android.animation.ValueAnimator
+import android.view.animation.AccelerateDecelerateInterpolator
 import java.math.RoundingMode
 import java.text.DecimalFormat
 import java.util.*
@@ -130,4 +132,39 @@ class SetGoalsAdapter(
         return percentageValue
     }
 
+    //TODO
+
+//    private fun expandItem(holder: SetGoalsItemViewHolder, expand: Boolean, animate: Boolean) {
+//
+//        if (animate) {
+//            val valueAnimator = ValueAnimator()
+//
+//
+//
+//            val animator = valueAnimator. getValueAnimator(
+//                expand, listItemExpandDuration, AccelerateDecelerateInterpolator()
+//            ) { progress -> setExpandProgress(holder, progress) }
+//
+//            if (expand) animator.doOnStart { holder.expandView.isVisible = true }
+//            else animator.doOnEnd { holder.expandView.isVisible = false }
+//
+//            animator.start()
+//        } else {
+//
+//            // show expandView only if we have expandedHeight (onViewAttached)
+//            holder.expandView.isVisible = expand && expandedHeight >= 0
+//            setExpandProgress(holder, if (expand) 1f else 0f)
+//        }
+//    }
+
+//    ValueAnimator getValueAnimator() {
+//    ValueAnimator anim = ValueAnimator.ofFloat(0, 1);
+//    anim.addUpdateListener(new AnimatorUpdateListener() {
+//        @Override
+//        public void onAnimationUpdate(ValueAnimator animation) {
+//            setShapeY((int) (animation.getAnimatedFraction() * (getHeight() - mShapeH)));
+//        }
+//    });
+//    return anim;
 }
+
