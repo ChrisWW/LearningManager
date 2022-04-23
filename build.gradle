@@ -5,6 +5,9 @@ buildscript {
     repositories {
         google()
         mavenCentral()
+        maven {
+           url 'https://dl.bintray.com/infideap2/drawer-behavior'
+        }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:7.0.3'
@@ -31,6 +34,9 @@ allprojects {
             url 'https://pkgs.dev.azure.com/MicrosoftDeviceSDK/DuoSDK-Public/_packaging/Duo-SDK-Feed/maven/v1'
         }
         maven { url 'https://jitpack.io' }
+        maven {
+           url 'https://dl.bintray.com/infideap2/drawer-behavior'
+        }
     }
 }
 

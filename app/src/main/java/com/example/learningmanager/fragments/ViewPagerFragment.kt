@@ -1,31 +1,49 @@
 package com.example.learningmanager.fragments
 
+import android.graphics.Color
 import android.os.Bundle
+import android.view.Gravity
+import android.view.MenuItem
 import androidx.fragment.app.Fragment
 import android.view.View
+import android.view.WindowManager
+import android.widget.Toast
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.fragment.app.viewModels
+import com.example.learningmanager.R
 import com.example.learningmanager.base.ui.BaseFragment
 import com.example.learningmanager.databinding.FragmentViewPagerBinding
 import com.example.learningmanager.fragments.inspirationquotes.ui.InspirationQuotesFragment
 import com.example.learningmanager.fragments.notesmanager.ui.NotesManagerFragment
 import com.example.learningmanager.fragments.setgoals.ui.SetGoalsFragment
+import com.google.android.material.navigation.NavigationView
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
 
 @AndroidEntryPoint
 class ViewPagerFragment @Inject constructor() :
     BaseFragment<FragmentViewPagerBinding, ViewPagerViewModel>(
         FragmentViewPagerBinding::inflate
-    ) {
-
+    ){
+//    , NavigationView.OnNavigationItemSelectedListener
     override val vm: ViewPagerViewModel by viewModels()
+    lateinit var toggle: ActionBarDrawerToggle
+    lateinit var act: AppCompatActivity
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initViewPager()
         initTabs()
+        drawerUsage()
+//
+//       layout.drawerLayout.width = WindowManager.LayoutParams.MATCH_PARENT
+//       layout.drawerLayout.height = WindowManager.LayoutParams.MATCH_PARENT
+//
+
 
     }
 
@@ -52,6 +70,69 @@ class ViewPagerFragment @Inject constructor() :
 //        layout.viewPager.isUserInputEnabled = false
     }
 
+    private fun drawerUsage() {
+        act = activity as AppCompatActivity
+        act.setSupportActionBar(layout.appBar)
+        act.supportActionBar
+        val drawer = layout.drawerLayout
+        val navigationView = layout.navView
+        toggle = ActionBarDrawerToggle(
+            requireActivity(),
+            drawer,
+            R.string.navigation_drawer_open,
+            R.string.navigation_drawer_close
+        )
+        drawer.addDrawerListener(toggle)
+
+// Call syncState() on the action bar so it'll automatically change to the back button when the drawer layout is open
+
+        layout.appBarLayout.setOnClickListener {
+            layout.drawerLayout.openDrawer(Gravity.LEFT)
+            toggle.syncState()
+        }
+
+        toggle.syncState()
+
+        act!!.supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        //
+//        layout.appBar.setOnClickListener {
+//        drawer.openDrawer(GravityCompat.START)
+//        }
+
+        drawer.useCustomBehavior(Gravity.START);
+        // assign custom behavior for "Left" drawer
+        drawer.useCustomBehavior(Gravity.END);
+
+//        //assign custom behavior for "Right" drawer
+//
+        drawer.setViewScale(Gravity.START, 0.9f);
+        //set height scale for main view (0f to 1f)
+        drawer.setViewElevation(Gravity.START, 20f);
+        //set main view elevation when drawer open (dimension)
+        drawer.setViewScrimColor(Gravity.START, Color.TRANSPARENT);
+        //set drawer overlay coloe (color)
+        drawer.setDrawerElevation(Gravity.START, 20f);
+        //set drawer elevation (dimension
+        drawer.setRadius(Gravity.START, 25f);
+        //set end container's corner radius (dimension)
+
+
+//        navigationView.setNavigationItemSelectedListener(this)
+
+        navigationView.setNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.t1 -> Toast.makeText(requireContext(), "Clicked Item 1", Toast.LENGTH_SHORT)
+                    .show()
+                R.id.t2 -> Toast.makeText(requireContext(), "Clicked Item 2", Toast.LENGTH_SHORT)
+                    .show()
+                R.id.t3 -> Toast.makeText(requireContext(), "Clicked Item 3", Toast.LENGTH_SHORT)
+                    .show()
+            }
+            true
+        }
+
+    }
+
     // initialize tablayout with names
     private fun initTabs() {
 
@@ -76,5 +157,31 @@ class ViewPagerFragment @Inject constructor() :
         })
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        layout.appBar.setOnClickListener {
+            layout.drawerLayout.openDrawer(Gravity.LEFT)
+        }
+//        if(item.itemId == item.){ // use android.R.id
+//            layout.drawerLayout.openDrawer(Gravity.LEFT);
+//        }
+        if (toggle.onOptionsItemSelected(item)) {
+            return true
+        }
 
+
+
+
+        return super.onOptionsItemSelected(item)
+    }
 }
+
+//    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+//        if(toggle.onOptionsItemSelected(item)) {
+//            return true
+//        }
+//        return super.onOptionsItemSelected(item)
+//    }
+
+
+
+

@@ -108,6 +108,10 @@ dependencies {
 
     implementation services_auth
 
+    implementation drawerlayout
+
+    implementation gbutton
+
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

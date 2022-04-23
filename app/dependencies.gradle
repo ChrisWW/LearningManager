@@ -82,6 +82,12 @@ ext {
     // RecyclerView Animator
     recyclerviewanimator = 'jp.wasabeef:recyclerview-animators:3.0.0'
 
+    // 3d Drawer
+//    drawerlayout = 'com.shiburagi.drawerbehavior:drawerbehavior:1.0.13'
+
+    drawerlayout = 'com.infideap.drawerbehavior:drawer-behavior:1.0.1'
+
+    gbutton = 'com.github.TutorialsAndroid:GButton:v1.0.19'
 
 //
 //    shimmers = 'com.facebook.shimmer:shimmer:0.5.0'

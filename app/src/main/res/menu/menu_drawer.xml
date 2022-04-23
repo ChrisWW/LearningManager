@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/menu">
+
+    <item
+        android:id="@+id/t1"
+        android:icon="@drawable/ic_baseline_home_24"
+        android:iconTint="@android:color/white"
+        android:title="Task 1" />
+
+    <item
+        android:id="@+id/t2"
+        android:icon="@drawable/ic_baseline_emoji_emotions_24"
+        android:iconTint="@android:color/white"
+        android:title="Task 2" />
+
+    <item
+        android:id="@+id/t3"
+        android:icon="@drawable/ic_baseline_message_24"
+        android:iconTint="@android:color/white"
+        android:title="Task 3" />
+
+
+</menu>
