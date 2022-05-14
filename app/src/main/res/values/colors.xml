@@ -9,6 +9,26 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
+    <color name="text_black">#262626</color>
+    <color name="text_black_60_opacity">#99262626</color>
+    <color name="primary_color">#8800C4</color>
+    <color name="primary_color_40_opacity">#668800C4</color>
+    <color name="primary_color_80_opacity">#CC8800C4</color>
+    <color name="purple_gradient_start">#A300EA</color>
+    <color name="purple_gradient_end">@color/primary_color</color>
+    <color name="blue_pastel">#1F8800C4</color>
+    <color name="grey_background">#f2f2f7</color>
+    <color name="grey">#9a9eb0</color>
+    <color name="dark_grey">#595b60</color>
+    <color name="light_grey">#DFDFDF</color>
+    <color name="medium_grey">#85868a</color>
+    <color name="grey_pastel">#33595b60</color>
+    <color name="grey_shimmer">#d4d4d4</color>
+    <color name="grey_divider">#f1f1eb</color>
+    <color name="orange">#f8941c</color>
+    <color name="red_light">#e35534</color>
+    <color name="green_light">#16cd12</color>
+
     <!--color palette-->
     <color name="purple">#D4C4E3</color>
     <color name="darkPurple">#9387F5</color>

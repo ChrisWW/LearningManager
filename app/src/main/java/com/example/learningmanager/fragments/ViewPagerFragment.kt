@@ -38,6 +38,7 @@ class ViewPagerFragment @Inject constructor() :
         super.onViewCreated(view, savedInstanceState)
         initViewPager()
         initTabs()
+        // TODO drawerUsage doesn't work gives bug with button on inspiration
         drawerUsage()
 //
 //       layout.drawerLayout.width = WindowManager.LayoutParams.MATCH_PARENT
@@ -72,8 +73,8 @@ class ViewPagerFragment @Inject constructor() :
 
     private fun drawerUsage() {
         act = activity as AppCompatActivity
-        act.setSupportActionBar(layout.appBar)
-        act.supportActionBar
+        act.setSupportActionBar(layout.appBarLayout)
+//        act.supportActionBar!!.elevation = 0F;
         val drawer = layout.drawerLayout
         val navigationView = layout.navView
         toggle = ActionBarDrawerToggle(
@@ -83,28 +84,50 @@ class ViewPagerFragment @Inject constructor() :
             R.string.navigation_drawer_close
         )
         drawer.addDrawerListener(toggle)
+        toggle.syncState()
+        act!!.supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
 // Call syncState() on the action bar so it'll automatically change to the back button when the drawer layout is open
+//        act!!.supportActionBar?
 
-        layout.appBarLayout.setOnClickListener {
-            layout.drawerLayout.openDrawer(Gravity.LEFT)
-            toggle.syncState()
-        }
 
-        toggle.syncState()
-
-        act!!.supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        //
+//        toggle.setToolbarNavigationClickListener {
+//            layout.drawerLayout.openDrawer(Gravity.LEFT)
+//            toggle.toolbarNavigationClickListener
+//            toggle.syncState()
+//
+//            toggle.
+//        }
+//
 //        layout.appBar.setOnClickListener {
-//        drawer.openDrawer(GravityCompat.START)
+//            layout.drawerLayout.openDrawer(Gravity.LEFT)
+//            toggle.toolbarNavigationClickListener
+//            toggle.syncState()
 //        }
 
-        drawer.useCustomBehavior(Gravity.START);
-        // assign custom behavior for "Left" drawer
-        drawer.useCustomBehavior(Gravity.END);
+//        layout.appBarLayout.setOnClickListener {
+//            toggle.toolbarNavigationClickListener
+//            layout.drawerLayout.openDrawer(Gravity.LEFT)
+//            toggle.toolbarNavigationClickListener
+//            toggle.syncState()
+//        }
 
-//        //assign custom behavior for "Right" drawer
+
+//        toggle.syncState()
 //
+//        act!!.supportActionBar?.setDisplayHomeAsUpEnabled(true)
+//        //
+////        layout.appBar.setOnClickListener {
+////        drawer.openDrawer(GravityCompat.START)
+////        }
+//
+//
+//        drawer.useCustomBehavior(Gravity.START);
+//        // assign custom behavior for "Left" drawer
+//        drawer.useCustomBehavior(Gravity.END);
+//
+////        //assign custom behavior for "Right" drawer
+////
         drawer.setViewScale(Gravity.START, 0.9f);
         //set height scale for main view (0f to 1f)
         drawer.setViewElevation(Gravity.START, 20f);
@@ -116,8 +139,8 @@ class ViewPagerFragment @Inject constructor() :
         drawer.setRadius(Gravity.START, 25f);
         //set end container's corner radius (dimension)
 
-
 //        navigationView.setNavigationItemSelectedListener(this)
+//        navigationView.bringToFront();
 
         navigationView.setNavigationItemSelectedListener {
             when (it.itemId) {
@@ -158,19 +181,9 @@ class ViewPagerFragment @Inject constructor() :
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        layout.appBar.setOnClickListener {
-            layout.drawerLayout.openDrawer(Gravity.LEFT)
-        }
-//        if(item.itemId == item.){ // use android.R.id
-//            layout.drawerLayout.openDrawer(Gravity.LEFT);
-//        }
         if (toggle.onOptionsItemSelected(item)) {
             return true
         }
-
-
-
-
         return super.onOptionsItemSelected(item)
     }
 }

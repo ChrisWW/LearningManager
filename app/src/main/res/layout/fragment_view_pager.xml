@@ -50,11 +50,11 @@
 
         </LinearLayout>
 
-        <com.google.android.material.appbar.AppBarLayout
+        <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/appBarLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:theme="@style/Widget.Design.AppBarLayout"
+            android:theme="@layout/layout_default_toolbar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -62,14 +62,14 @@
 
 
 
-            <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/appBar"
-                android:layout_width="wrap_content"
-                android:layout_height="?attr/actionBarSize"
-                app:popupTheme="@style/Widget.AppCompat.PopupMenu.Overflow"
-                />
+<!--            <com.google.android.material.appbar.MaterialToolbar-->
+<!--                android:id="@+id/appBar"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="?attr/actionBarSize"-->
+<!--                app:popupTheme="@style/Widget.AppCompat.PopupMenu.Overflow"-->
+<!--                />-->
 
-        </com.google.android.material.appbar.AppBarLayout>
+        </com.google.android.material.appbar.MaterialToolbar>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

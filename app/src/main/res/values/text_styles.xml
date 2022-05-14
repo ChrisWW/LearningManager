@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Regular -->
+    <style name="Regular" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/open_sans_regular</item>
+    </style>
+
+    <style name="Regular.12">
+        <item name="android:textSize">@dimen/text_size_12</item>
+    </style>
+
+    <style name="Regular.13">
+        <item name="android:textSize">@dimen/text_size_13</item>
+    </style>
+
+    <style name="Regular.14">
+        <item name="android:textSize">@dimen/text_size_14</item>
+    </style>
+
+    <style name="Regular.13.DarkGrey">
+        <item name="android:textColor">@color/dark_grey</item>
+    </style>
+
+    <style name="Regular.15">
+        <item name="android:textSize">@dimen/text_size_15</item>
+    </style>
+
+    <style name="Regular.17">
+        <item name="android:textSize">@dimen/text_size_17</item>
+    </style>
+
+
+    <!-- SemiBold -->
+    <style name="SemiBold" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/open_sans_semi_bold</item>
+    </style>
+
+    <style name="SemiBold.12">
+        <item name="android:textSize">@dimen/text_size_12</item>
+    </style>
+
+    <style name="SemiBold.13">
+        <item name="android:textSize">@dimen/text_size_13</item>
+    </style>
+
+    <style name="SemiBold.13.MediumGrey">
+        <item name="android:textColor">@color/medium_grey</item>
+    </style>
+
+    <style name="SemiBold.14">
+        <item name="android:textSize">@dimen/text_size_14</item>
+    </style>
+
+    <style name="SemiBold.15">
+        <item name="android:textSize">@dimen/text_size_15</item>
+    </style>
+
+    <style name="SemiBold.15.Primary">
+        <item name="android:textColor">@color/primary_color</item>
+    </style>
+
+    <style name="SemiBold.16">
+        <item name="android:textSize">@dimen/text_size_16</item>
+    </style>
+
+    <style name="SemiBold.17">
+        <item name="android:textSize">@dimen/text_size_17</item>
+    </style>
+
+    <style name="SemiBold.20">
+        <item name="android:textSize">@dimen/text_size_20</item>
+    </style>
+
+    <style name="SemiBold.28">
+        <item name="android:textSize">@dimen/text_size_28</item>
+    </style>
+
+
+    <!-- Bold -->
+    <style name="Bold" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/open_sans_bold</item>
+    </style>
+
+    <style name="Bold.12">
+        <item name="android:textSize">@dimen/text_size_12</item>
+    </style>
+
+    <style name="Bold.13">
+        <item name="android:textSize">@dimen/text_size_13</item>
+    </style>
+
+    <style name="Bold.15">
+        <item name="android:textSize">@dimen/text_size_15</item>
+    </style>
+
+    <style name="Bold.15.Primary">
+        <item name="android:textColor">@color/primary_color</item>
+    </style>
+
+    <style name="Bold.20">
+        <item name="android:textSize">@dimen/text_size_20</item>
+    </style>
+
+    <style name="Bold.20.White">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="Bold.28">
+        <item name="android:textSize">@dimen/text_size_28</item>
+    </style>
+
+</resources>
