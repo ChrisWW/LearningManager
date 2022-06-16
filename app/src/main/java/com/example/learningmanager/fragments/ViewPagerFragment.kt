@@ -1,14 +1,15 @@
 package com.example.learningmanager.fragments
 
+import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Bundle
 import android.view.Gravity
 import android.view.MenuItem
-import androidx.fragment.app.Fragment
 import android.view.View
-import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.learningmanager.R
 import com.example.learningmanager.base.ui.BaseFragment
@@ -16,13 +17,10 @@ import com.example.learningmanager.databinding.FragmentViewPagerBinding
 import com.example.learningmanager.fragments.inspirationquotes.ui.InspirationQuotesFragment
 import com.example.learningmanager.fragments.notesmanager.ui.NotesManagerFragment
 import com.example.learningmanager.fragments.setgoals.ui.SetGoalsFragment
-import com.google.android.material.navigation.NavigationView
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.GravityCompat
 
 @AndroidEntryPoint
 class ViewPagerFragment @Inject constructor() :
@@ -74,7 +72,6 @@ class ViewPagerFragment @Inject constructor() :
     private fun drawerUsage() {
         act = activity as AppCompatActivity
         act.setSupportActionBar(layout.appBarLayout)
-//        act.supportActionBar!!.elevation = 0F;
         val drawer = layout.drawerLayout
         val navigationView = layout.navView
         toggle = ActionBarDrawerToggle(
@@ -84,9 +81,8 @@ class ViewPagerFragment @Inject constructor() :
             R.string.navigation_drawer_close
         )
         drawer.addDrawerListener(toggle)
-        toggle.syncState()
         act!!.supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
+        toggle.syncState()
 // Call syncState() on the action bar so it'll automatically change to the back button when the drawer layout is open
 //        act!!.supportActionBar?
 
@@ -106,12 +102,27 @@ class ViewPagerFragment @Inject constructor() :
 //        }
 
 //        layout.appBarLayout.setOnClickListener {
-//            toggle.toolbarNavigationClickListener
 //            layout.drawerLayout.openDrawer(Gravity.LEFT)
-//            toggle.toolbarNavigationClickListener
 //            toggle.syncState()
 //        }
-
+//        act!!.supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_add)
+////        act.supportActionBar!!.setDisplayHomeAsUpEnabled(true);
+////        act.supportActionBar!!.setDisplayHomeAsUpEnabled(false);
+////        toggle.drawerIndicatorEnabled = false;
+////        this.drawerToggle.SetHomeAsUpIndicator(Resource.Drawable.MenuButton);
+//        toggle.setToolbarNavigationClickListener {
+//            layout.drawerLayout.openDrawer(Gravity.LEFT)
+//            toggle.syncState()
+//        }
+//        layout.navView.setNavigationItemSelectedListener {
+//            when (it.itemId) {
+//                R.drawable.ic_add -> {
+//                    layout.drawerLayout.openDrawer(Gravity.LEFT)
+//                    true
+//                }
+//                else -> false
+//            }
+//        }
 
 //        toggle.syncState()
 //
@@ -182,8 +193,17 @@ class ViewPagerFragment @Inject constructor() :
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (toggle.onOptionsItemSelected(item)) {
+            layout.drawerLayout.openDrawer(Gravity.LEFT)
             return true
         }
+
+//        item.setOnMenuItemClickListener {
+//            layout.drawerLayout.openDrawer(Gravity.LEFT)
+//            true
+//        }
+//        if(item.itemId == android.R.id.home){ // use android.R.id
+//            layout.drawerLayout.openDrawer(Gravity.LEFT);
+//        }
         return super.onOptionsItemSelected(item)
     }
 }

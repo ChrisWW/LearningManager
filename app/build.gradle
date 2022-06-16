@@ -74,6 +74,7 @@ dependencies {
     implementation hilt_deps.hilt
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.4.0'
+    implementation 'com.google.android.gms:play-services-auth:20.2.0'
     kapt hilt_deps.compiler
 
     implementation room_deps.room
@@ -105,8 +106,6 @@ dependencies {
     implementation coroutines.play_services
     implementation coroutines.core
     implementation coroutines.android
-
-    implementation services_auth
 
     implementation drawerlayout
 
