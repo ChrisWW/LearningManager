@@ -71,12 +71,13 @@ class ViewPagerFragment @Inject constructor() :
 
     private fun drawerUsage() {
         act = activity as AppCompatActivity
-        act.setSupportActionBar(layout.appBarLayout)
         val drawer = layout.drawerLayout
         val navigationView = layout.navView
+        act.setSupportActionBar(layout.appBarLayout)
         toggle = ActionBarDrawerToggle(
             requireActivity(),
             drawer,
+            layout.appBarLayout,
             R.string.navigation_drawer_open,
             R.string.navigation_drawer_close
         )

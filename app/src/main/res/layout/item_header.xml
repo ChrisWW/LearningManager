@@ -21,7 +21,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="@style/QText"
-        android:textColor="#ffffff"
         android:text="Alan Solis Flores"
         android:textStyle="bold"
         android:layout_gravity="bottom"
@@ -32,7 +31,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="@style/QText"
-        android:textColor="#ffffff"
         android:text="alansolisflores@gmail.com"
         android:layout_gravity="bottom"
         android:layout_margin="10dp"/>
