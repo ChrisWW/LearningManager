@@ -1,9 +1,9 @@
 package com.example.learningmanager.fragments
 
-import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Bundle
 import android.view.Gravity
+import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
@@ -14,6 +14,7 @@ import androidx.fragment.app.viewModels
 import com.example.learningmanager.R
 import com.example.learningmanager.base.ui.BaseFragment
 import com.example.learningmanager.databinding.FragmentViewPagerBinding
+import com.example.learningmanager.databinding.ItemHeaderBinding
 import com.example.learningmanager.fragments.inspirationquotes.ui.InspirationQuotesFragment
 import com.example.learningmanager.fragments.notesmanager.ui.NotesManagerFragment
 import com.example.learningmanager.fragments.setgoals.ui.SetGoalsFragment
@@ -21,6 +22,7 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
+
 
 @AndroidEntryPoint
 class ViewPagerFragment @Inject constructor() :
@@ -81,9 +83,22 @@ class ViewPagerFragment @Inject constructor() :
             R.string.navigation_drawer_open,
             R.string.navigation_drawer_close
         )
+
         drawer.addDrawerListener(toggle)
         act!!.supportActionBar?.setDisplayHomeAsUpEnabled(true)
         toggle.syncState()
+        val headerView = navigationView.getHeaderView(0)
+//        val drawerHeaderBinding: ItemHeaderBinding = ItemHeaderBinding.bind(headerView)
+////        navigationView.addHeaderView(drawerHeaderBinding.root)
+//        drawerHeaderBinding.txEmail = "email"
+//        drawerHeaderBinding.executePendingBindings()
+//        val layoutHeader = ItemHeaderBinding
+//        val headerView = navigationView.getHeaderView(0)
+//        View headerView = LayoutInflater.from(this).inflate(R.layout.header_layout, navigationView, false);
+//        navigationView.addHeaderView(headerView);
+
+//        val txEmailHeader = headerView.findViewById(R.id.txEmail)
+
 // Call syncState() on the action bar so it'll automatically change to the back button when the drawer layout is open
 //        act!!.supportActionBar?
 

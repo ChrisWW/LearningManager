@@ -21,17 +21,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="@style/QText"
-        android:text="Alan Solis Flores"
+        android:text="Your Email:"
         android:textStyle="bold"
         android:layout_gravity="bottom"
         android:layout_marginBottom="30dp"
         android:layout_marginLeft="10dp"/>
 
     <TextView
+        android:id="@+id/txEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="@style/QText"
-        android:text="alansolisflores@gmail.com"
+        android:text="yourEmail@gmail.com"
         android:layout_gravity="bottom"
         android:layout_margin="10dp"/>
 </FrameLayout>

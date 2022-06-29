@@ -73,8 +73,8 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:clickable="true"
-        android:layout_below="@+id/toolbarFragmentNoteContent">
+        android:layout_below="@+id/toolbarFragmentNoteContent"
+        android:clickable="true">
 
         <androidx.core.widget.NestedScrollView
             android:id="@+id/scrollView"
@@ -92,16 +92,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginEnd="20dp"
                     android:layout_marginBottom="10dp"
-                    android:layout_marginTop="10dp"
                     android:background="@null"
                     android:fontFamily="@font/google_sans_medium"
                     android:hint="Write your goal!"
                     android:importantForAutofill="no"
                     android:inputType="none"
                     android:padding="10dp"
-                    android:textSize="16sp">
+                    android:textSize="@dimen/text_size_16">
 
 
                 </EditText>
@@ -111,43 +111,81 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginEnd="20dp"
                     android:layout_marginBottom="10dp"
-                    android:layout_marginTop="10dp"
                     android:background="@null"
                     android:fontFamily="@font/google_sans_regular"
                     android:hint="How many minutes per day?"
                     android:importantForAutofill="no"
                     android:inputType="none"
                     android:padding="10dp"
-                    android:textSize="16sp">
+                    android:textSize="@dimen/text_size_16">
 
 
                 </EditText>
 
-                <EditText
-                    android:id="@+id/etHowLong"
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="10dp">
+
+                    <TextView
+                        android:id="@+id/etHowLong"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@null"
+                        android:fontFamily="@font/google_sans_regular"
+                        android:hint="How long set your goal in days?"
+                        android:importantForAutofill="no"
+                        android:inputType="none"
+                        android:padding="10dp"
+                        android:textSize="@dimen/text_size_16">
+                    </TextView>
+
+                    <ImageView
+                        android:id="@+id/ivInformation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_gravity="center"
+                        android:layout_margin="@dimen/spacing_8"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/ic_baseline_info_24" />
+                </RelativeLayout>
+
+                <CheckBox
+                    android:id="@+id/cbSaveInGoogleCalendar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
                     android:layout_marginTop="10dp"
+                    android:layout_marginEnd="20dp"
                     android:layout_marginBottom="10dp"
-                    android:background="@null"
-                    android:fontFamily="@font/google_sans_regular"
-                    android:hint="How long set your goal in days?"
-                    android:importantForAutofill="no"
-                    android:inputType="none"
-                    android:padding="10dp"
-                    android:textSize="16sp">
+                    android:paddingLeft="@dimen/spacing_4"
+                    android:text="Save in Google Calendar"
+                    android:textSize="@dimen/text_size_16" />
 
-
-                </EditText>
-
+                <CheckBox
+                    android:id="@+id/cbSendTaskToEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:paddingLeft="@dimen/spacing_4"
+                    android:text="Send task to email"
+                    android:textSize="@dimen/text_size_16" />
 
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
 
     </FrameLayout>
-
 </RelativeLayout>

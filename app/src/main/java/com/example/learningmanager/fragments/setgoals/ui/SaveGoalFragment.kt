@@ -1,19 +1,16 @@
 package com.example.learningmanager.fragments.setgoals.ui
 
-import android.os.Build
+import android.content.ContentResolver
+import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.fragment.app.viewModels
 import com.example.learningmanager.base.ui.BaseFragment
 import com.example.learningmanager.databinding.FragmentSaveGoalBinding
 import com.example.learningmanager.fragments.setgoals.data.SetGoalsData
 import com.example.learningmanager.fragments.setgoals.data.SetGoalsDataDetailsResponse
 import dagger.hilt.android.AndroidEntryPoint
-import java.text.SimpleDateFormat
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 import java.util.*
 import javax.inject.Inject
 
@@ -26,6 +23,7 @@ class SaveGoalFragment @Inject constructor() :
     override val vm: SaveGoalsViewModel by viewModels()
     private var setGoalData: SetGoalsData? = null
     private val currentData = getActualTimeEpoch()
+
     //    private val currentData = SimpleDateFormat.getInstance().format(Date())
     private var initialData = initDataString()
     private val color = -1
@@ -33,6 +31,10 @@ class SaveGoalFragment @Inject constructor() :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        onCalendarDataClick()
+        saveInGoogleGoogleCalendar()
+        sendTaskToEmail()
+        onInfoClick()
         onClickBack()
         onSaveClicked()
     }
@@ -49,7 +51,7 @@ class SaveGoalFragment @Inject constructor() :
             if (layout.etGoal.text.toString().isEmpty() || layout.etHowLong.text.toString()
                     .isEmpty() || layout.etPerDay.text.toString().isEmpty()
             ) {
-                Toast.makeText(activity, "Something is Empty", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, "Not all the data is covered...", Toast.LENGTH_SHORT).show()
             } else {
                 vm.saveGoal(
                     SetGoalsDataDetailsResponse(
@@ -63,17 +65,40 @@ class SaveGoalFragment @Inject constructor() :
                         false
                     )
                 )
+                saveInGoogleGoogleCalendar()
             }
             vm.navigateBack()
         }
     }
 
-    private fun initDataString(): String {
+    private fun onCalendarDataClick() {
+        vm.calendarGoal(layout.etHowLong, context)
+    }
 
+    private fun onInfoClick() {
+        layout.ivInformation.setOnClickListener {
+            vm.showInfo(context)
+        }
+    }
+
+    private fun initDataString(): String {
         return if (initialData.isNullOrEmpty()) {
             getActualTimeEpoch()
         } else {
             initialData
+        }
+    }
+
+    private fun saveInGoogleGoogleCalendar() {
+        if(layout.cbSaveInGoogleCalendar.isActivated) {
+            val contentResolver = object: ContentResolver(context) {}
+            vm.saveInGoogleCalendar(layout.etGoal.text.toString(), contentResolver)
+        }
+    }
+
+    private fun sendTaskToEmail() {
+        if(layout.cbSendTaskToEmail.isActivated) {
+            vm.sendTaskToEmail()
         }
     }
 

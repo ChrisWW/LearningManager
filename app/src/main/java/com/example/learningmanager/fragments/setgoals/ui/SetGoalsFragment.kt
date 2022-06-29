@@ -18,17 +18,18 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class SetGoalsFragment @Inject constructor() : BaseFragment<FragmentSetGoalsBinding, SetGoalsViewModel>(
-    FragmentSetGoalsBinding::inflate
-) {
+class SetGoalsFragment @Inject constructor() :
+    BaseFragment<FragmentSetGoalsBinding, SetGoalsViewModel>(
+        FragmentSetGoalsBinding::inflate
+    ) {
     override val vm: SetGoalsViewModel by viewModels()
     private val setGoalsAdapter: SetGoalsAdapter by initItemsAdapter()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 //        setGoalsAdapter = SetGoalsAdapter(vm::deleteItem, vm::onItemClicked)
-
 //        backgroundAnimation()
+
         initItemsRecyclerView()
         collectGoalsItems()
         onFabClicked()
@@ -36,13 +37,13 @@ class SetGoalsFragment @Inject constructor() : BaseFragment<FragmentSetGoalsBind
 
     override fun onDestroyView() {
         layout.idRvItemsMain.adapter = null
-
         super.onDestroyView()
     }
 
     private fun initItemsRecyclerView() {
         layout.idRvItemsMain.adapter = setGoalsAdapter
     }
+
     private fun backgroundAnimation() {
         val animationDrawable: AnimationDrawable = layout.rlLayout.background as AnimationDrawable
 
@@ -64,7 +65,7 @@ class SetGoalsFragment @Inject constructor() : BaseFragment<FragmentSetGoalsBind
         }
     }
 
-    fun onFabClicked() {
+    private fun onFabClicked() {
         layout.idFabGoals.setOnClickListener {
             vm.onNavigateToSave()
         }
