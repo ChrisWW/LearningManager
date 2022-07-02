@@ -1,7 +1,9 @@
 package com.example.learningmanager.fragments
 
 import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.MenuItem
@@ -11,6 +13,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
 import com.example.learningmanager.R
 import com.example.learningmanager.base.ui.BaseFragment
 import com.example.learningmanager.databinding.FragmentViewPagerBinding
@@ -28,9 +31,9 @@ import javax.inject.Inject
 class ViewPagerFragment @Inject constructor() :
     BaseFragment<FragmentViewPagerBinding, ViewPagerViewModel>(
         FragmentViewPagerBinding::inflate
-    ){
-//    , NavigationView.OnNavigationItemSelectedListener
+    ) {
     override val vm: ViewPagerViewModel by viewModels()
+    private val args: ViewPagerFragmentArgs by navArgs()
     lateinit var toggle: ActionBarDrawerToggle
     lateinit var act: AppCompatActivity
 
@@ -88,10 +91,16 @@ class ViewPagerFragment @Inject constructor() :
         act!!.supportActionBar?.setDisplayHomeAsUpEnabled(true)
         toggle.syncState()
         val headerView = navigationView.getHeaderView(0)
-//        val drawerHeaderBinding: ItemHeaderBinding = ItemHeaderBinding.bind(headerView)
+        val drawerHeaderBinding: ItemHeaderBinding = ItemHeaderBinding.bind(headerView)
 ////        navigationView.addHeaderView(drawerHeaderBinding.root)
-//        drawerHeaderBinding.txEmail = "email"
-//        drawerHeaderBinding.executePendingBindings()
+        val imageUri = Uri.parse(args.photoUrl)
+        drawerHeaderBinding.txEmail.text = args.userEmail
+        drawerHeaderBinding.txDisplayName.text = args.displayName
+        if (imageUri != null) {
+            drawerHeaderBinding.ivAvatar.setImageURI(null)
+            drawerHeaderBinding.ivAvatar.setImageURI(imageUri)
+        }
+        //        drawerHeaderBinding.executePendingBindings()
 //        val layoutHeader = ItemHeaderBinding
 //        val headerView = navigationView.getHeaderView(0)
 //        View headerView = LayoutInflater.from(this).inflate(R.layout.header_layout, navigationView, false);

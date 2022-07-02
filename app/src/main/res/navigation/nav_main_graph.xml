@@ -16,6 +16,18 @@
         <action
             android:id="@+id/action_viewPagerFragment_to_saveGoalFragment"
             app:destination="@id/saveGoalFragment" />
+        <argument
+            android:name="userEmail"
+            app:nullable="true"
+            app:argType="string" />
+        <argument
+            android:name="displayName"
+            app:nullable="true"
+            app:argType="string" />
+        <argument
+            android:name="photoUrl"
+            app:nullable="true"
+            app:argType="string" />
     </fragment>
     <action
         android:id="@+id/action_global_viewPagerFragment"

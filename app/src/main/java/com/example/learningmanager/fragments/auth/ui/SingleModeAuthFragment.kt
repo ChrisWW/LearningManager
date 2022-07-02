@@ -62,13 +62,18 @@ class SingleModeAuthFragment @Inject constructor() :
         if (requestCode == REQUEST_CODE_SIGN_IN) {
             val account = GoogleSignIn.getSignedInAccountFromIntent(data).result
             account?.let {
-                googleAuthForFirebase(it)
+                googleAuthForFirebase(it, it.email!!, it.displayName!!, it.photoUrl.toString()!!)
             }
 
         }
     }
 
-    private fun googleAuthForFirebase(account: GoogleSignInAccount) {
+    private fun googleAuthForFirebase(
+        account: GoogleSignInAccount,
+        userEmail: String,
+        displayName: String,
+        photoUrl: String
+    ) {
         val credentials = GoogleAuthProvider.getCredential(account.idToken, null)
         CoroutineScope(Dispatchers.IO).launch {
             try {
@@ -83,6 +88,6 @@ class SingleModeAuthFragment @Inject constructor() :
                 }
             }
         }
-        vm.navigateToViewPagerFragment()
+        vm.navigateToViewPagerFragment(userEmail, displayName, photoUrl)
     }
 }

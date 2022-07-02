@@ -102,8 +102,6 @@
                     android:inputType="none"
                     android:padding="10dp"
                     android:textSize="@dimen/text_size_16">
-
-
                 </EditText>
 
                 <EditText
@@ -118,7 +116,7 @@
                     android:fontFamily="@font/google_sans_regular"
                     android:hint="How many minutes per day?"
                     android:importantForAutofill="no"
-                    android:inputType="none"
+                    android:inputType="number"
                     android:padding="10dp"
                     android:textSize="@dimen/text_size_16">
 
