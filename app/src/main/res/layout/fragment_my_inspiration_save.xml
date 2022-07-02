@@ -5,7 +5,7 @@
     android:id="@+id/noteContentFragmentParent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.notesmanager.ui.SaveUpdateFragment">
+    tools:context=".fragments.myinspiration.ui.MyInspirationSaveFragment">
 
     <RelativeLayout
         android:id="@+id/toolbarFragmentNoteContent"
@@ -50,7 +50,7 @@
 
 
         <ImageView
-            android:id="@+id/saveNote"
+            android:id="@+id/saveInspiration"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -89,7 +89,7 @@
                 android:orientation="vertical">
 
                 <EditText
-                    android:id="@+id/etTitle"
+                    android:id="@+id/etInspiration"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -97,7 +97,7 @@
                     android:layout_marginBottom="10dp"
                     android:background="@null"
                     android:fontFamily="@font/google_sans_medium"
-                    android:hint="Note Title"
+                    android:hint="Inspiration Title"
                     android:importantForAutofill="no"
                     android:inputType="none"
                     android:textSize="22sp">
@@ -106,7 +106,7 @@
                 </EditText>
 
                 <com.yahiaangelo.markdownedittext.MarkdownEditText
-                    android:id="@+id/etNoteContent"
+                    android:id="@+id/etInspirationContent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="22dp"
@@ -114,7 +114,7 @@
                     android:layout_marginTop="10dp"
                     android:background="@null"
                     android:fontFamily="@font/google_sans_regular"
-                    android:hint="Note"
+                    android:hint="Description"
                     android:importantForAutofill="no"
                     android:inputType="none"
                     android:padding="10dp"
@@ -123,23 +123,51 @@
 
                 </com.yahiaangelo.markdownedittext.MarkdownEditText>
 
+                <ImageView
+                    android:id="@+id/ivAddImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:src="@drawable/iv_clickme" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/spacing_40"
+                    android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/acceptPicture"
+                    android:layout_width="match_parent"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginEnd="50dp"
+                    android:layout_height="wrap_content"
+                    android:text="Accept picture" />
+
+<!--                <Button-->
+<!--                    android:id="@+id/button2"-->
+<!--                    android:layout_marginStart="30dp"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Add Inspiration" />-->
+                </LinearLayout>
+
 
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fabColorPick"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|right"
-            android:layout_margin="15dp"
-            android:backgroundTint="@color/purple"
-            android:clickable="true"
-            android:src="@drawable/ic_baseline_color_lens_24"
-            app:backgroundTint="@color/purple">
+<!--        <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--            android:id="@+id/fabColorPick"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="bottom|right"-->
+<!--            android:layout_margin="15dp"-->
+<!--            android:backgroundTint="@color/purple"-->
+<!--            android:clickable="true"-->
+<!--            android:src="@drawable/ic_baseline_color_lens_24"-->
+<!--            app:backgroundTint="@color/purple">-->
 
 
-        </com.google.android.material.floatingactionbutton.FloatingActionButton>
+<!--        </com.google.android.material.floatingactionbutton.FloatingActionButton>-->
 
     </FrameLayout>
 

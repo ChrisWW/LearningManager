@@ -3,9 +3,7 @@ package com.example.learningmanager.fragments
 import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.Gravity
-import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
@@ -100,69 +98,6 @@ class ViewPagerFragment @Inject constructor() :
             drawerHeaderBinding.ivAvatar.setImageURI(null)
             drawerHeaderBinding.ivAvatar.setImageURI(imageUri)
         }
-        //        drawerHeaderBinding.executePendingBindings()
-//        val layoutHeader = ItemHeaderBinding
-//        val headerView = navigationView.getHeaderView(0)
-//        View headerView = LayoutInflater.from(this).inflate(R.layout.header_layout, navigationView, false);
-//        navigationView.addHeaderView(headerView);
-
-//        val txEmailHeader = headerView.findViewById(R.id.txEmail)
-
-// Call syncState() on the action bar so it'll automatically change to the back button when the drawer layout is open
-//        act!!.supportActionBar?
-
-
-//        toggle.setToolbarNavigationClickListener {
-//            layout.drawerLayout.openDrawer(Gravity.LEFT)
-//            toggle.toolbarNavigationClickListener
-//            toggle.syncState()
-//
-//            toggle.
-//        }
-//
-//        layout.appBar.setOnClickListener {
-//            layout.drawerLayout.openDrawer(Gravity.LEFT)
-//            toggle.toolbarNavigationClickListener
-//            toggle.syncState()
-//        }
-
-//        layout.appBarLayout.setOnClickListener {
-//            layout.drawerLayout.openDrawer(Gravity.LEFT)
-//            toggle.syncState()
-//        }
-//        act!!.supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_add)
-////        act.supportActionBar!!.setDisplayHomeAsUpEnabled(true);
-////        act.supportActionBar!!.setDisplayHomeAsUpEnabled(false);
-////        toggle.drawerIndicatorEnabled = false;
-////        this.drawerToggle.SetHomeAsUpIndicator(Resource.Drawable.MenuButton);
-//        toggle.setToolbarNavigationClickListener {
-//            layout.drawerLayout.openDrawer(Gravity.LEFT)
-//            toggle.syncState()
-//        }
-//        layout.navView.setNavigationItemSelectedListener {
-//            when (it.itemId) {
-//                R.drawable.ic_add -> {
-//                    layout.drawerLayout.openDrawer(Gravity.LEFT)
-//                    true
-//                }
-//                else -> false
-//            }
-//        }
-
-//        toggle.syncState()
-//
-//        act!!.supportActionBar?.setDisplayHomeAsUpEnabled(true)
-//        //
-////        layout.appBar.setOnClickListener {
-////        drawer.openDrawer(GravityCompat.START)
-////        }
-//
-//
-//        drawer.useCustomBehavior(Gravity.START);
-//        // assign custom behavior for "Left" drawer
-//        drawer.useCustomBehavior(Gravity.END);
-//
-////        //assign custom behavior for "Right" drawer
 ////
         drawer.setViewScale(Gravity.START, 0.9f);
         //set height scale for main view (0f to 1f)
@@ -175,16 +110,16 @@ class ViewPagerFragment @Inject constructor() :
         drawer.setRadius(Gravity.START, 25f);
         //set end container's corner radius (dimension)
 
-//        navigationView.setNavigationItemSelectedListener(this)
-//        navigationView.bringToFront();
-
         navigationView.setNavigationItemSelectedListener {
             when (it.itemId) {
-                R.id.t1 -> Toast.makeText(requireContext(), "Clicked Item 1", Toast.LENGTH_SHORT)
+                R.id.home -> Toast.makeText(requireContext(), "Clicked Home", Toast.LENGTH_SHORT)
                     .show()
-                R.id.t2 -> Toast.makeText(requireContext(), "Clicked Item 2", Toast.LENGTH_SHORT)
+                R.id.profile -> Toast.makeText(requireContext(), "Clicked Profile", Toast.LENGTH_SHORT)
                     .show()
-                R.id.t3 -> Toast.makeText(requireContext(), "Clicked Item 3", Toast.LENGTH_SHORT)
+                R.id.inspirations -> vm.navigateTo(ViewPagerToMyInspirationScreenKey())
+                R.id.settings -> Toast.makeText(requireContext(), "Clicked settings", Toast.LENGTH_SHORT)
+                    .show()
+                R.id.logout -> Toast.makeText(requireContext(), "Clicked logout", Toast.LENGTH_SHORT)
                     .show()
             }
             true

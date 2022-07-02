@@ -87,12 +87,6 @@
 
             ></com.google.android.material.navigation.NavigationView>
 
-
-
-
-
-        <!--        android:layout_marginStart=""-->
-
     </com.infideap.drawerbehavior.Advance3DDrawerLayout>
 </RelativeLayout>
 

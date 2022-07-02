@@ -13,6 +13,30 @@
                       <LayoutPositions />
                     </value>
                   </entry>
+                  <entry key="myInspirationFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="-643" />
+                            <option name="y" value="305" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="myInspirationSaveFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="-421" />
+                            <option name="y" value="374" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
                   <entry key="saveGoalFragment">
                     <value>
                       <LayoutPositions>
@@ -21,6 +45,15 @@
                             <option name="x" value="-98" />
                             <option name="y" value="398" />
                           </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_saveGoalFragment_to_viewPagerFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
                         </option>
                       </LayoutPositions>
                     </value>
@@ -78,6 +111,16 @@
                         </option>
                         <option name="myPositions">
                           <map>
+                            <entry key="action_viewPagerFragment_to_myInspirationFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                            <entry key="action_viewPagerFragment_to_saveGoalFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
                             <entry key="action_viewPagerFragment_to_saveUpdateFragment2">
                               <value>
                                 <LayoutPositions />

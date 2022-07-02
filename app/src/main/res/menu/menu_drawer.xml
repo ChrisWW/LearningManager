@@ -4,22 +4,34 @@
     android:id="@+id/menu">
 
     <item
-        android:id="@+id/t1"
+        android:id="@+id/home"
         android:icon="@drawable/ic_baseline_home_24"
         android:tint="@color/black"
-        android:title="Task 1" />
+        android:title="Home" />
 
     <item
-        android:id="@+id/t2"
+        android:id="@+id/profile"
         android:icon="@drawable/ic_baseline_emoji_emotions_24"
         android:tint="@color/black"
-        android:title="Task 2" />
+        android:title="Profile" />
 
     <item
-        android:id="@+id/t3"
+        android:id="@+id/inspirations"
         android:icon="@drawable/ic_baseline_message_24"
         android:tint="@color/black"
-        android:title="Task 3" />
+        android:title="My Inspirations" />
+
+    <item
+        android:id="@+id/settings"
+        android:icon="@drawable/ic_baseline_message_24"
+        android:tint="@color/black"
+        android:title="Settings" />
+
+    <item
+        android:id="@+id/logout"
+        android:icon="@drawable/ic_baseline_message_24"
+        android:tint="@color/black"
+        android:title="Logout" />
 
 
 </menu>
