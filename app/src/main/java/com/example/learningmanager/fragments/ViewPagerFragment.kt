@@ -17,10 +17,12 @@ import com.example.learningmanager.base.ui.BaseFragment
 import com.example.learningmanager.databinding.FragmentViewPagerBinding
 import com.example.learningmanager.databinding.ItemHeaderBinding
 import com.example.learningmanager.fragments.inspirationquotes.ui.InspirationQuotesFragment
+import com.example.learningmanager.fragments.myinspiration.FirebaseManager
 import com.example.learningmanager.fragments.notesmanager.ui.NotesManagerFragment
 import com.example.learningmanager.fragments.setgoals.ui.SetGoalsFragment
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -34,6 +36,7 @@ class ViewPagerFragment @Inject constructor() :
     private val args: ViewPagerFragmentArgs by navArgs()
     lateinit var toggle: ActionBarDrawerToggle
     lateinit var act: AppCompatActivity
+//    val firebaseManager = firebaseManager
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -111,20 +114,28 @@ class ViewPagerFragment @Inject constructor() :
         //set end container's corner radius (dimension)
 
         navigationView.setNavigationItemSelectedListener {
+            val auth = FirebaseAuth.getInstance()
             when (it.itemId) {
                 R.id.home -> Toast.makeText(requireContext(), "Clicked Home", Toast.LENGTH_SHORT)
                     .show()
-                R.id.profile -> Toast.makeText(requireContext(), "Clicked Profile", Toast.LENGTH_SHORT)
+                R.id.profile -> Toast.makeText(
+                    requireContext(),
+                    "Clicked Profile",
+                    Toast.LENGTH_SHORT
+                )
                     .show()
                 R.id.inspirations -> vm.navigateTo(ViewPagerToMyInspirationScreenKey())
-                R.id.settings -> Toast.makeText(requireContext(), "Clicked settings", Toast.LENGTH_SHORT)
+                R.id.settings -> Toast.makeText(
+                    requireContext(),
+                    "Clicked settings",
+                    Toast.LENGTH_SHORT
+                )
                     .show()
-                R.id.logout -> Toast.makeText(requireContext(), "Clicked logout", Toast.LENGTH_SHORT)
-                    .show()
+                R.id.logout -> auth.signOut()
+                    .let { vm.navigateTo(ViewPagerToAuthScreenKey()) }
             }
             true
         }
-
     }
 
     // initialize tablayout with names

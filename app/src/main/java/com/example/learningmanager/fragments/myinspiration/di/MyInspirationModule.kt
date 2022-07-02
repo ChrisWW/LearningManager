@@ -1,6 +1,7 @@
 package com.example.learningmanager.fragments.myinspiration.di
 
 import com.example.learningmanager.fragments.myinspiration.FirebaseManager
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import dagger.Module
@@ -14,7 +15,7 @@ abstract class MyInspirationModule {
 
     companion object {
         @Provides
-        fun provideInspirationFirebaseStore(firebaseFirestore: FirebaseFirestore, firebaseFirebaseStorage: FirebaseStorage) : FirebaseManager =
-            FirebaseManager(firebaseFirestore, firebaseFirebaseStorage)
+        fun provideInspirationFirebaseStore(firebaseFirestore: FirebaseFirestore, firebaseFirebaseStorage: FirebaseStorage, firebaseAuth: FirebaseAuth) : FirebaseManager =
+            FirebaseManager(firebaseFirestore, firebaseFirebaseStorage, firebaseAuth)
     }
 }

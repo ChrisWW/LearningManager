@@ -1,6 +1,7 @@
 package com.example.learningmanager.base.di
 
 import com.example.learningmanager.BuildConfig
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.gson.Gson
@@ -23,6 +24,10 @@ object NetworkModule {
     @Provides
     @Singleton
     fun provideFirebaseStorage() = FirebaseStorage.getInstance()
+
+    @Provides
+    @Singleton
+    fun provideFirebaseAuth() = FirebaseAuth.getInstance()
 
 //    @Provides
 //    @Singleton

@@ -8,6 +8,7 @@ import androidx.fragment.app.viewModels
 import com.example.learningmanager.BuildConfig
 import com.example.learningmanager.base.ui.BaseFragment
 import com.example.learningmanager.databinding.FragmentSingleModeAuthBinding
+import com.example.learningmanager.fragments.myinspiration.FirebaseManager
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient

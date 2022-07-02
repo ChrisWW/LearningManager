@@ -31,6 +31,9 @@
         <action
             android:id="@+id/action_viewPagerFragment_to_myInspirationFragment"
             app:destination="@id/myInspirationFragment" />
+        <action
+            android:id="@+id/action_viewPagerFragment_to_singleModeAuthFragment2"
+            app:destination="@id/singleModeAuthFragment2" />
     </fragment>
     <action
         android:id="@+id/action_global_viewPagerFragment"

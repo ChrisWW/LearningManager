@@ -6,6 +6,7 @@ import android.net.Uri
 import android.util.Log
 import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import dagger.hilt.android.AndroidEntryPoint
@@ -19,10 +20,12 @@ import kotlin.collections.ArrayList
 class FirebaseManager @Inject constructor(
 //    @ApplicationContext val context: Context,
     firebaseFirestore: FirebaseFirestore,
-    firebaseStorage: FirebaseStorage
+    firebaseStorage: FirebaseStorage,
+    firebaseAuth: FirebaseAuth
 ) {
     private val mStorageRef = firebaseStorage.reference
     val db = firebaseFirestore
+    val auth = firebaseAuth
     private lateinit var mProgressDialog: ProgressDialog
 
     fun uploadImage(imageFileUri: Uri, activity: FragmentActivity) {
@@ -108,6 +111,9 @@ class FirebaseManager @Inject constructor(
             }
     }
 
+    fun signOut() {
+        auth.signOut()
+    }
 
     companion object {
         var imgUrl = ""
