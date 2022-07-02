@@ -12,7 +12,6 @@ import retrofit2.Retrofit
 abstract class InspirationQuotesModule {
 
     companion object {
-
         @Provides
         fun provideInspirationQuotesApi(retrofit: Retrofit) : InspirationQuotesApi =
             retrofit.create(InspirationQuotesApi::class.java)

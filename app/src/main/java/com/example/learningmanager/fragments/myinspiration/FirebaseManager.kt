@@ -5,21 +5,30 @@ import android.content.Context
 import android.net.Uri
 import android.util.Log
 import android.widget.Toast
+import androidx.fragment.app.FragmentActivity
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
+import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import java.util.*
+import javax.inject.Inject
 import kotlin.collections.ArrayList
 
-class FirebaseManager {
-
-    private val mStorageRef = FirebaseStorage.getInstance().reference
+class FirebaseManager @Inject constructor(
+//    @ApplicationContext val context: Context,
+    firebaseFirestore: FirebaseFirestore,
+    firebaseStorage: FirebaseStorage
+) {
+    private val mStorageRef = firebaseStorage.reference
+    val db = firebaseFirestore
     private lateinit var mProgressDialog: ProgressDialog
 
-    fun uploadImage(context: Context, imageFileUri: Uri) {
-        mProgressDialog = ProgressDialog(context)
+    fun uploadImage(imageFileUri: Uri, activity: FragmentActivity) {
+        mProgressDialog = ProgressDialog(activity)
         mProgressDialog.setMessage("Please wait, image being upload")
+
         mProgressDialog.show()
         val date = Date()
         val uploadTask = mStorageRef.child("images/${date}.png").putFile(imageFileUri)
@@ -48,9 +57,9 @@ class FirebaseManager {
         data: String,
         author: String,
         quote: String,
-        context: Context
+        activity: FragmentActivity
     ) {
-        val db = FirebaseFirestore.getInstance()
+//        val db = firebaseFirestore
         val inspiration: MutableMap<String, Any> = HashMap()
         inspiration["inspirationTitle"] = inspirationTitle
         inspiration["description"] = description
@@ -59,38 +68,38 @@ class FirebaseManager {
         inspiration["author"] = author
         inspiration["quote"] = quote
 
-        db.collection("events")
+        db.collection("inspirations")
             .add(inspiration)
             .addOnSuccessListener {
-                Toast.makeText(context, "record added successfully ", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, "record added successfully ", Toast.LENGTH_SHORT).show()
                 Log.d("finish", "READ DB")
                 readFireStoreData()
             }
             .addOnFailureListener {
                 Log.d("finish", "FAIL READ DB")
-                Toast.makeText(context, "record Failed to add ", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, "record Failed to add ", Toast.LENGTH_SHORT).show()
             }
     }
 
     fun readFireStoreData() {
         val db = FirebaseFirestore.getInstance()
-        db.collection("events")
+        db.collection("inspirations")
             .get()
-            .addOnCompleteListener{
+            .addOnCompleteListener {
                 if (it.isSuccessful) {
-                    elementList.clear()
-                    for (document in it.result!!) {
-                        elementList.add(
-                            arrayListOf(
-                                document.data.getValue("author").toString(),
-                                document.data.getValue("eventTitle").toString(),
-                                document.data.getValue("description").toString(),
-                                document.data.getValue("imagePath").toString(),
-                                document.data.getValue("data").toString(),
-                                document.data.getValue("eventLocalization").toString()
-                            )
-                        )
-                    }
+//                    elementList.clear()
+//                    for (document in it.result!!) {
+//                        elementList.add(
+//                            arrayListOf(
+//                                document.data.getValue("author").toString(),
+//                                document.data.getValue("eventTitle").toString(),
+//                                document.data.getValue("description").toString(),
+//                                document.data.getValue("imagePath").toString(),
+//                                document.data.getValue("data").toString(),
+//                                document.data.getValue("eventLocalization").toString()
+//                            )
+//                        )
+//                    }
                     Log.d("value", "TRIGGER FB ${elementList}")
                     _setGoalsData.value = elementList
 

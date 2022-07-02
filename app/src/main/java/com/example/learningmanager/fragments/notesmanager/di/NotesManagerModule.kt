@@ -26,6 +26,8 @@ abstract class NotesManagerModule {
         fun provideMyInspirationRoom(appDatabase: AppDatabase): MyInspirationDataDao {
             return appDatabase.myInspirationDataDao()
         }
+//        @Provides
+//        fun provideMyFirebaseManager()
     }
 
 }

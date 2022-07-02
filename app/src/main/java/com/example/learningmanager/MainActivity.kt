@@ -1,5 +1,8 @@
 package com.example.learningmanager
 
+import android.Manifest
+import android.Manifest.permission.READ_CALENDAR
+import android.Manifest.permission.WRITE_CALENDAR
 import android.app.Activity
 import android.content.Intent
 import android.net.Uri
@@ -8,6 +11,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
+import com.example.learningmanager.MainActivity.Companion.addGoogleResultCode
 import com.github.dhaval2404.imagepicker.ImagePicker
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -18,6 +22,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        requestPermissions(arrayListOf(Manifest.permission.READ_CALENDAR, Manifest.permission.WRITE_CALENDAR).toTypedArray(), 42)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -29,6 +34,9 @@ class MainActivity : AppCompatActivity() {
             inspirationImage = uri.toString()
             Log.d("value", "$inspirationImage")
             addPictureResultCode = false
+        } else if (resultCode == RESULT_OK && addGoogleResultCode && addGoogleSaveAndNavigate) {
+                Log.d("googletest", "GOOGLERESULT $addGoogleResultCode")
+                addGoogleResultCode = false
         } else if (resultCode == ImagePicker.RESULT_ERROR) {
             Toast.makeText(this, ImagePicker.getError(data), Toast.LENGTH_SHORT).show()
         } else {
@@ -40,5 +48,7 @@ class MainActivity : AppCompatActivity() {
     companion object {
         var inspirationImage = ""
         var addPictureResultCode = false
+        var addGoogleResultCode = false
+        var addGoogleSaveAndNavigate = false
     }
 }
