@@ -62,12 +62,12 @@ class SaveGoalFragment @Inject constructor() :
                     SetGoalsDataDetailsResponse(
                         0,
                         layout.etGoal.text.toString(),
-                        layout.etHowLong.text.toString(),
                         layout.etPerDay.text.toString(),
+                        layout.etHowLong.text.toString(),
                         currentData,
                         initialData,
                         color,
-                        false
+                        true
                     )
                 )
                 saveInGoogleGoogleCalendar()
