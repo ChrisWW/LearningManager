@@ -7,5 +7,6 @@ data class MyInspirationDetailsResponse (
     val imageUrl: String,
     val date: String,
     val authorQuote: String,
-    val quote: String
+    val quote: String,
+    val localization: String
 )

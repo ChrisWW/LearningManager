@@ -143,8 +143,7 @@
                         android:importantForAutofill="no"
                         android:inputType="none"
                         android:padding="10dp"
-                        android:textSize="@dimen/text_size_16">
-                    </TextView>
+                        android:textSize="@dimen/text_size_16"></TextView>
 
                     <ImageView
                         android:id="@+id/ivInformation"

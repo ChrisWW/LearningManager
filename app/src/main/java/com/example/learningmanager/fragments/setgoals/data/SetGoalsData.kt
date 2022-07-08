@@ -9,10 +9,11 @@ import com.google.gson.annotations.SerializedName
 data class SetGoalsData(
     @PrimaryKey(autoGenerate = true) var id: Int = 0,
     @SerializedName("goal") val goal: String = "",
-    @SerializedName("intenseGoal") val intenseGoal: String = "0",
-    @SerializedName("timeGoal") val timeGoal: String = "0",
-    @SerializedName("date") val editDate: String = "",
-    @SerializedName("date") val initialDate: String = "",
+    @SerializedName("intensegoal") val intenseGoal: String = "0",
+    @SerializedName("timegoal") val timeGoal: String = "0",
+    @SerializedName("editdate") val editDate: String = "",
+    @SerializedName("initialdate") val initialDate: String = "",
     @SerializedName("color") val color: Int = -1,
-    @SerializedName("color") var expanded: Boolean = false
+    @SerializedName("expanded") var expanded: Boolean = false,
+//    @SerializedName("eventgoogleid") var eventgoogleid: Int = -1,
 ) : Serializable

@@ -63,4 +63,8 @@ class MyInspirationViewModel @Inject constructor(
             .maxResultSize(1080, 1080)
             .start()
     }
+
+    fun deleteItem(id: Int) {
+
+    }
 }

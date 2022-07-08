@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 7,
-    "identityHash": "88a889f690534b75d7dee9dbd8515c0f",
+    "identityHash": "6bf0ac22f2fcf691332644e483a9aff7",
     "entities": [
       {
         "tableName": "notedata",
@@ -112,7 +112,7 @@
       },
       {
         "tableName": "myinspiration",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `title` TEXT NOT NULL, `description` TEXT NOT NULL, `imageUrl` TEXT NOT NULL, `date` TEXT NOT NULL, `authorQuote` TEXT NOT NULL, `quote` TEXT NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `title` TEXT NOT NULL, `description` TEXT NOT NULL, `imageUrl` TEXT NOT NULL, `date` TEXT NOT NULL, `authorQuote` TEXT NOT NULL, `quote` TEXT NOT NULL, `localization` TEXT NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
@@ -155,6 +155,12 @@
             "columnName": "quote",
             "affinity": "TEXT",
             "notNull": true
+          },
+          {
+            "fieldPath": "localization",
+            "columnName": "localization",
+            "affinity": "TEXT",
+            "notNull": true
           }
         ],
         "primaryKey": {
@@ -170,7 +176,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '88a889f690534b75d7dee9dbd8515c0f')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '6bf0ac22f2fcf691332644e483a9aff7')"
     ]
   }
 }

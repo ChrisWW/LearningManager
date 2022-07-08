@@ -14,4 +14,5 @@ data class MyInspirationData(
     @SerializedName("date") val date: String = "",
     @SerializedName("authorQuote") val authorQuote: String = "",
     @SerializedName("quote") val quote: String = "",
+    @SerializedName("localization") val localization: String = "",
 ) : Serializable

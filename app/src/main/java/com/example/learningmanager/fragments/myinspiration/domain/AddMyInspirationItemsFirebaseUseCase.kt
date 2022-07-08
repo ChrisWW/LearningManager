@@ -15,10 +15,10 @@ class AddMyInspirationItemsFirebaseUseCase @Inject constructor(private val fireb
         firebaseManager.saveFireStore(
             params.title,
             params.description,
-            params.imageUrl,
             params.date,
             params.authorQuote,
             params.quote,
+            params.localization,
             activity
         )
     }

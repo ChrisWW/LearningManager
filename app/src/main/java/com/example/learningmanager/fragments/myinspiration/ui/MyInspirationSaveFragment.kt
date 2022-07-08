@@ -2,6 +2,7 @@ package com.example.learningmanager.fragments.myinspiration.ui
 
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
@@ -11,9 +12,10 @@ import com.example.learningmanager.R
 import com.example.learningmanager.base.ui.BaseFragment
 import com.example.learningmanager.databinding.FragmentMyInspirationSaveBinding
 import com.example.learningmanager.fragments.myinspiration.FirebaseManager
+import com.example.learningmanager.fragments.myinspiration.FirebaseManager.Companion.triggerImage
 import com.example.learningmanager.fragments.myinspiration.data.MyInspirationDetailsResponse
-import com.example.learningmanager.fragments.myinspiration.domain.AddImageMyInspirationFirebaseStorageUseCase
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
@@ -27,10 +29,10 @@ class MyInspirationSaveFragment @Inject constructor() :
     override val vm: MyInspirationViewModel by activityViewModels()
     private val currentData = SimpleDateFormat.getInstance().format(Date())
     var imgURI: Uri? = null
+    var imgURItoFireBase = ""
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         initUI()
     }
 
@@ -38,6 +40,7 @@ class MyInspirationSaveFragment @Inject constructor() :
         Glide.with(requireView()).load(R.drawable.gif_clickme).into(layout.ivAddImage)
         addPicture()
         acceptPicture()
+        saveImgUrlToVariable()
         addInspiration()
     }
 
@@ -58,17 +61,31 @@ class MyInspirationSaveFragment @Inject constructor() :
         }
     }
 
+
+    private fun saveImgUrlToVariable() {
+        lifecycleScope.launch {
+            triggerImage.collect {
+                imgURItoFireBase = it
+                Log.d("valuestosee", "FLOW FLOW save imgURItoFireBase: $imgURItoFireBase")
+            }
+        }
+    }
+
     private fun addInspiration() {
         layout.saveInspiration.setOnClickListener {
+            Log.d("valuestosee", "ADd inspimgURItoFireBase: $imgURItoFireBase")
+            Log.d("valuestosee", "ADd inspimgURItoFireBase: ${FirebaseManager.imageBytesInString}")
+//            get alue from firebase? or save link TODO use interface, other approach
             vm.saveInspiration(
                 MyInspirationDetailsResponse(
                     0,
                     layout.etInspiration.text.toString(),
                     layout.etInspirationContent.text.toString(),
-                    "layout.ivAddImage.",
+                    FirebaseManager.imgUrl,
                     currentData.toString(),
                     "",
-                    ""
+                    "",
+                    Locale.getDefault().displayCountry.toString()
                 ),
                 requireActivity()
             )

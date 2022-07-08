@@ -17,8 +17,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MyInspirationSaveViewModel @Inject constructor(
-    private val getMyInspirationItemsUseCase: GetMyInspirationItemsUseCase,
-    private val addMyInspirationItemsUseCase: AddMyInspirationItemsUseCase
 ) : BaseViewModel() {
 
 }

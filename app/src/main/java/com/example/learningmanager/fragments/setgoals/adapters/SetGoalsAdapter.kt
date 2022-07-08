@@ -1,18 +1,17 @@
 package com.example.learningmanager.fragments.setgoals.adapters
 
+import android.animation.ObjectAnimator
+import android.os.Build
 import android.util.Log
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.learningmanager.databinding.SetGoalsRvItemsLayoutBinding
 import com.example.learningmanager.fragments.setgoals.data.SetGoalsData
-import android.animation.ValueAnimator
-import android.view.animation.AccelerateDecelerateInterpolator
-import java.math.RoundingMode
 import java.text.DecimalFormat
 import java.util.*
-import kotlin.math.exp
 import kotlin.math.roundToInt
 
 class SetGoalsAdapter(
@@ -27,8 +26,6 @@ class SetGoalsAdapter(
         return SetGoalsRvItemsLayoutBinding.inflate(inflater, parent, false)
             .let(::SetGoalsItemViewHolder)
         setListData(items)
-
-
     }
 
 
@@ -45,10 +42,21 @@ class SetGoalsAdapter(
             val daysLeft = getDaysLeft(item.timeGoal, item.initialDate)
             val percentageValue = getProgressPercentages(item.timeGoal, item.initialDate)
             expandableLayout.visibility = View.GONE
-            idTvItemNameMain.setOnClickListener {
+            cardViewSetGoals.setOnClickListener {
                 item.expanded = !item.expanded
                 val isExpanded = item.expanded
                 expandableLayout.visibility = if (isExpanded) View.VISIBLE else View.GONE
+                idTvStatusBarMain.visibility = if (isExpanded) View.GONE else View.VISIBLE
+                if (isExpanded) {
+                    expandableLayout.visibility = View.VISIBLE
+                    idTvStatusBarMain.visibility = View.GONE
+                    idTvItemNameMain.setGravity(Gravity.CENTER_HORIZONTAL)
+                } else {
+                    expandableLayout.visibility = View.GONE
+                    idTvStatusBarMain.visibility = View.VISIBLE
+                    idTvItemNameMain.setGravity(Gravity.NO_GRAVITY)
+                }
+
             }
 
             idTvItemNameMain.text = item.goal
@@ -57,11 +65,10 @@ class SetGoalsAdapter(
             idTvStatusBar.isIndeterminate = false
             idProgressText.text = percentageValue.roundToInt().toString() + " %"
             idTvStatusBar.progress = percentageValue.roundToInt()
-
+            idTvStatusBarMain.progress = percentageValue.roundToInt()
+            idTvStatusBarMain.isIndeterminate = false
         }
-
     }
-
 
     override fun getItemCount(): Int {
         return items.size

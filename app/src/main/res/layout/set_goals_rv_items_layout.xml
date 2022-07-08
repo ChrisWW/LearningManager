@@ -7,29 +7,40 @@
     android:padding="8dp">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewSetGoals"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/yellowOrange"
         android:padding="8dp"
-        app:cardCornerRadius="@dimen/text_size_16"
-        android:backgroundTint="@color/yellowOrange">
+        app:cardCornerRadius="@dimen/text_size_16">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/idTvItemNameMain"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackground"
                 android:padding="16dp"
                 android:text="Goal title"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:background="?attr/selectableItemBackground"
-                />
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ProgressBar
+                android:id="@+id/idTvStatusBarMain"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="180dp"
+                android:layout_height="56dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="30dp"
+                android:max="100"
+                android:min="0"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/expandableLayout"
@@ -101,14 +112,15 @@
 
                 <RelativeLayout
                     android:id="@+id/relativeLayout"
-                    android:layout_width="100dp"
+                    android:layout_width="350dp"
                     android:layout_height="100dp"
-                    android:layout_marginStart="1dp"
-                    android:layout_marginEnd="1dp"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginEnd="60dp"
                     android:textAlignment="center"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/idTvItemTimeGoalHint"
-                    app:layout_constraintStart_toEndOf="@+id/idTvItemIntense"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
                     <ProgressBar
@@ -118,12 +130,23 @@
                         android:layout_height="100dp"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentRight="true"
-                        android:min="0"
-                        android:max="100"
                         android:layout_centerVertical="true"
-                        android:background="@drawable/circle_shape"
-                        android:indeterminate="false"
-                        android:progressDrawable="@drawable/circle_progress_bar" />
+                        android:max="100"
+                        android:min="0" />
+
+                    <!--                    <ProgressBar-->
+                    <!--                        android:id="@+id/idTvStatusBar"-->
+                    <!--                        style="?android:attr/progressBarStyleHorizontal"-->
+                    <!--                        android:layout_width="100dp"-->
+                    <!--                        android:layout_height="100dp"-->
+                    <!--                        android:layout_alignParentLeft="true"-->
+                    <!--                        android:layout_alignParentRight="true"-->
+                    <!--                        android:min="0"-->
+                    <!--                        android:max="100"-->
+                    <!--                        android:layout_centerVertical="true"-->
+                    <!--                        android:background="@drawable/circle_shape"-->
+                    <!--                        android:indeterminate="false"-->
+                    <!--                        android:progressDrawable="@drawable/circle_progress_bar" />-->
 
                     <!--                    android:layout_marginStart="16dp"-->
                     <!--                    android:layout_marginLeft="16dp"-->
@@ -143,9 +166,10 @@
                         android:id="@+id/idProgressText"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginLeft="41dp"
+                        android:layout_marginRight="41dp"
+                        android:layout_marginBottom="50dp"
                         android:gravity="center"
                         android:text="--"
                         android:textColor="@color/white"

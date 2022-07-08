@@ -1,7 +1,8 @@
 package com.example.learningmanager.fragments.myinspiration
 
 import android.app.ProgressDialog
-import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.util.Log
 import android.widget.Toast
@@ -9,8 +10,6 @@ import androidx.fragment.app.FragmentActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
-import dagger.hilt.android.AndroidEntryPoint
-import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import java.util.*
@@ -19,13 +18,11 @@ import kotlin.collections.ArrayList
 
 class FirebaseManager @Inject constructor(
 //    @ApplicationContext val context: Context,
-    firebaseFirestore: FirebaseFirestore,
-    firebaseStorage: FirebaseStorage,
-    firebaseAuth: FirebaseAuth
+    private val firebaseFirestore: FirebaseFirestore,
+    private val firebaseStorage: FirebaseStorage,
+    private val firebaseAuth: FirebaseAuth
 ) {
     private val mStorageRef = firebaseStorage.reference
-    val db = firebaseFirestore
-    val auth = firebaseAuth
     private lateinit var mProgressDialog: ProgressDialog
 
     fun uploadImage(imageFileUri: Uri, activity: FragmentActivity) {
@@ -43,7 +40,10 @@ class FirebaseManager @Inject constructor(
                     imgUrl = it.result.toString()
                     Log.d("value", "VALUE FIREBASE IMG $imgUrl")
                     _triggerImage.value = imgUrl
-
+                    val ONE_MEGABYTE: Long = 1024 * 1024
+//                    (firebaseStorage.getReferenceFromUrl(imgUrl)).getBytes(ONE_MEGABYTE).addOnSuccessListener { bytes ->
+//                        imageBytesInString = String(bytes)
+//                    }
                 }
 
             Log.e("Firebase", "Uploaded $uploadedURL")
@@ -56,54 +56,56 @@ class FirebaseManager @Inject constructor(
     fun saveFireStore(
         inspirationTitle: String,
         description: String,
-        imagePath: String,
         data: String,
         author: String,
         quote: String,
+        localization: String,
         activity: FragmentActivity
     ) {
-//        val db = firebaseFirestore
-        val inspiration: MutableMap<String, Any> = HashMap()
-        inspiration["inspirationTitle"] = inspirationTitle
-        inspiration["description"] = description
-        inspiration["imagePath"] = imagePath
-        inspiration["data"] = data
-        inspiration["author"] = author
-        inspiration["quote"] = quote
+                val inspiration: MutableMap<String, Any> = HashMap()
+                inspiration["inspirationTitle"] = inspirationTitle
+                inspiration["description"] = description
+                inspiration["author"] = author
+                inspiration["quote"] = quote
+                inspiration["imagePath"] = imgUrl
+                inspiration["data"] = data
+                inspiration["localization"] = localization
 
-        db.collection("inspirations")
-            .add(inspiration)
-            .addOnSuccessListener {
-                Toast.makeText(activity, "record added successfully ", Toast.LENGTH_SHORT).show()
-                Log.d("finish", "READ DB")
-                readFireStoreData()
-            }
-            .addOnFailureListener {
-                Log.d("finish", "FAIL READ DB")
-                Toast.makeText(activity, "record Failed to add ", Toast.LENGTH_SHORT).show()
-            }
+                firebaseFirestore.collection("inspirations")
+                    .add(inspiration)
+                    .addOnSuccessListener {
+                        Toast.makeText(activity, "record added successfully ", Toast.LENGTH_SHORT)
+                            .show()
+                        Log.d("finish", "READ DB")
+                        readFireStoreData()
+                    }
+                    .addOnFailureListener {
+                        Log.d("finish", "FAIL READ DB")
+                        Toast.makeText(activity, "record Failed to add ", Toast.LENGTH_SHORT).show()
+                    }
     }
 
     fun readFireStoreData() {
-        val db = FirebaseFirestore.getInstance()
-        db.collection("inspirations")
+        firebaseFirestore.collection("inspirations")
             .get()
             .addOnCompleteListener {
                 if (it.isSuccessful) {
-//                    elementList.clear()
-//                    for (document in it.result!!) {
-//                        elementList.add(
-//                            arrayListOf(
-//                                document.data.getValue("author").toString(),
-//                                document.data.getValue("eventTitle").toString(),
-//                                document.data.getValue("description").toString(),
-//                                document.data.getValue("imagePath").toString(),
-//                                document.data.getValue("data").toString(),
-//                                document.data.getValue("eventLocalization").toString()
-//                            )
-//                        )
-//                    }
+                    elementList.clear()
+                    for (document in it.result!!) {
+                        elementList.add(
+                            arrayListOf(
+                                document.data.getValue("inspirationTitle").toString(),
+                                document.data.getValue("description").toString(),
+                                document.data.getValue("author").toString(),
+                                document.data.getValue("quote").toString(),
+                                document.data.getValue("imagePath").toString(),
+                                document.data.getValue("data").toString(),
+                                document.data.getValue("localization").toString()
+                            )
+                        )
+                    }
                     Log.d("value", "TRIGGER FB ${elementList}")
+//                    _triggerImage.value = document.data.getValue("imagePath").toString()
                     _setGoalsData.value = elementList
 
                     //TODO Fetch data
@@ -112,7 +114,7 @@ class FirebaseManager @Inject constructor(
     }
 
     fun signOut() {
-        auth.signOut()
+        firebaseAuth.signOut()
     }
 
     companion object {
@@ -122,5 +124,6 @@ class FirebaseManager @Inject constructor(
         val setGoalsData = _setGoalsData.asStateFlow()
         var _triggerImage = MutableStateFlow("")
         val triggerImage = _triggerImage.asStateFlow()
+        var imageBytesInString = ""
     }
 }
