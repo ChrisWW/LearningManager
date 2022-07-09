@@ -16,7 +16,7 @@
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="20dp"
         android:justificationMode="inter_word"
-        android:text="Set the end date of your goal. Because of that application reminds you about your challenges."
+        android:text="If you do not make your task, one additional day will be added to complete your goal. If it is unchecked it will not be added."
         android:textColor="@color/black"
         android:textSize="@dimen/text_size_17"
         android:scrollHorizontally="false"
@@ -27,5 +27,3 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <!--        android:fontFamily="@font/alegreya"-->

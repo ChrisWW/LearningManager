@@ -20,11 +20,13 @@ import com.example.learningmanager.base.ui.BaseViewModel
 import com.example.learningmanager.fragments.setgoals.data.SetGoalsDataDetailsResponse
 import com.example.learningmanager.fragments.setgoals.domain.AddGoalsItemsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ActivityContext
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.launch
 import java.util.*
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
+
 
 @HiltViewModel
 class SaveGoalsViewModel @Inject constructor(
@@ -71,6 +73,24 @@ class SaveGoalsViewModel @Inject constructor(
     fun showInfo(context: Context?) {
         val inflater: LayoutInflater = LayoutInflater.from(context)
         val view: View = inflater.inflate(R.layout.info_information, null)
+        val builder = AlertDialog.Builder(context!!)
+            .setView(view)
+        val alert = builder.create()
+        alert.show()
+    }
+
+    fun showAddDayInfo(context: Context?) {
+        val inflater: LayoutInflater = LayoutInflater.from(context)
+        val view: View = inflater.inflate(R.layout.info_add_information, null)
+        val builder = AlertDialog.Builder(context!!)
+            .setView(view)
+        val alert = builder.create()
+        alert.show()
+    }
+
+    fun showNotificationInfo(context: Context?) {
+        val inflater: LayoutInflater = LayoutInflater.from(context)
+        val view: View = inflater.inflate(R.layout.info_notification_information, null)
         val builder = AlertDialog.Builder(context!!)
             .setView(view)
         val alert = builder.create()

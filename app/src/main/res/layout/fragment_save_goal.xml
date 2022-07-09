@@ -181,6 +181,74 @@
                     android:text="Send task to email"
                     android:textSize="@dimen/text_size_16" />
 
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="10dp">
+
+                    <CheckBox
+                        android:id="@+id/cbEnableNotifications"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:checked="false"
+                        android:paddingLeft="@dimen/spacing_4"
+                        android:text="Enable notifications (reminder)"
+                        android:textSize="@dimen/text_size_16" />
+
+                    <ImageView
+                        android:id="@+id/ivEnableNotificationsInformation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="@dimen/spacing_8"
+                        android:layout_marginTop="@dimen/spacing_8"
+                        android:layout_marginEnd="@dimen/spacing_8"
+                        android:layout_marginBottom="@dimen/spacing_8"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/ic_baseline_info_24" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="10dp">
+
+                    <CheckBox
+                        android:id="@+id/cbAutomaticallyAddDay"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:checked="true"
+                        android:paddingLeft="@dimen/spacing_4"
+                        android:text="Additional one day when daily is not done"
+                        android:textSize="@dimen/text_size_16" />
+
+                    <ImageView
+                        android:id="@+id/ivAutomaticallyAddDayInformation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="@dimen/spacing_8"
+                        android:layout_marginTop="@dimen/spacing_8"
+                        android:layout_marginEnd="@dimen/spacing_8"
+                        android:layout_marginBottom="@dimen/spacing_8"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/ic_baseline_info_24" />
+                </RelativeLayout>
+
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
 

@@ -22,4 +22,6 @@
         remaining essentially unchanged.
     </string>
     <string name="edited_on">Edited on: %1$s</string>
+    <string name="are_you_sure">Are you sure about your decision?</string>
+    <string name="alert_title">Title of it</string>
 </resources>

@@ -1,7 +1,5 @@
 package com.example.learningmanager.fragments.setgoals.adapters
 
-import android.animation.ObjectAnimator
-import android.os.Build
 import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -9,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.learningmanager.databinding.SetGoalsRvItemsLayoutBinding
+import com.example.learningmanager.fragments.setgoals.data.CustomSetGoalsDialogData
 import com.example.learningmanager.fragments.setgoals.data.SetGoalsData
 import java.text.DecimalFormat
 import java.util.*
@@ -16,7 +15,8 @@ import kotlin.math.roundToInt
 
 class SetGoalsAdapter(
     private val onItemDeleteClicked: (Int) -> Unit,
-    private val onItemRootClicked: (Int) -> Unit
+    private val onItemRootClicked: (Int) -> Unit,
+    private val onButtonClickedListener: (CustomSetGoalsDialogData) -> Unit,
 ) : RecyclerView.Adapter<SetGoalsAdapter.SetGoalsItemViewHolder>()
 {
     var items = emptyList<SetGoalsData>()
@@ -56,11 +56,14 @@ class SetGoalsAdapter(
                     idTvStatusBarMain.visibility = View.VISIBLE
                     idTvItemNameMain.setGravity(Gravity.NO_GRAVITY)
                 }
-
+                btnQuestion.setOnClickListener() {
+                    onButtonClickedListener(CustomSetGoalsDialogData(item.id, item.goal))
+                }
             }
 
             idTvItemNameMain.text = item.goal
             idTvItemIntense.text = "${item.intenseGoal} min/day"
+            idTvItemHours.text = "${countHour(item.initialDate, item.intenseGoal)} hour"
             idTvItemTimeGoal.text = "$daysLeft days left"
             idTvStatusBar.isIndeterminate = false
             idProgressText.text = percentageValue.roundToInt().toString() + " %"
@@ -87,6 +90,18 @@ class SetGoalsAdapter(
         Log.d("MyApp", "90 days ago:" + calendar.time.toString())
 
         return calendar.time.toString()
+    }
+
+    fun countHour(initialDate: String, perDay: String): Double {
+        val oneDayEpoch = 86400.toDouble()
+//        val daysLeftDouble = daysLeft.toDouble()
+        val initialDateDouble = initialDate.toDouble()
+        val now = Calendar.getInstance().timeInMillis / 1000
+
+        val hours =
+            ((now - initialDateDouble) / (oneDayEpoch)) * ((perDay.toDouble() / 60).toDouble())
+        val df = DecimalFormat("#.##")
+        return df.format(hours).toDouble()
     }
 
     fun getDaysLeft(timeGoalDays: String, initData: String): String {

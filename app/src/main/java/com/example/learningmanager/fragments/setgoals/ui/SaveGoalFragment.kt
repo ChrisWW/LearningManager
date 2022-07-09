@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import com.example.learningmanager.MainActivity
 import com.example.learningmanager.base.ui.BaseFragment
@@ -89,6 +90,12 @@ class SaveGoalFragment @Inject constructor() :
     private fun onInfoClick() {
         layout.ivInformation.setOnClickListener {
             vm.showInfo(context)
+        }
+        layout.ivAutomaticallyAddDayInformation.setOnClickListener {
+            vm.showAddDayInfo(context)
+        }
+        layout.ivEnableNotificationsInformation.setOnClickListener {
+            vm.showAddDayInfo(context)
         }
     }
 

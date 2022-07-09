@@ -57,7 +57,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:layout_marginLeft="8dp"
                     android:text="20 minutes"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small"
                     app:layout_constraintStart_toEndOf="@+id/idTvIntenseHint"
@@ -105,29 +104,42 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginLeft="16dp"
                     android:layout_marginTop="8dp"
-                    android:text="Status"
+                    android:text="Progress:"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/idTvIntenseHint" />
 
+                <TextView
+                    android:id="@+id/idTvItemHours"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="40.5 hour"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    app:layout_constraintStart_toEndOf="@+id/idTvStatusBarHint"
+                    app:layout_constraintTop_toBottomOf="@+id/idTvIntenseHint" />
+
                 <RelativeLayout
-                    android:id="@+id/relativeLayout"
+                    android:id="@+id/relativeLayoutBar"
                     android:layout_width="350dp"
-                    android:layout_height="100dp"
+                    android:layout_height="85dp"
                     android:layout_marginStart="50dp"
                     android:layout_marginTop="40dp"
                     android:layout_marginEnd="60dp"
                     android:textAlignment="center"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.43"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0">
 
                     <ProgressBar
                         android:id="@+id/idTvStatusBar"
                         style="?android:attr/progressBarStyleHorizontal"
                         android:layout_width="100dp"
-                        android:layout_height="100dp"
+                        android:layout_height="40dp"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
@@ -177,6 +189,36 @@
                         android:textStyle="bold">
 
                     </TextView>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/relativeLayoutData"
+                    android:layout_width="350dp"
+                    android:layout_height="60dp"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="100dp"
+                    android:layout_marginEnd="60dp"
+                    android:textAlignment="center"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.43"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0">
+
+
+                    <Button
+                        android:id="@+id/btnQuestion"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:backgroundTint="@android:color/holo_orange_dark"
+                        android:paddingLeft="@dimen/spacing_4"
+                        android:text="Have you done your work today?"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_size_12" />
+
+
                 </RelativeLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>

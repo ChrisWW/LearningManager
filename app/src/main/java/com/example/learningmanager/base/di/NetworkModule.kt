@@ -1,5 +1,6 @@
 package com.example.learningmanager.base.di
 
+import com.example.learningmanager.Application
 import com.example.learningmanager.BuildConfig
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
