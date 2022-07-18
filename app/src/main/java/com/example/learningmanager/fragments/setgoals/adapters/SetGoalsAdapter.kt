@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.learningmanager.databinding.SetGoalsRvItemsLayoutBinding
 import com.example.learningmanager.fragments.setgoals.data.CustomSetGoalsDialogData
 import com.example.learningmanager.fragments.setgoals.data.SetGoalsData
+import kotlinx.coroutines.flow.MutableStateFlow
 import java.text.DecimalFormat
 import java.util.*
 import kotlin.math.roundToInt
@@ -20,6 +21,7 @@ class SetGoalsAdapter(
 ) : RecyclerView.Adapter<SetGoalsAdapter.SetGoalsItemViewHolder>()
 {
     var items = emptyList<SetGoalsData>()
+    var flowInteger = MutableStateFlow(-1)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SetGoalsItemViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -41,25 +43,30 @@ class SetGoalsAdapter(
         fun bind(item: SetGoalsData) = with(layout) {
             val daysLeft = getDaysLeft(item.timeGoal, item.initialDate)
             val percentageValue = getProgressPercentages(item.timeGoal, item.initialDate)
-            expandableLayout.visibility = View.GONE
-            cardViewSetGoals.setOnClickListener {
-                item.expanded = !item.expanded
-                val isExpanded = item.expanded
-                expandableLayout.visibility = if (isExpanded) View.VISIBLE else View.GONE
-                idTvStatusBarMain.visibility = if (isExpanded) View.GONE else View.VISIBLE
-                if (isExpanded) {
-                    expandableLayout.visibility = View.VISIBLE
-                    idTvStatusBarMain.visibility = View.GONE
-                    idTvItemNameMain.setGravity(Gravity.CENTER_HORIZONTAL)
-                } else {
-                    expandableLayout.visibility = View.GONE
-                    idTvStatusBarMain.visibility = View.VISIBLE
-                    idTvItemNameMain.setGravity(Gravity.NO_GRAVITY)
-                }
-                btnQuestion.setOnClickListener() {
-                    onButtonClickedListener(CustomSetGoalsDialogData(item.id, item.goal, item.timeGoal))
+            if(flowInteger.value != item.id) {
+                expandableLayout.visibility = View.GONE
+                cardViewSetGoals.setOnClickListener {
+                    item.expanded = !item.expanded
+                    val isExpanded = item.expanded
+                    expandableLayout.visibility = if (isExpanded) View.VISIBLE else View.GONE
+                    idTvStatusBarMain.visibility = if (isExpanded) View.GONE else View.VISIBLE
+                    if (isExpanded) {
+                        expandableLayout.visibility = View.VISIBLE
+                        idTvStatusBarMain.visibility = View.GONE
+                        idTvItemNameMain.setGravity(Gravity.CENTER_HORIZONTAL)
+                    } else {
+                        expandableLayout.visibility = View.GONE
+                        idTvStatusBarMain.visibility = View.VISIBLE
+                        idTvItemNameMain.setGravity(Gravity.NO_GRAVITY)
+                    }
                 }
             }
+                flowInteger.value = -1
+                btnQuestion.setOnClickListener() {
+                    onButtonClickedListener(CustomSetGoalsDialogData(item.id, item.goal, item.timeGoal))
+                    flowInteger.value = item.id
+                }
+
 
             idTvItemNameMain.text = item.goal
             idTvItemIntense.text = "${item.intenseGoal} min/day"

@@ -89,7 +89,7 @@ class SetGoalsFragment @Inject constructor() :
                     "Save your task: ${value.title}",
                     "Clicking NO - means you haven't done your work and one additional day could be added to complete your goal depends on your preferences."
                 ) {
-                    onCustomSetGoalsDialogResult(it.name, value.id, value.title)
+                    onCustomSetGoalsDialogResult(it.name, value.id, value.title, value.data)
                     Toast.makeText(
                         context,
                         it.toString(),
@@ -101,7 +101,7 @@ class SetGoalsFragment @Inject constructor() :
         }
     }
 
-    private fun onCustomSetGoalsDialogResult(response: String, id: Int, data: String) {
+    private fun onCustomSetGoalsDialogResult(response: String, id: Int, title: String, data: String) {
         if(response == CustomSetGoalsDialog.ResponseType.YES.name) {
             Log.d("onCustomSetGoalsDialogResult", "TRIGGERED YES")
             // nothing happen, nothing added
@@ -110,8 +110,7 @@ class SetGoalsFragment @Inject constructor() :
             Log.d("onCustomSetGoalsDialogResult", "TRIGGERED NO")
             val updatedData = (data.toInt() + 1).toString()
             vm.updateGoalData(id, updatedData)
-            // add one day
-            // edit room element
+            collectGoalsItems()
         }
         if(response == CustomSetGoalsDialog.ResponseType.CANCEL.name) {
             Log.d("onCustomSetGoalsDialogResult", "TRIGGERED CANCEL")
