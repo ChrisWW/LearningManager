@@ -24,4 +24,9 @@
     <string name="edited_on">Edited on: %1$s</string>
     <string name="are_you_sure">Are you sure about your decision?</string>
     <string name="alert_title">Title of it</string>
+
+    <string name="notification_channel_name">Learning Notifications</string>
+    <string name="notification_channel_id">Learning Notifications Channel Id</string>
+    <string name="notification_value">goalsreminder</string>
+    <string name="work_manager_24_notification_tag">notificationmanager24service</string>
 </resources>

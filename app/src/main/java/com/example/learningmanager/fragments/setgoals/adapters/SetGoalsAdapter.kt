@@ -57,7 +57,7 @@ class SetGoalsAdapter(
                     idTvItemNameMain.setGravity(Gravity.NO_GRAVITY)
                 }
                 btnQuestion.setOnClickListener() {
-                    onButtonClickedListener(CustomSetGoalsDialogData(item.id, item.goal))
+                    onButtonClickedListener(CustomSetGoalsDialogData(item.id, item.goal, item.timeGoal))
                 }
             }
 

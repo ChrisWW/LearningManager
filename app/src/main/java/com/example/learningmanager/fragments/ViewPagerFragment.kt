@@ -3,6 +3,7 @@ package com.example.learningmanager.fragments
 import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.Gravity
 import android.view.MenuItem
 import android.view.View
@@ -12,18 +13,22 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
+import androidx.work.*
 import com.example.learningmanager.R
+import com.example.learningmanager.base.ext.collectWith
+import com.example.learningmanager.base.services.notifications.NotifyWorker
 import com.example.learningmanager.base.ui.BaseFragment
 import com.example.learningmanager.databinding.FragmentViewPagerBinding
 import com.example.learningmanager.databinding.ItemHeaderBinding
 import com.example.learningmanager.fragments.inspirationquotes.ui.InspirationQuotesFragment
-import com.example.learningmanager.fragments.myinspiration.FirebaseManager
 import com.example.learningmanager.fragments.notesmanager.ui.NotesManagerFragment
+import com.example.learningmanager.fragments.setgoals.data.SetGoalsData
 import com.example.learningmanager.fragments.setgoals.ui.SetGoalsFragment
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 
@@ -44,6 +49,7 @@ class ViewPagerFragment @Inject constructor() :
         initTabs()
         // TODO drawerUsage doesn't work gives bug with button on inspiration
         drawerUsage()
+        collectGoalsItems()
 //
 //       layout.drawerLayout.width = WindowManager.LayoutParams.MATCH_PARENT
 //       layout.drawerLayout.height = WindowManager.LayoutParams.MATCH_PARENT
@@ -51,6 +57,73 @@ class ViewPagerFragment @Inject constructor() :
 
 
     }
+
+    private fun collectGoalsItems() {
+        vm.getActualGoalsData()
+        vm.setGoalsData.collectWith(viewLifecycleOwner) {
+            if (it.isEmpty()) {
+            } else {
+                autoNotificationService(it)
+            }
+        }
+    }
+
+    private fun autoNotificationService(items: List<SetGoalsData>) {
+        val earliestGoalItem = emptyList<SetGoalsData>()
+        vm.isGoalListEmpty()
+        vm.isGoalListEmptyFlow.collectWith(viewLifecycleOwner) {
+            // OR SETTINGS TODO notificationAllow true
+            if (!it) {
+                items.filter {
+                    !it.isDone
+                }
+                items.groupBy { item ->
+                    item.initialDate.toDouble()
+                }
+                Log.d(
+                    "notificationservice",
+                    "WorkManagerNotificationvalue: $it ALSo: starts: ${items.first().initialDate} and  has had ${items.first().timeGoal}"
+                )
+
+                // Using WorkManager with PeriodicWorkRequest, which allow me to set paremter repeatInterval to i.e. 24h.
+                val sentStringData =
+                    "Check your goals. The earliest starts on ${items.first().initialDate} and has had ${items.first().timeGoal} to finish."
+                val data: Data.Builder = Data.Builder()
+                data.putString("NotificationString", sentStringData)
+
+                val syncWorkRequest = PeriodicWorkRequestBuilder<NotifyWorker>(16, TimeUnit.MINUTES)
+                    .setConstraints(createConstraints())
+                    .setInputData(data.build())
+//                    .setInitialDelay(20, TimeUnit.SECONDS)
+                    .addTag(getString(R.string.work_manager_24_notification_tag))
+                    .build()
+                WorkManager.getInstance(requireContext()).enqueueUniquePeriodicWork(
+                    (getString(R.string.work_manager_24_notification_tag)),
+                    ExistingPeriodicWorkPolicy.KEEP,
+                    syncWorkRequest
+                )
+//                val syncWorkRequest = OneTimeWorkRequest.Builder(NotifyWorker::class.java)
+//                    .setInputData(data.build())
+//                    .addTag(getString(R.string.work_manager_24_notification_tag))
+//                    .build()
+//                WorkManager.getInstance(requireContext()).enqueue(syncWorkRequest)
+            } else {
+                Log.d(
+                    "notificationservice",
+                    "ELSE: $it ALSo: starts: ${items.first().initialDate} and  has had ${items.first().timeGoal}"
+                )
+//                WorkManager.getInstance(requireContext())
+//                    .cancelAllWorkByTag(getString(R.string.work_manager_24_notification_tag))
+//                cancel workManager and notification
+            }
+        }
+    }
+
+    private fun createConstraints() = Constraints.Builder()
+        .setRequiredNetworkType(NetworkType.NOT_REQUIRED)
+        .setRequiresCharging(false)
+        .setRequiresBatteryNotLow(true)
+        .build()
 
     override fun onDestroyView() {
         layout.viewPager.adapter = null

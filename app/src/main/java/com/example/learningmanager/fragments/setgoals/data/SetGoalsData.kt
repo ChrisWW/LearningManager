@@ -15,5 +15,6 @@ data class SetGoalsData(
     @SerializedName("initialdate") val initialDate: String = "",
     @SerializedName("color") val color: Int = -1,
     @SerializedName("expanded") var expanded: Boolean = false,
-//    @SerializedName("eventgoogleid") var eventgoogleid: Int = -1,
+    @SerializedName("eventgoogleid") var eventGoogleId: Int = -1,
+    @SerializedName("isDone") var isDone: Boolean = false
 ) : Serializable

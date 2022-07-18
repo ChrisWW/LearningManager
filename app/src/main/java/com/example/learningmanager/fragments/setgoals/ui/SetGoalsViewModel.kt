@@ -12,6 +12,7 @@ import com.example.learningmanager.base.ui.BaseViewModel
 import com.example.learningmanager.fragments.setgoals.data.CustomSetGoalsDialogData
 import com.example.learningmanager.fragments.setgoals.data.SetGoalsData
 import com.example.learningmanager.fragments.setgoals.domain.GetGoalsItemDetailsUseCase
+import com.example.learningmanager.fragments.setgoals.domain.UpdateDateGoalElementItemUseCase
 import com.example.learningmanager.fragments.setgoals.helpers.CustomSetGoalsDialog
 import com.example.learningmanager.fragments.setgoals.route.SetGoalsToSaveScreenKey
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -27,10 +28,11 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SetGoalsViewModel @Inject constructor(
-    private val getGoalsItemDetailsUseCase: GetGoalsItemDetailsUseCase
+    private val getGoalsItemDetailsUseCase: GetGoalsItemDetailsUseCase,
+    private val updateDateGoalElementItemUseCase: UpdateDateGoalElementItemUseCase
 ) : BaseViewModel() {
     val setGoalsData = MutableStateFlow<List<SetGoalsData>>(emptyList())
-    val triggerAcceptDeclineButton = MutableStateFlow<CustomSetGoalsDialogData>(CustomSetGoalsDialogData(-1, ""))
+    val triggerAcceptDeclineButton = MutableStateFlow<CustomSetGoalsDialogData>(CustomSetGoalsDialogData(-1, "", ""))
     init {
         getActualState()
     }
@@ -40,6 +42,12 @@ class SetGoalsViewModel @Inject constructor(
             getGoalsItemDetailsUseCase.build(Unit).collect {
                 setGoalsData.value = it
             }
+        }
+    }
+
+    fun updateGoalData(id: Int, date: String) {
+        viewModelScope.launch {
+            updateDateGoalElementItemUseCase.build(id, date)
         }
     }
 
@@ -63,7 +71,7 @@ class SetGoalsViewModel @Inject constructor(
     }
 
     fun onItemButtonQuestionClicked(customSetGoalsDialogData: CustomSetGoalsDialogData) {
-        triggerAcceptDeclineButton.value = CustomSetGoalsDialogData(customSetGoalsDialogData.id, customSetGoalsDialogData.title)
+        triggerAcceptDeclineButton.value = CustomSetGoalsDialogData(customSetGoalsDialogData.id, customSetGoalsDialogData.title, customSetGoalsDialogData.data)
         }
     }
 

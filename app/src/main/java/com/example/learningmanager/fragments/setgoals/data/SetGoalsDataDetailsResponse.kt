@@ -8,5 +8,7 @@ data class SetGoalsDataDetailsResponse(
     val editDate: String,
     val initialDate: String,
     val color: Int,
-    val expanded: Boolean = false
+    val expanded: Boolean = false,
+    val eventGoogleId: Int = -1,
+    val isDone: Boolean = false
 )

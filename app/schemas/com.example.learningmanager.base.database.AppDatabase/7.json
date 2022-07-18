@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 7,
-    "identityHash": "6bf0ac22f2fcf691332644e483a9aff7",
+    "identityHash": "f56e61db64c156bb5272221ff44869c0",
     "entities": [
       {
         "tableName": "notedata",
@@ -50,7 +50,7 @@
       },
       {
         "tableName": "setgoalsdata",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `goal` TEXT NOT NULL, `intenseGoal` TEXT NOT NULL, `timeGoal` TEXT NOT NULL, `editDate` TEXT NOT NULL, `initialDate` TEXT NOT NULL, `color` INTEGER NOT NULL, `expanded` INTEGER NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `goal` TEXT NOT NULL, `intenseGoal` TEXT NOT NULL, `timeGoal` TEXT NOT NULL, `editDate` TEXT NOT NULL, `initialDate` TEXT NOT NULL, `color` INTEGER NOT NULL, `expanded` INTEGER NOT NULL, `eventGoogleId` INTEGER NOT NULL, `isDone` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
@@ -97,6 +97,18 @@
           {
             "fieldPath": "expanded",
             "columnName": "expanded",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "eventGoogleId",
+            "columnName": "eventGoogleId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isDone",
+            "columnName": "isDone",
             "affinity": "INTEGER",
             "notNull": true
           }
@@ -176,7 +188,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '6bf0ac22f2fcf691332644e483a9aff7')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'f56e61db64c156bb5272221ff44869c0')"
     ]
   }
 }

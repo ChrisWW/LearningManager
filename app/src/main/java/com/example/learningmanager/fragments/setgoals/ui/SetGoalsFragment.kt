@@ -1,14 +1,19 @@
 package com.example.learningmanager.fragments.setgoals.ui
 
+import android.Manifest
 import android.app.Dialog
+import android.content.pm.PackageManager
 import android.graphics.drawable.AnimationDrawable
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import com.example.learningmanager.R
@@ -78,12 +83,13 @@ class SetGoalsFragment @Inject constructor() :
     }
 
     private fun onAcceptDeclineTodayWork() {
-        vm.triggerAcceptDeclineButton.collectWith(viewLifecycleOwner) { it ->
-            if(it.isSelected()) {
+        vm.triggerAcceptDeclineButton.collectWith(viewLifecycleOwner) { value ->
+            if(value.isSelected()) {
                 CustomSetGoalsDialog(requireContext(), id).show(
-                    "Save your task: ${it.title}",
-                    "Clicking NO - means you haven't done your work and one additional day will be added to complete your goal."
+                    "Save your task: ${value.title}",
+                    "Clicking NO - means you haven't done your work and one additional day could be added to complete your goal depends on your preferences."
                 ) {
+                    onCustomSetGoalsDialogResult(it.name, value.id, value.title)
                     Toast.makeText(
                         context,
                         it.toString(),
@@ -95,7 +101,52 @@ class SetGoalsFragment @Inject constructor() :
         }
     }
 
+    private fun onCustomSetGoalsDialogResult(response: String, id: Int, data: String) {
+        if(response == CustomSetGoalsDialog.ResponseType.YES.name) {
+            Log.d("onCustomSetGoalsDialogResult", "TRIGGERED YES")
+            // nothing happen, nothing added
+        }
+        if(response == CustomSetGoalsDialog.ResponseType.NO.name) {
+            Log.d("onCustomSetGoalsDialogResult", "TRIGGERED NO")
+            val updatedData = (data.toInt() + 1).toString()
+            vm.updateGoalData(id, updatedData)
+            // add one day
+            // edit room element
+        }
+        if(response == CustomSetGoalsDialog.ResponseType.CANCEL.name) {
+            Log.d("onCustomSetGoalsDialogResult", "TRIGGERED CANCEL")
+            // nothing happen
+        }
+    }
+
     private fun initItemsAdapter() = lazy {
         SetGoalsAdapter(vm::deleteItem, vm::onItemClicked, vm::onItemButtonQuestionClicked)
     }
+// TODO
+//    // Declare the launcher at the top of your Activity/Fragment:
+//    private val requestPermissionLauncher = registerForActivityResult(
+//        ActivityResultContracts.RequestPermission()
+//    ) { isGranted: Boolean ->
+//        if (isGranted) {
+//            // FCM SDK (and your app) can post notifications.
+//        } else {
+//            // TODO: Inform user that that your app will not show notifications.
+//        }
+//    }
+//
+//    private fun askNotificationPermission() {
+//        if (ContextCompat.checkSelfPermission(requireActivity(), Manifest.permission.POST_NOTIFICATIONS) ==
+//            PackageManager.PERMISSION_GRANTED
+//        ) {
+//            // FCM SDK (and your app) can post notifications.
+//        } else if (shouldShowRequestPermissionRationale(Manifest.permission.POST_NOTIFICATIONS)) {
+//            // TODO: display an educational UI explaining to the user the features that will be enabled
+//            //       by them granting the POST_NOTIFICATION permission. This UI should provide the user
+//            //       "OK" and "No thanks" buttons. If the user selects "OK," directly request the permission.
+//            //       If the user selects "No thanks," allow the user to continue without notifications.
+//        } else {
+//            // Directly ask for the permission
+//            requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+//        }
+//    }
 }

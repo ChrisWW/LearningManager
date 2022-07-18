@@ -106,14 +106,14 @@ ext {
             bom: 'com.google.firebase:firebase-bom:30.0.1',
             analytics: 'com.google.firebase:firebase-analytics',
             crashlytics: 'com.google.firebase:firebase-crashlytics',
-            cloud_messaging: 'com.google.firebase:firebase-messaging',
+            cloud_messaging: 'com.google.firebase:firebase-messaging-ktx:23.0.6',
             analytics_ktx: 'com.google.firebase:firebase-analytics-ktx',
             auth_ktx: 'com.google.firebase:firebase-auth-ktx:21.0.5',
             firestore_ktx: 'com.google.firebase:firebase-firestore-ktx',
             core: 'com.google.firebase:firebase-core:16.0.1'
     ]
 //
-//    workmanager = "androidx.work:work-runtime-ktx:2.6.0"
+    workmanager = "androidx.work:work-runtime-ktx:2.7.1"
 //
 //    serialization = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.2"
 

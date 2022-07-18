@@ -1,6 +1,6 @@
 package com.example.learningmanager.fragments.setgoals.data
 
-data class CustomSetGoalsDialogData (val id: Int, val title: String) {
+data class CustomSetGoalsDialogData (val id: Int, val title: String, val data: String) {
     fun isEmpty(): Boolean {
         return this == empty
     }
@@ -10,6 +10,6 @@ data class CustomSetGoalsDialogData (val id: Int, val title: String) {
     }
 
     companion object {
-        val empty = CustomSetGoalsDialogData(-1, "")
+        val empty = CustomSetGoalsDialogData(-1, "", "")
     }
 }
