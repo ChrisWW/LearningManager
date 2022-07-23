@@ -98,14 +98,7 @@ class NotesManagerFragment @Inject constructor() :
                     val text = s.toString()
                     val query = "%$text%"
                     if (query.isNotEmpty()) {
-                        // livedata with observe to change
-                            Log.d("query", "QUERY IS: $query")
-//                        vm.searchNote(query)
-
-                        Log.d("query", "LIST IS: ${vm.searchDataList.value}")
-//                        rvNotesAdapter.submitList(vm.searchDataList.value)
                         collectSearchItems(query)
-
                     } else {
                         collectNotesItems()
                         vm.searchDataList.value = emptyList()
@@ -149,6 +142,19 @@ class NotesManagerFragment @Inject constructor() :
             }
         }
 
+    }
+
+    override fun onResume() {
+        Log.d("notesmanager", "onRESUME")
+        collectNotesItems()
+
+        super.onResume()
+    }
+
+    override fun onDestroyView() {
+        layout.rvNote.adapter = null
+
+        super.onDestroyView()
     }
 
     private fun swipeToDelete(rvNote: RecyclerView) {
@@ -251,6 +257,7 @@ class NotesManagerFragment @Inject constructor() :
 //        collectNotesItems()
     }
     private fun collectNotesItems() {
+        vm.getActualState()
         vm.noteDataList.collectWith(viewLifecycleOwner) {
             if(it.isEmpty()) {
                 Log.d("collect", " empty $it")

@@ -165,9 +165,7 @@ class SaveUpdateFragment @Inject constructor() :
     }
 
     private fun saveNote() {
-        val navHostFragment =
-            activity!!.supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
-        val navController = navHostFragment.navController
+
         if (layout.etNoteContent.text.toString().isEmpty() || layout.etTitle.text.toString()
                 .isEmpty()
         ) {
@@ -195,11 +193,11 @@ class SaveUpdateFragment @Inject constructor() :
                     Log.d("note", "$note")
 //                    navController.navigate(SaveUpdateFragmentDirections.actionSaveUpdateFragment2ToViewPagerFragment())
 //
-                    navController.popBackStack()
+                    vm.navigateBack()
                 }
                 else -> {
                     updateNote()
-                    navController.popBackStack()
+                    vm.navigateBack()
                 }
             }
         }

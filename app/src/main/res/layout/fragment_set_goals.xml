@@ -5,15 +5,88 @@
     android:layout_height="match_parent"
     android:id="@+id/rlLayout"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/gradient_list"
+    android:background="@color/white"
     tools:context=".MainActivity">
+    <!--    android:background="@drawable/gradient_list"-->
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".fragments.notesmanager.ui.NotesManagerFragment">>
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:liftOnScroll="true">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                app:layout_scrollFlags="scroll|enterAlways">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/app_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="2dp"
+                        android:layout_marginTop="5dp"
+                        android:fontFamily="@font/google_sans_bold"
+                        android:text="@string/my_tasks"
+                        android:textColor="@color/black"
+                        android:textSize="30sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"></com.google.android.material.textview.MaterialTextView>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_marginBottom="15dp"
+                        android:orientation="horizontal"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/app_title">
+
+                        <EditText
+                            android:id="@+id/search"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_weight="3"
+                            android:background="@drawable/rounded_search"
+                            android:drawableStart="@drawable/ic_round_search_24"
+                            android:drawablePadding="5dp"
+                            android:hint="@string/search_here"
+                            android:imeOptions="actionSearch"
+                            android:importantForAutofill="no"
+                            android:inputType="textFilter"
+                            android:paddingStart="18dp"
+                            android:paddingTop="4dp"
+                            android:paddingEnd="18dp"
+                            android:paddingBottom="5dp"
+                            android:textSize="16sp">
+
+                        </EditText>
+                    </LinearLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.appbar.MaterialToolbar>
+
+        </com.google.android.material.appbar.AppBarLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/idRvItemsMain"
-        android:layout_marginTop="50dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/set_goals_rv_items" />
+        android:layout_marginTop="125dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/set_goals_rv_items_layout" />
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

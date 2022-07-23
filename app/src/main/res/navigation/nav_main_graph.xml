@@ -16,6 +16,24 @@
         <action
             android:id="@+id/action_viewPagerFragment_to_saveGoalFragment"
             app:destination="@id/saveGoalFragment" />
+        <argument
+            android:name="userEmail"
+            app:nullable="true"
+            app:argType="string" />
+        <argument
+            android:name="displayName"
+            app:nullable="true"
+            app:argType="string" />
+        <argument
+            android:name="photoUrl"
+            app:nullable="true"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_viewPagerFragment_to_myInspirationFragment"
+            app:destination="@id/myInspirationFragment" />
+        <action
+            android:id="@+id/action_viewPagerFragment_to_singleModeAuthFragment2"
+            app:destination="@id/singleModeAuthFragment2" />
     </fragment>
     <action
         android:id="@+id/action_global_viewPagerFragment"
@@ -53,4 +71,18 @@
             android:id="@+id/action_saveGoalFragment_to_viewPagerFragment"
             app:destination="@id/viewPagerFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/myInspirationFragment"
+        android:name="com.example.learningmanager.fragments.myinspiration.ui.MyInspirationFragment"
+        android:label="fragment_my_inspiration"
+        tools:layout="@layout/fragment_my_inspiration" >
+        <action
+            android:id="@+id/action_myInspirationFragment_to_myInspirationSaveFragment"
+            app:destination="@id/myInspirationSaveFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/myInspirationSaveFragment"
+        android:name="com.example.learningmanager.fragments.myinspiration.ui.MyInspirationSaveFragment"
+        android:label="fragment_my_inspiration_save"
+        tools:layout="@layout/fragment_my_inspiration_save" />
 </navigation>

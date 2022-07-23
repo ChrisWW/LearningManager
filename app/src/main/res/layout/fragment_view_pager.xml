@@ -1,18 +1,178 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".fragments.ViewPagerFragment">
+    android:layout_height="match_parent">
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tabLayout"
+    <com.infideap.drawerbehavior.Advance3DDrawerLayout
+        android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/viewPager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        tools:context=".fragments.ViewPagerFragment"
+        tools:openDrawer="start">
 
-</LinearLayout>
+        <!--    &lt;!&ndash;Toolbar&ndash;&gt;-->
+        <!--        <include-->
+        <!--            android:id="@+id/toolbar"-->
+        <!--            layout="@layout/toolbar" />-->
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="60dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </com.google.android.material.tabs.TabLayout>
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/viewPager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+
+        </LinearLayout>
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/appBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@layout/layout_default_toolbar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            >
+
+
+
+<!--            <com.google.android.material.appbar.MaterialToolbar-->
+<!--                android:id="@+id/appBar"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="?attr/actionBarSize"-->
+<!--                app:popupTheme="@style/Widget.AppCompat.PopupMenu.Overflow"-->
+<!--                />-->
+
+        </com.google.android.material.appbar.MaterialToolbar>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/nav_view"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:fitsSystemWindows="true"
+            app:itemIconPadding="10dp"
+            app:itemIconTint="@android:color/white"
+            app:itemTextColor="@android:color/black"
+            app:headerLayout="@layout/item_header"
+            app:menu="@menu/menu_drawer"
+
+            ></com.google.android.material.navigation.NavigationView>
+
+    </com.infideap.drawerbehavior.Advance3DDrawerLayout>
+</RelativeLayout>
+
+
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    android:layout_width="412dp"-->
+<!--    android:layout_height="736dp"-->
+
+<!--    android:fitsSystemWindows="true"-->
+<!--    android:gravity="center"-->
+<!--    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--    app:layout_constraintEnd_toEndOf="parent"-->
+<!--    app:layout_constraintStart_toStartOf="parent"-->
+<!--    app:layout_constraintTop_toBottomOf="parent">-->
+
+
+<!--    <com.infideap.drawerbehavior.Advance3DDrawerLayout-->
+<!--        android:id="@+id/drawer_layout"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:fitsSystemWindows="true"-->
+<!--        tools:context=".fragments.ViewPagerFragment"-->
+<!--        tools:openDrawer="start">-->
+
+<!--        &lt;!&ndash;    &lt;!&ndash;Toolbar&ndash;&gt;&ndash;&gt;-->
+<!--        &lt;!&ndash;        <include&ndash;&gt;-->
+<!--        &lt;!&ndash;            android:id="@+id/toolbar"&ndash;&gt;-->
+<!--        &lt;!&ndash;            layout="@layout/toolbar" />&ndash;&gt;-->
+
+<!--        <com.google.android.material.appbar.AppBarLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:theme="@style/Widget.Design.AppBarLayout">-->
+
+<!--        <androidx.appcompat.widget.Toolbar-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="?attr/actionBarSize"-->
+<!--            android:background="@color/purple_700"-->
+<!--            app:popupTheme="@style/Widget.AppCompat.PopupMenu.Overflow"/>-->
+
+<!--        </com.google.android.material.appbar.AppBarLayout>-->
+
+
+<!--            <com.google.android.material.navigation.NavigationView-->
+<!--                android:id="@+id/nav_view"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_gravity="start"-->
+<!--                android:background="@color/green"-->
+<!--                android:fitsSystemWindows="true"-->
+<!--                app:elevation="0dp"-->
+<!--                app:itemIconPadding="10dp"-->
+<!--                app:itemIconTint="@android:color/white"-->
+<!--                app:itemTextColor="@android:color/white"-->
+<!--                app:headerLayout="@layout/item_header"-->
+<!--                app:menu="@menu/menu_drawer"-->
+
+<!--                ></com.google.android.material.navigation.NavigationView>-->
+
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:orientation="vertical">-->
+
+<!--            <com.google.android.material.tabs.TabLayout-->
+<!--                android:id="@+id/tabLayout"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content">-->
+
+<!--            </com.google.android.material.tabs.TabLayout>-->
+
+<!--            <androidx.viewpager2.widget.ViewPager2-->
+<!--                android:id="@+id/viewPager"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent" />-->
+
+
+<!--        </LinearLayout>-->
+
+
+<!--        &lt;!&ndash;        android:layout_marginStart=""&ndash;&gt;-->
+
+<!--    </com.infideap.drawerbehavior.Advance3DDrawerLayout>-->
+<!--</androidx.constraintlayout.widget.ConstraintLayout>-->

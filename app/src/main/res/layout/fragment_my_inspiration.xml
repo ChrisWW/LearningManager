@@ -1,0 +1,542 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".fragments.notesmanager.ui.NotesManagerFragment">>
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:liftOnScroll="true">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                app:layout_scrollFlags="scroll|enterAlways">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/app_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="2dp"
+                        android:layout_marginTop="5dp"
+                        android:fontFamily="@font/google_sans_bold"
+                        android:text="@string/my_inspirations"
+                        android:textColor="@color/black"
+                        android:textSize="30sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"></com.google.android.material.textview.MaterialTextView>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_marginBottom="15dp"
+                        android:orientation="horizontal"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/app_title">
+
+                        <EditText
+                            android:id="@+id/search"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_weight="3"
+                            android:background="@drawable/rounded_search"
+                            android:drawableStart="@drawable/ic_round_search_24"
+                            android:drawablePadding="5dp"
+                            android:hint="@string/search_here"
+                            android:imeOptions="actionSearch"
+                            android:importantForAutofill="no"
+                            android:inputType="textFilter"
+                            android:paddingStart="18dp"
+                            android:paddingTop="4dp"
+                            android:paddingEnd="18dp"
+                            android:paddingBottom="5dp"
+                            android:textSize="16sp">
+
+                        </EditText>
+                    </LinearLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.appbar.MaterialToolbar>
+
+        </com.google.android.material.appbar.AppBarLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvInspirations"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="125dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/item_my_inspiration_layout">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/addInspirationFab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_gravity="center_vertical"
+        android:backgroundTint="@color/black"
+        android:src="@drawable/ic_round_add_24"
+        app:borderWidth="0dp"
+        app:elevation="0dp"
+        app:fabSize="normal"
+        app:tint="@color/white"
+        app:useCompatPadding="false">
+
+    </com.google.android.material.floatingactionbutton.FloatingActionButton>
+
+</RelativeLayout>
+
+    <!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="match_parent">-->
+
+    <!--            <LinearLayout-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_height="match_parent"-->
+    <!--                android:layout_marginTop="60dp"-->
+    <!--                android:orientation="vertical"-->
+    <!--                app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--                app:layout_constraintEnd_toEndOf="parent"-->
+    <!--                app:layout_constraintStart_toStartOf="parent">-->
+
+    <!--            </LinearLayout>-->
+
+    <!--            <com.google.android.material.appbar.MaterialToolbar-->
+    <!--                android:id="@+id/appBarLayout"-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:theme="@layout/layout_default_toolbar"-->
+    <!--                app:layout_constraintEnd_toEndOf="parent"-->
+    <!--                app:layout_constraintStart_toStartOf="parent"-->
+    <!--                app:layout_constraintTop_toTopOf="parent">-->
+    <!--            </com.google.android.material.appbar.MaterialToolbar>-->
+
+    <!--            <androidx.coordinatorlayout.widget.CoordinatorLayout-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_height="match_parent"-->
+    <!--                tools:context=".fragments.inspiration.MyInspirationFragment">-->
+
+    <!--                <com.google.android.material.appbar.AppBarLayout-->
+    <!--                    android:id="@+id/app_bar_layout"-->
+    <!--                    android:layout_width="match_parent"-->
+    <!--                    android:layout_height="wrap_content"-->
+    <!--                    app:liftOnScroll="true">-->
+
+    <!--                    <com.google.android.material.appbar.MaterialToolbar-->
+    <!--                        android:layout_width="match_parent"-->
+    <!--                        android:layout_height="wrap_content"-->
+    <!--                        android:background="@color/white"-->
+    <!--                        app:layout_scrollFlags="scroll|enterAlways">-->
+
+    <!--                        <androidx.constraintlayout.widget.ConstraintLayout-->
+    <!--                            android:layout_width="match_parent"-->
+    <!--                            android:layout_height="wrap_content">-->
+
+    <!--                            <com.google.android.material.textview.MaterialTextView-->
+    <!--                                android:id="@+id/app_title"-->
+    <!--                                android:layout_width="match_parent"-->
+    <!--                                android:layout_height="wrap_content"-->
+    <!--                                android:layout_marginStart="2dp"-->
+    <!--                                android:layout_marginTop="5dp"-->
+    <!--                                android:fontFamily="@font/google_sans_bold"-->
+    <!--                                android:text="@string/my_inspirations"-->
+    <!--                                android:textColor="@color/black"-->
+    <!--                                android:textSize="30sp"-->
+    <!--                                app:layout_constraintStart_toStartOf="parent"-->
+    <!--                                app:layout_constraintTop_toTopOf="parent"></com.google.android.material.textview.MaterialTextView>-->
+
+    <!--                            <LinearLayout-->
+    <!--                                android:layout_width="match_parent"-->
+    <!--                                android:layout_height="wrap_content"-->
+    <!--                                android:layout_marginTop="15dp"-->
+    <!--                                android:orientation="horizontal"-->
+    <!--                                android:layout_marginEnd="15dp"-->
+    <!--                                android:layout_marginBottom="15dp"-->
+    <!--                                app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--                                app:layout_constraintEnd_toEndOf="parent"-->
+    <!--                                app:layout_constraintStart_toStartOf="parent"-->
+    <!--                                app:layout_constraintTop_toBottomOf="@id/app_title">-->
+
+    <!--                                <EditText-->
+    <!--                                    android:id="@+id/search"-->
+    <!--                                    android:layout_width="match_parent"-->
+    <!--                                    android:layout_height="50dp"-->
+    <!--                                    android:layout_weight="3"-->
+    <!--                                    android:background="@drawable/rounded_search"-->
+    <!--                                    android:drawableStart="@drawable/ic_round_search_24"-->
+    <!--                                    android:drawablePadding="5dp"-->
+    <!--                                    android:hint="@string/search_here"-->
+    <!--                                    android:imeOptions="actionSearch"-->
+    <!--                                    android:importantForAutofill="no"-->
+    <!--                                    android:inputType="textFilter"-->
+    <!--                                    android:paddingStart="18dp"-->
+    <!--                                    android:paddingTop="4dp"-->
+    <!--                                    android:paddingEnd="18dp"-->
+    <!--                                    android:paddingBottom="5dp"-->
+    <!--                                    android:textSize="16sp">-->
+
+    <!--                                </EditText>-->
+    <!--                            </LinearLayout>-->
+
+    <!--                        </androidx.constraintlayout.widget.ConstraintLayout>-->
+    <!--                    </com.google.android.material.appbar.MaterialToolbar>-->
+
+    <!--                </com.google.android.material.appbar.AppBarLayout>-->
+
+    <!--                <androidx.constraintlayout.widget.ConstraintLayout-->
+    <!--                    android:layout_width="match_parent"-->
+    <!--                    android:layout_height="match_parent">-->
+
+    <!--                    <ImageView-->
+    <!--                        android:id="@+id/noData"-->
+    <!--                        android:layout_width="130dp"-->
+    <!--                        android:layout_height="130dp"-->
+    <!--                        android:src="@drawable/ic_no_data"-->
+    <!--                        android:visibility="gone"-->
+    <!--                        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--                        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--                        app:layout_constraintStart_toStartOf="parent"-->
+    <!--                        app:layout_constraintTop_toTopOf="parent">-->
+
+    <!--                    </ImageView>-->
+
+    <!--                </androidx.constraintlayout.widget.ConstraintLayout>-->
+    <!--                <LinearLayout-->
+    <!--                    android:id="@+id/add_inspiration_fab"-->
+    <!--                    android:layout_width="wrap_content"-->
+    <!--                    android:layout_height="wrap_content"-->
+    <!--                    android:layout_gravity="end|bottom"-->
+    <!--                    android:layout_margin="16dp"-->
+    <!--                    android:animateLayoutChanges="true"-->
+    <!--                    android:background="@drawable/fab_btn_corner"-->
+    <!--                    android:backgroundTint="@color/black"-->
+    <!--                    android:clickable="true"-->
+    <!--                    android:clipToPadding="false"-->
+    <!--                    android:focusable="true"-->
+    <!--                    android:orientation="horizontal">-->
+
+    <!--                    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+    <!--                        android:id="@+id/inner_fab"-->
+    <!--                        android:layout_width="wrap_content"-->
+    <!--                        android:layout_height="wrap_content"-->
+    <!--                        android:layout_gravity="center_vertical"-->
+    <!--                        android:backgroundTint="@color/black"-->
+    <!--                        android:src="@drawable/ic_round_add_24"-->
+    <!--                        app:borderWidth="0dp"-->
+    <!--                        app:elevation="0dp"-->
+    <!--                        app:fabSize="normal"-->
+    <!--                        app:tint="@color/white"-->
+    <!--                        app:useCompatPadding="false">-->
+
+    <!--                    </com.google.android.material.floatingactionbutton.FloatingActionButton>-->
+
+    <!--                    <TextView-->
+    <!--                        android:id="@+id/chatFabText"-->
+    <!--                        android:layout_width="wrap_content"-->
+    <!--                        android:layout_height="wrap_content"-->
+    <!--                        android:layout_gravity="center_vertical"-->
+    <!--                        android:fontFamily="@font/google_sans_regular"-->
+    <!--                        android:paddingStart="0dp"-->
+    <!--                        android:paddingEnd="20dp"-->
+    <!--                        android:text="@string/add_inspiration"-->
+    <!--                        android:textAppearance="@style/TextAppearance.MaterialComponents.Button"-->
+    <!--                        android:textColor="@color/white">-->
+
+
+    <!--                    </TextView>-->
+
+    <!--                </LinearLayout>-->
+    <!--            </androidx.coordinatorlayout.widget.CoordinatorLayout>-->
+    <!--            <androidx.recyclerview.widget.RecyclerView-->
+    <!--                android:id="@+id/rvInspirations"-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_height="match_parent"-->
+    <!--                android:clipToPadding="false"-->
+    <!--                android:paddingStart="6dp"-->
+    <!--                android:paddingBottom="5dp"-->
+    <!--                android:transitionGroup="true"-->
+    <!--                tools:itemCount="@layout/item_my_inspiration_layout"-->
+    <!--                app:layout_behavior="@string/appbar_scrolling_view_behavior">-->
+    <!--            </androidx.recyclerview.widget.RecyclerView>-->
+
+    <!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+    <!--<?xml version="1.0" encoding="utf-8"?>-->
+    <!--<RelativeLayout-->
+    <!--    xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+
+    <!--    xmlns:tools="http://schemas.android.com/tools"-->
+    <!--    android:layout_width="match_parent"-->
+    <!--    android:layout_height="match_parent">-->
+
+    <!--    <com.infideap.drawerbehavior.Advance3DDrawerLayout-->
+    <!--        android:id="@+id/drawer_layout"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent"-->
+    <!--        android:fitsSystemWindows="true"-->
+    <!--        tools:context=".fragments.inspiration.MyInspirationFragment"-->
+    <!--        tools:openDrawer="start">-->
+    <!--        &lt;!&ndash;        <include&ndash;&gt;-->
+    <!--        &lt;!&ndash;            android:id="@+id/toolbar"&ndash;&gt;-->
+    <!--        &lt;!&ndash;            layout="@layout/toolbar" />&ndash;&gt;-->
+
+
+    <!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="match_parent">-->
+
+    <!--            <LinearLayout-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_height="match_parent"-->
+    <!--                android:layout_marginTop="60dp"-->
+    <!--                android:orientation="vertical"-->
+    <!--                app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--                app:layout_constraintEnd_toEndOf="parent"-->
+    <!--                app:layout_constraintStart_toStartOf="parent">-->
+
+    <!--            </LinearLayout>-->
+
+    <!--            <com.google.android.material.appbar.MaterialToolbar-->
+    <!--                android:id="@+id/appBarLayout"-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:theme="@layout/layout_default_toolbar"-->
+    <!--                app:layout_constraintEnd_toEndOf="parent"-->
+    <!--                app:layout_constraintStart_toStartOf="parent"-->
+    <!--                app:layout_constraintTop_toTopOf="parent">-->
+
+
+    <!--            </com.google.android.material.appbar.MaterialToolbar>-->
+
+    <!--            <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--                xmlns:app="http://schemas.android.com/apk/res-auto"-->
+    <!--                xmlns:tools="http://schemas.android.com/tools"-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_height="match_parent"-->
+    <!--                tools:context=".fragments.inspiration.MyInspirationFragment">-->
+
+    <!--                <com.google.android.material.appbar.AppBarLayout-->
+    <!--                    android:id="@+id/app_bar_layout"-->
+    <!--                    android:layout_width="match_parent"-->
+    <!--                    android:layout_height="wrap_content"-->
+    <!--                    app:liftOnScroll="true">-->
+
+    <!--                    <com.google.android.material.appbar.MaterialToolbar-->
+    <!--                        android:layout_width="match_parent"-->
+    <!--                        android:layout_height="wrap_content"-->
+    <!--                        android:background="@color/white"-->
+    <!--                        app:layout_scrollFlags="scroll|enterAlways">-->
+
+    <!--                        <androidx.constraintlayout.widget.ConstraintLayout-->
+    <!--                            android:layout_width="match_parent"-->
+    <!--                            android:layout_height="wrap_content">-->
+
+    <!--                            <com.google.android.material.textview.MaterialTextView-->
+    <!--                                android:id="@+id/app_title"-->
+    <!--                                android:layout_width="match_parent"-->
+    <!--                                android:layout_height="wrap_content"-->
+    <!--                                android:layout_marginStart="2dp"-->
+    <!--                                android:layout_marginTop="5dp"-->
+    <!--                                android:fontFamily="@font/google_sans_bold"-->
+    <!--                                android:text="@string/my_inspirations"-->
+    <!--                                android:textColor="@color/black"-->
+    <!--                                android:textSize="30sp"-->
+    <!--                                app:layout_constraintStart_toStartOf="parent"-->
+    <!--                                app:layout_constraintTop_toTopOf="parent"></com.google.android.material.textview.MaterialTextView>-->
+
+    <!--                            <LinearLayout-->
+    <!--                                android:layout_width="match_parent"-->
+    <!--                                android:layout_height="wrap_content"-->
+    <!--                                android:layout_marginTop="15dp"-->
+    <!--                                android:orientation="horizontal"-->
+    <!--                                android:layout_marginEnd="15dp"-->
+    <!--                                android:layout_marginBottom="15dp"-->
+    <!--                                app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--                                app:layout_constraintEnd_toEndOf="parent"-->
+    <!--                                app:layout_constraintStart_toStartOf="parent"-->
+    <!--                                app:layout_constraintTop_toBottomOf="@id/app_title">-->
+
+    <!--                                <EditText-->
+    <!--                                    android:id="@+id/search"-->
+    <!--                                    android:layout_width="match_parent"-->
+    <!--                                    android:layout_height="50dp"-->
+    <!--                                    android:layout_weight="3"-->
+    <!--                                    android:background="@drawable/rounded_search"-->
+    <!--                                    android:drawableStart="@drawable/ic_round_search_24"-->
+    <!--                                    android:drawablePadding="5dp"-->
+    <!--                                    android:hint="@string/search_here"-->
+    <!--                                    android:imeOptions="actionSearch"-->
+    <!--                                    android:importantForAutofill="no"-->
+    <!--                                    android:inputType="textFilter"-->
+    <!--                                    android:paddingStart="18dp"-->
+    <!--                                    android:paddingTop="4dp"-->
+    <!--                                    android:paddingEnd="18dp"-->
+    <!--                                    android:paddingBottom="5dp"-->
+    <!--                                    android:textSize="16sp">-->
+
+    <!--                                </EditText>-->
+    <!--&lt;!&ndash;                                <LinearLayout&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    android:id="@+id/myInspiration"&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    android:layout_width="wrap_content"&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    android:layout_height="wrap_content"&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    android:orientation="horizontal">&ndash;&gt;-->
+
+    <!--&lt;!&ndash;                                    <CheckBox&ndash;&gt;-->
+    <!--&lt;!&ndash;                                        android:layout_width="wrap_content"&ndash;&gt;-->
+    <!--&lt;!&ndash;                                        android:layout_height="wrap_content"/>&ndash;&gt;-->
+
+    <!--&lt;!&ndash;                                    <TextView&ndash;&gt;-->
+    <!--&lt;!&ndash;                                        android:layout_width="match_parent"&ndash;&gt;-->
+    <!--&lt;!&ndash;                                        android:layout_height="wrap_content"&ndash;&gt;-->
+    <!--&lt;!&ndash;                                        android:text="My inspirations"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                </LinearLayout>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                <LinearLayout&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    android:id="@+id/myFavouriteInspirationQuotes"&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    android:layout_width="wrap_content"&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    android:layout_height="wrap_content"&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    android:orientation="horizontal">&ndash;&gt;-->
+
+    <!--&lt;!&ndash;                                    <CheckBox&ndash;&gt;-->
+    <!--&lt;!&ndash;                                        android:layout_width="wrap_content"&ndash;&gt;-->
+    <!--&lt;!&ndash;                                        android:layout_height="wrap_content"/>&ndash;&gt;-->
+
+    <!--&lt;!&ndash;                                    <TextView&ndash;&gt;-->
+    <!--&lt;!&ndash;                                        android:layout_width="match_parent"&ndash;&gt;-->
+    <!--&lt;!&ndash;                                        android:layout_height="wrap_content"&ndash;&gt;-->
+    <!--&lt;!&ndash;                                        android:text="My favourites quotes"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                </LinearLayout>&ndash;&gt;-->
+    <!--                            </LinearLayout>-->
+
+    <!--                        </androidx.constraintlayout.widget.ConstraintLayout>-->
+    <!--                    </com.google.android.material.appbar.MaterialToolbar>-->
+
+    <!--                </com.google.android.material.appbar.AppBarLayout>-->
+
+    <!--                <androidx.recyclerview.widget.RecyclerView-->
+    <!--                    android:id="@+id/rvInspirations"-->
+    <!--                    android:layout_width="match_parent"-->
+    <!--                    android:layout_height="match_parent"-->
+    <!--                    android:clipToPadding="false"-->
+    <!--                    android:paddingStart="6dp"-->
+    <!--                    android:paddingBottom="5dp"-->
+    <!--                    android:transitionGroup="true"-->
+    <!--                    tools:itemCount="@layout/item_my_inspiration_layout"-->
+    <!--                    app:layout_behavior="@string/appbar_scrolling_view_behavior">-->
+
+    <!--                </androidx.recyclerview.widget.RecyclerView>-->
+
+    <!--                <androidx.constraintlayout.widget.ConstraintLayout-->
+    <!--                    android:layout_width="match_parent"-->
+    <!--                    android:layout_height="match_parent">-->
+
+    <!--                    <ImageView-->
+    <!--                        android:id="@+id/noData"-->
+    <!--                        android:layout_width="130dp"-->
+    <!--                        android:layout_height="130dp"-->
+    <!--                        android:src="@drawable/ic_no_data"-->
+    <!--                        android:visibility="gone"-->
+    <!--                        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--                        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--                        app:layout_constraintStart_toStartOf="parent"-->
+    <!--                        app:layout_constraintTop_toTopOf="parent">-->
+
+    <!--                    </ImageView>-->
+
+    <!--                </androidx.constraintlayout.widget.ConstraintLayout>-->
+    <!--                <LinearLayout-->
+    <!--                    android:id="@+id/add_inspiration_fab"-->
+    <!--                    android:layout_width="wrap_content"-->
+    <!--                    android:layout_height="wrap_content"-->
+    <!--                    android:layout_gravity="end|bottom"-->
+    <!--                    android:layout_margin="16dp"-->
+    <!--                    android:animateLayoutChanges="true"-->
+    <!--                    android:background="@drawable/fab_btn_corner"-->
+    <!--                    android:backgroundTint="@color/black"-->
+    <!--                    android:clickable="true"-->
+    <!--                    android:clipToPadding="false"-->
+    <!--                    android:focusable="true"-->
+    <!--                    android:orientation="horizontal">-->
+
+    <!--                    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+    <!--                        android:id="@+id/inner_fab"-->
+    <!--                        android:layout_width="wrap_content"-->
+    <!--                        android:layout_height="wrap_content"-->
+    <!--                        android:layout_gravity="center_vertical"-->
+    <!--                        android:backgroundTint="@color/black"-->
+    <!--                        android:src="@drawable/ic_round_add_24"-->
+    <!--                        app:borderWidth="0dp"-->
+    <!--                        app:elevation="0dp"-->
+    <!--                        app:fabSize="normal"-->
+    <!--                        app:tint="@color/white"-->
+    <!--                        app:useCompatPadding="false">-->
+
+    <!--                    </com.google.android.material.floatingactionbutton.FloatingActionButton>-->
+
+    <!--                    <TextView-->
+    <!--                        android:id="@+id/chatFabText"-->
+    <!--                        android:layout_width="wrap_content"-->
+    <!--                        android:layout_height="wrap_content"-->
+    <!--                        android:layout_gravity="center_vertical"-->
+    <!--                        android:fontFamily="@font/google_sans_regular"-->
+    <!--                        android:paddingStart="0dp"-->
+    <!--                        android:paddingEnd="20dp"-->
+    <!--                        android:text="@string/add_inspiration"-->
+    <!--                        android:textAppearance="@style/TextAppearance.MaterialComponents.Button"-->
+    <!--                        android:textColor="@color/white">-->
+
+
+    <!--                    </TextView>-->
+
+    <!--                </LinearLayout>-->
+
+
+    <!--            </androidx.coordinatorlayout.widget.CoordinatorLayout>-->
+
+    <!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+
+    <!--        <com.google.android.material.navigation.NavigationView-->
+    <!--            android:id="@+id/nav_view"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="match_parent"-->
+    <!--            android:layout_gravity="start"-->
+    <!--            android:fitsSystemWindows="true"-->
+    <!--            app:itemIconPadding="10dp"-->
+    <!--            app:itemIconTint="@android:color/white"-->
+    <!--            app:itemTextColor="@android:color/black"-->
+    <!--            app:headerLayout="@layout/item_header"-->
+    <!--            app:menu="@menu/menu_drawer"-->
+
+    <!--            ></com.google.android.material.navigation.NavigationView>-->
+
+
+    <!--    </com.infideap.drawerbehavior.Advance3DDrawerLayout>-->
+    <!--</RelativeLayout>-->

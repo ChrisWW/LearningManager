@@ -71,7 +71,7 @@ class RvNotesAdapter: ListAdapter<NoteData, RvNotesAdapter.NotesViewHolder>(Diff
                 parent.setBackgroundColor(item.color)
             }
             itemView.setOnClickListener {
-
+// TODO navigation through vievmodel not recyclerview, here only trigger
                 val action = ViewPagerFragmentDirections.actionViewPagerFragmentToSaveUpdateFragment2()
                     .setNote(item)
                 val extras = FragmentNavigatorExtras(parent to "recycler_View_${item.id}")

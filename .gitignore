@@ -18,7 +18,7 @@ out/
 # Gradle files
 #.gradle/
 #build/
-extensionvalues.gradle
+app/extensionvalues.gradle
 
 # Local configuration file (sdk path, etc)
 local.properties
@@ -133,6 +133,7 @@ obj/
 .idea/sqlDataSources.xml
 .idea/dynamic.xml
 .idea/uiDesigner.xml
+.idea/deploymentTargetDropDown.xml
 
 # OS-specific files
 .DS_Store

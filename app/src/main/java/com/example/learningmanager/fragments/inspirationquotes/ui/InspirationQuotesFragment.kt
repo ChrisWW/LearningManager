@@ -26,7 +26,10 @@ class InspirationQuotesFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // dodac state internet connection
+
         backgroundAnimation()
+        Log.d("animation", "Background onViewcreated")
         getRandomPicture()
         onFloatingActionClick()
     }
@@ -36,6 +39,7 @@ class InspirationQuotesFragment :
 
         //too many times
         layout.dotsLoading.initView()
+        Log.d("animation", "Background onResume")
 
 
     }

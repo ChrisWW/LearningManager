@@ -5,9 +5,15 @@
     <string name="search_here">Search here....</string>
     <string name="clear">clear</string>
     <string name="no_data">no_data</string>
+    <string name="my_notes">My Notes</string>
     <string name="add_note">Add Note</string>
+    <string name="my_inspirations">My Inspirations</string>
+    <string name="add_inspiration">Add Inspiration</string>
+    <string name="my_tasks">My Tasks</string>
     <string name="choose_color">Choose Color</string>
-<string name="some_text">Lorem Ipsum is simply dummy text of
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawe</string>
+    <string name="some_text">Lorem Ipsum is simply dummy text of
         the printing and typesetting industry. Lorem Ipsum has been
         the industry\'s standard dummy text ever since the 1500s,
         when an unknown printer took a galley of type and scrambled
@@ -16,4 +22,11 @@
         remaining essentially unchanged.
     </string>
     <string name="edited_on">Edited on: %1$s</string>
+    <string name="are_you_sure">Are you sure about your decision?</string>
+    <string name="alert_title">Title of it</string>
+
+    <string name="notification_channel_name">Learning Notifications</string>
+    <string name="notification_channel_id">Learning Notifications Channel Id</string>
+    <string name="notification_value">goalsreminder</string>
+    <string name="work_manager_24_notification_tag">notificationmanager24service</string>
 </resources>

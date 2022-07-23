@@ -7,6 +7,7 @@ import com.example.learningmanager.fragments.setgoals.ui.SaveGoalFragmentDirecti
 
 class SaveGoalsToSetScreenKey : ScreenKey() {
     override fun createDirections(): NavDirections {
-        return SaveGoalFragmentDirections.actionSaveGoalFragmentToViewPagerFragment()
+        // TODO
+        return SaveGoalFragmentDirections.actionSaveGoalFragmentToViewPagerFragment("", "", "")
     }
 }

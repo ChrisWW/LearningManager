@@ -5,20 +5,19 @@ buildscript {
     repositories {
         google()
         mavenCentral()
+        maven {
+           url 'https://dl.bintray.com/infideap2/drawer-behavior'
+        }
+//        maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.0.3'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.21"
+        classpath 'com.android.tools.build:gradle:7.0.4'
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.10'
         classpath hilt_deps.classpath_plugin
         classpath nav_component_deps.classpath_safeargs
         classpath firebase_deps.classpath
         classpath firebase_deps.crashlytics_classpath
 
-
-//        classpath firebase_deps.classpath
-//        classpath firebase_deps.crashlytics_classpath
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
     }
 }
 
@@ -31,6 +30,10 @@ allprojects {
             url 'https://pkgs.dev.azure.com/MicrosoftDeviceSDK/DuoSDK-Public/_packaging/Duo-SDK-Feed/maven/v1'
         }
         maven { url 'https://jitpack.io' }
+        maven {
+           url 'https://dl.bintray.com/infideap2/drawer-behavior'
+        }
+//        maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
     }
 }
 

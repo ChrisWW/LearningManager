@@ -1,6 +1,10 @@
 package com.example.learningmanager.base.di
 
+import com.example.learningmanager.Application
 import com.example.learningmanager.BuildConfig
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
 import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
@@ -13,6 +17,22 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
+
+    @Provides
+    @Singleton
+    fun provideFirestore() = FirebaseFirestore.getInstance()
+
+    @Provides
+    @Singleton
+    fun provideFirebaseStorage() = FirebaseStorage.getInstance()
+
+    @Provides
+    @Singleton
+    fun provideFirebaseAuth() = FirebaseAuth.getInstance()
+
+//    @Provides
+//    @Singleton
+//    fun provideStorage() = FirebaseFirestore.getInstance()
 
     @Provides
     fun provideGson() = Gson()
