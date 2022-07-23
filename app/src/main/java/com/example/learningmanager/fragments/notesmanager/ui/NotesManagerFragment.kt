@@ -98,14 +98,7 @@ class NotesManagerFragment @Inject constructor() :
                     val text = s.toString()
                     val query = "%$text%"
                     if (query.isNotEmpty()) {
-                        // livedata with observe to change
-                            Log.d("query", "QUERY IS: $query")
-//                        vm.searchNote(query)
-
-                        Log.d("query", "LIST IS: ${vm.searchDataList.value}")
-//                        rvNotesAdapter.submitList(vm.searchDataList.value)
                         collectSearchItems(query)
-
                     } else {
                         collectNotesItems()
                         vm.searchDataList.value = emptyList()
