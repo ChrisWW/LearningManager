@@ -73,9 +73,6 @@ class MyInspirationSaveFragment @Inject constructor() :
 
     private fun addInspiration() {
         layout.saveInspiration.setOnClickListener {
-            Log.d("valuestosee", "ADd inspimgURItoFireBase: $imgURItoFireBase")
-            Log.d("valuestosee", "ADd inspimgURItoFireBase: ${FirebaseManager.imageBytesInString}")
-//            get alue from firebase? or save link TODO use interface, other approach
             vm.saveInspiration(
                 MyInspirationDetailsResponse(
                     0,

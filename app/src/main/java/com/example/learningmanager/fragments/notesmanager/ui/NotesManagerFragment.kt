@@ -90,6 +90,7 @@ class NotesManagerFragment @Inject constructor() :
         layout.search.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
                 layout.noData.isVisible = false
+//                layout.noData.visibility
             }
 
 

@@ -28,6 +28,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
+
+
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/app_title"
                         android:layout_width="match_parent"
@@ -88,6 +90,18 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/set_goals_rv_items_layout" />
 
+    <ImageView
+        android:id="@+id/noData"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:src="@drawable/ic_no_data"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </ImageView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/idFabGoals"

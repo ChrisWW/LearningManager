@@ -5,6 +5,8 @@ import android.app.Dialog
 import android.content.pm.PackageManager
 import android.graphics.drawable.AnimationDrawable
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -14,6 +16,7 @@ import android.view.Window
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import com.example.learningmanager.R
@@ -48,6 +51,7 @@ class SetGoalsFragment @Inject constructor() :
         onAcceptDeclineTodayWork()
         onAddDayWork()
         onMinusDayWork()
+        collectSearchInit()
     }
 
     override fun onDestroyView() {
@@ -88,7 +92,7 @@ class SetGoalsFragment @Inject constructor() :
 
     private fun onAcceptDeclineTodayWork() {
         vm.triggerAcceptDeclineButton.collectWith(viewLifecycleOwner) { value ->
-            if(value.isSelected()) {
+            if (value.isSelected()) {
                 CustomSetGoalsDialog(requireContext(), id).show(
                     "Save your task: ${value.title}",
                     "Clicking NO - means you haven't done your work and one additional day could be added to complete your goal depends on your preferences."
@@ -107,7 +111,7 @@ class SetGoalsFragment @Inject constructor() :
 
     private fun onAddDayWork() {
         vm.triggerAddDeclineButton.collectWith(viewLifecycleOwner) { value ->
-            if(value.isSelected()) {
+            if (value.isSelected()) {
                 val updatedData = (value.data.toInt() + 1).toString()
                 vm.updateGoalData(value.id, updatedData)
                 mutableStateAdapterFlow.value = value.id
@@ -121,7 +125,7 @@ class SetGoalsFragment @Inject constructor() :
 
     private fun onMinusDayWork() {
         vm.triggerMinusDeclineButton.collectWith(viewLifecycleOwner) { value ->
-            if(value.isSelected()) {
+            if (value.isSelected()) {
                 val updatedData = (value.data.toInt() - 1).toString()
                 vm.updateGoalData(value.id, updatedData)
                 mutableStateAdapterFlow.value = value.id
@@ -132,12 +136,17 @@ class SetGoalsFragment @Inject constructor() :
         }
     }
 
-    private fun onCustomSetGoalsDialogResult(response: String, id: Int, title: String, data: String) {
-        if(response == CustomSetGoalsDialog.ResponseType.YES.name) {
+    private fun onCustomSetGoalsDialogResult(
+        response: String,
+        id: Int,
+        title: String,
+        data: String
+    ) {
+        if (response == CustomSetGoalsDialog.ResponseType.YES.name) {
             Log.d("onCustomSetGoalsDialogResult", "TRIGGERED YES")
             // nothing happen, nothing added
         }
-        if(response == CustomSetGoalsDialog.ResponseType.NO.name) {
+        if (response == CustomSetGoalsDialog.ResponseType.NO.name) {
             Log.d("onCustomSetGoalsDialogResult", "TRIGGERED NO")
             val updatedData = (data.toInt() + 1).toString()
             mutableStateAdapterFlow.value = id
@@ -145,9 +154,54 @@ class SetGoalsFragment @Inject constructor() :
             collectGoalsItems()
             setGoalsAdapter.notifyDataSetChanged()
         }
-        if(response == CustomSetGoalsDialog.ResponseType.CANCEL.name) {
+        if (response == CustomSetGoalsDialog.ResponseType.CANCEL.name) {
             Log.d("onCustomSetGoalsDialogResult", "TRIGGERED CANCEL")
             // nothing happen
+        }
+    }
+
+    private fun collectSearchInit() {
+        layout.search.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                layout.noData.isVisible = false
+            }
+
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if (s.toString().isNotEmpty()) {
+                    val text = s.toString()
+                    val query = "%$text%"
+                    if (query.isNotEmpty()) {
+                        collectSearchItems(query)
+                    } else {
+                        collectGoalsItems()
+                        vm.searchGoalsDataList.value = emptyList()
+                        // obs
+                    }
+                } else {
+                    collectGoalsItems()
+                    vm.searchGoalsDataList.value = emptyList()
+                    //obs
+                }
+            }
+
+
+            override fun afterTextChanged(s: Editable?) {
+
+            }
+
+        })
+    }
+
+    private fun collectSearchItems(query: String) {
+        vm.searchGoals(query)
+        vm.searchGoalsDataList.collectWith(viewLifecycleOwner) {
+            if(it.isEmpty()) {
+            }
+            else {
+                setGoalsAdapter.items = it
+                setGoalsAdapter.notifyDataSetChanged()
+            }
         }
     }
 
@@ -155,8 +209,16 @@ class SetGoalsFragment @Inject constructor() :
         super.onPause()
         mutableStateAdapterFlow.value = -1
     }
+
     private fun initItemsAdapter() = lazy {
-        SetGoalsAdapter(vm::deleteItem, vm::onItemClicked, vm::onItemButtonQuestionClicked, vm::onItemMinusClicked, vm::onItemAddClicked, mutableStateAdapterFlow)
+        SetGoalsAdapter(
+            vm::deleteItem,
+            vm::onItemClicked,
+            vm::onItemButtonQuestionClicked,
+            vm::onItemMinusClicked,
+            vm::onItemAddClicked,
+            mutableStateAdapterFlow
+        )
     }
 // TODO
 //    // Declare the launcher at the top of your Activity/Fragment:

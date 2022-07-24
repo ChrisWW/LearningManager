@@ -14,17 +14,24 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.learningmanager.R
 import com.example.learningmanager.base.ui.BaseFragment
 import com.example.learningmanager.databinding.FragmentInspirationQuotesBinding
+import com.example.learningmanager.fragments.myinspiration.FirebaseManager
+import com.example.learningmanager.fragments.myinspiration.data.MyInspirationDetailsResponse
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.flatMapLatest
+import java.text.SimpleDateFormat
+import java.util.*
 
 @AndroidEntryPoint
 class InspirationQuotesFragment :
     BaseFragment<FragmentInspirationQuotesBinding, InspirationQuotesViewModel>
         (FragmentInspirationQuotesBinding::inflate) {
     override val vm: InspirationQuotesViewModel by viewModels()
+    lateinit var bottomNav : BottomNavigationView
+    private val currentData = SimpleDateFormat.getInstance().format(Date())
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -35,7 +42,44 @@ class InspirationQuotesFragment :
 //        loadImage()
         loadQuoteWithImage()
         onFloatingActionClick()
+        bottomNavigationInit()
     }
+
+    private fun bottomNavigationInit() {
+        bottomNav = layout.bottomNav as BottomNavigationView
+
+        bottomNav.setOnNavigationItemReselectedListener {
+            when (it.itemId) {
+                R.id.home -> {
+                    return@setOnNavigationItemReselectedListener
+                }
+                R.id.saveToFavourites -> {
+                    saveToFavourites()
+                    return@setOnNavigationItemReselectedListener
+                }
+                R.id.settings -> {
+                    return@setOnNavigationItemReselectedListener
+                }
+            }
+        }
+    }
+
+    private fun saveToFavourites() {
+                vm.saveFavouriteInspiration(
+                    MyInspirationDetailsResponse(
+                        0,
+                        "",
+                        "",
+                        imageUrl,
+                        currentData,
+                        layout.tvAuthor.text.toString(),
+                        layout.tvQuote.text.toString(),
+                        Locale.getDefault().displayCountry.toString()
+                    ),
+                    requireActivity()
+                )
+    }
+
 
     override fun onResume() {
         super.onResume()
@@ -87,6 +131,7 @@ class InspirationQuotesFragment :
                             .flowWithLifecycle(lifecycle, Lifecycle.State.STARTED)
                             .collectLatest { response2 ->
                                 if (response2 != null && response2.query != null && response2.query.pages != null && response2.query.pages.entries.first() != null && response2.query.pages.entries.first().value.thumbnail != null) {
+                                    imageUrl = response2.query.pages.entries.first().value.thumbnail!!.source
                                     Glide.with(requireContext())
                                         .load(response2.query.pages.entries.first().value.thumbnail!!.source)
                                         .apply(RequestOptions().override(1100,1800))
@@ -118,6 +163,9 @@ class InspirationQuotesFragment :
                 }
 
         }
+    }
+    companion object {
+        var imageUrl = ""
     }
 }
 

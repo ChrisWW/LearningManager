@@ -1,37 +1,27 @@
 package com.example.learningmanager.fragments.setgoals.ui
 
-import android.app.Dialog
-import android.content.Context
-import android.provider.Settings.Global.getString
-import android.util.Log
-import android.view.Window
-import android.widget.Toast
 import androidx.lifecycle.viewModelScope
-import com.example.learningmanager.R
 import com.example.learningmanager.base.ui.BaseViewModel
 import com.example.learningmanager.fragments.setgoals.data.CustomSetGoalsDialogData
 import com.example.learningmanager.fragments.setgoals.data.SetGoalsData
 import com.example.learningmanager.fragments.setgoals.domain.GetGoalsItemDetailsUseCase
 import com.example.learningmanager.fragments.setgoals.domain.UpdateDateGoalElementItemUseCase
-import com.example.learningmanager.fragments.setgoals.helpers.CustomSetGoalsDialog
 import com.example.learningmanager.fragments.setgoals.route.SetGoalsToSaveScreenKey
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dagger.hilt.android.qualifiers.ActivityContext
-import dagger.hilt.android.qualifiers.ApplicationContext
-import dagger.hilt.android.scopes.ActivityRetainedScoped
-import dagger.hilt.android.scopes.ActivityScoped
-import dagger.hilt.android.scopes.ViewModelScoped
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class SetGoalsViewModel @Inject constructor(
     private val getGoalsItemDetailsUseCase: GetGoalsItemDetailsUseCase,
-    private val updateDateGoalElementItemUseCase: UpdateDateGoalElementItemUseCase
+    private val searchGoalsItemUseCase: SearchGoalsItemUseCase,
+    private val updateDateGoalElementItemUseCase: UpdateDateGoalElementItemUseCase,
 ) : BaseViewModel() {
     val setGoalsData = MutableStateFlow<List<SetGoalsData>>(emptyList())
+    val searchGoalsDataList = MutableStateFlow<List<SetGoalsData>>(emptyList())
     val triggerAcceptDeclineButton =
         MutableStateFlow<CustomSetGoalsDialogData>(CustomSetGoalsDialogData(-1, "", ""))
     val triggerMinusDeclineButton = MutableStateFlow(CustomSetGoalsDialogData(-1, "", ""))
@@ -73,6 +63,14 @@ class SetGoalsViewModel @Inject constructor(
 
     fun onItemShowDialogBtn(title: String, id: Int) {
 
+    }
+
+    fun searchGoals(query: String) {
+        viewModelScope.launch {
+            searchGoalsItemUseCase.create(query).collectLatest {
+                searchGoalsDataList.value = it
+            }
+        }
     }
 
     fun onItemButtonQuestionClicked(customSetGoalsDialogData: CustomSetGoalsDialogData) {

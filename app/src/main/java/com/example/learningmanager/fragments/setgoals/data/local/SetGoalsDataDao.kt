@@ -19,4 +19,7 @@ abstract class SetGoalsDataDao {
     @Delete
     abstract suspend fun deleteGoal(goal: SetGoalsData)
 
+    @Query("SELECT * FROM setgoalsdata WHERE goal LIKE :query ORDER BY id DESC")
+    abstract suspend fun searchGoal(query: String): List<SetGoalsData>
+
 }

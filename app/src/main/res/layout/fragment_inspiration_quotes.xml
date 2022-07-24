@@ -14,7 +14,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_margin="26dp"
+        android:layout_marginBottom="70dp"
+        android:layout_marginRight="20dp"
         android:backgroundTint="#FFFFFF"
         android:clickable="true"
         android:focusable="true"
@@ -39,13 +40,14 @@
         app:lazyloader_secondDelayDur="300"
         app:lazyloader_secondDotColor="#fff"
         app:lazyloader_thirdDotColor="#fff"
-        tools:ignore="MissingClass" />
+        tools:ignore="MissingClass" >
+
+    </com.agrawalsuneet.dotsloader.loaders.LazyLoader>
 
     <ImageView
         android:id="@+id/iv_image_quotes"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerInParent="true"
+        android:layout_height="671dp"
         android:layout_marginStart="0dp"
         android:layout_marginTop="0dp"
         android:layout_marginEnd="0dp"
@@ -78,5 +80,18 @@
         android:textColor="@color/card_green"
         android:textSize="@dimen/text_size_28"
         android:textStyle="bold|italic" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNav"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_menu"
+        android:scrollIndicators="left"/>
 
 </RelativeLayout>

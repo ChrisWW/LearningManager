@@ -9,12 +9,15 @@ import android.view.ViewGroup
 import androidx.core.graphics.scale
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.BitmapTransitionOptions
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import com.bumptech.glide.request.RequestOptions
 import com.example.learningmanager.databinding.ItemMyInspirationLayoutBinding
 import com.example.learningmanager.fragments.myinspiration.data.MyInspirationData
 import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.StorageReference
 import java.io.ByteArrayOutputStream
+import java.io.IOException
+import java.net.URL
 
 class MyInspirationAdapter(
     private val onItemRootClicked: (Int) -> Unit
@@ -48,7 +51,7 @@ class MyInspirationAdapter(
             Log.d("myiamgeurlvalue", "${item.imageUrl}")
             val ONE_MEGABYTE: Long = 1024 * 1024
 //                    imageBytesInString = bytes.toString(Charsets.UTF_8)
-            if (item.imageUrl != null && item.imageUrl != "") {
+            if (item.imageUrl != null && item.imageUrl != "" && item.authorQuote == "" && item.quote == "") {
                 (firebaseStorage.getReferenceFromUrl(item.imageUrl)).getBytes(ONE_MEGABYTE)
                     .addOnSuccessListener { bytes ->
 //                        val byteArray = item.imageUrl.toByteArray(Charsets.UTF_8)
@@ -68,6 +71,26 @@ class MyInspirationAdapter(
                             Log.d("infoone", "${tvName.text}")
                         }
                     }
+            } else {
+                try {
+                    if (item.authorQuote != "" && item.quote != "") {
+                        tvName.text = item.authorQuote
+                        tvDescription.text = item.quote
+                        Log.d("infozero", "${tvName.text}")
+                    } else {
+                        tvName.text = item.title
+                        tvDescription.text = item.description
+                        Log.d("infoone", "${tvName.text}")
+                    }
+                    Glide.with(root.context)
+                        .asBitmap()
+                        .load(item.imageUrl)
+                        .apply(RequestOptions().override(200, 200))
+                        .transition(BitmapTransitionOptions.withCrossFade())
+                        .into(ivImageInspiration)
+                } catch (e: IOException) {
+                    println(e)
+                }
             }
             root.setOnClickListener {
                 onItemRootClicked
