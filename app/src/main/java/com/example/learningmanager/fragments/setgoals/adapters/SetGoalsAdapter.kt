@@ -9,7 +9,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.learningmanager.databinding.SetGoalsRvItemsLayoutBinding
 import com.example.learningmanager.fragments.setgoals.data.CustomSetGoalsDialogData
 import com.example.learningmanager.fragments.setgoals.data.SetGoalsData
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import java.text.DecimalFormat
 import java.util.*
 import kotlin.math.roundToInt
@@ -18,10 +23,12 @@ class SetGoalsAdapter(
     private val onItemDeleteClicked: (Int) -> Unit,
     private val onItemRootClicked: (Int) -> Unit,
     private val onButtonClickedListener: (CustomSetGoalsDialogData) -> Unit,
-) : RecyclerView.Adapter<SetGoalsAdapter.SetGoalsItemViewHolder>()
-{
+    private val onMinusButtonClickedListener: (CustomSetGoalsDialogData) -> Unit,
+    private val onPlusButtonClickedListener: (CustomSetGoalsDialogData) -> Unit,
+    private val mutableStateFlow: MutableStateFlow<Int>
+) : RecyclerView.Adapter<SetGoalsAdapter.SetGoalsItemViewHolder>() {
     var items = emptyList<SetGoalsData>()
-    var flowInteger = MutableStateFlow(-1)
+    var flowInteger = mutableStateFlow
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SetGoalsItemViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -31,7 +38,7 @@ class SetGoalsAdapter(
     }
 
 
-    override fun onBindViewHolder(holder: SetGoalsItemViewHolder, position: Int): Unit=
+    override fun onBindViewHolder(holder: SetGoalsItemViewHolder, position: Int): Unit =
         with(holder) {
             bind(items[position])
         }
@@ -43,7 +50,7 @@ class SetGoalsAdapter(
         fun bind(item: SetGoalsData) = with(layout) {
             val daysLeft = getDaysLeft(item.timeGoal, item.initialDate)
             val percentageValue = getProgressPercentages(item.timeGoal, item.initialDate)
-            if(flowInteger.value != item.id) {
+            if (flowInteger.value != item.id) {
                 expandableLayout.visibility = View.GONE
                 cardViewSetGoals.setOnClickListener {
                     item.expanded = !item.expanded
@@ -61,12 +68,20 @@ class SetGoalsAdapter(
                     }
                 }
             }
-                flowInteger.value = -1
-                btnQuestion.setOnClickListener() {
-                    onButtonClickedListener(CustomSetGoalsDialogData(item.id, item.goal, item.timeGoal))
-                    flowInteger.value = item.id
-                }
+            btnQuestion.setOnClickListener {
+                onButtonClickedListener(CustomSetGoalsDialogData(item.id, item.goal, item.timeGoal))
+                flowInteger.value = item.id
+            }
 
+            minusDay.setOnClickListener {
+                onMinusButtonClickedListener(CustomSetGoalsDialogData(item.id, item.goal, item.timeGoal))
+                flowInteger.value = item.id
+            }
+
+            addDay.setOnClickListener {
+                onPlusButtonClickedListener(CustomSetGoalsDialogData(item.id, item.goal, item.timeGoal))
+                flowInteger.value = item.id
+            }
 
             idTvItemNameMain.text = item.goal
             idTvItemIntense.text = "${item.intenseGoal} min/day"
@@ -77,6 +92,21 @@ class SetGoalsAdapter(
             idTvStatusBar.progress = percentageValue.roundToInt()
             idTvStatusBarMain.progress = percentageValue.roundToInt()
             idTvStatusBarMain.isIndeterminate = false
+
+            CoroutineScope(Dispatchers.Main).launch {
+                flowInteger.collectLatest { it ->
+                    idTvItemNameMain.text = item.goal
+                    idTvItemIntense.text = "${item.intenseGoal} min/day"
+                    idTvItemHours.text = "${countHour(item.initialDate, item.intenseGoal)} hour"
+                    idTvItemTimeGoal.text = "$daysLeft days left"
+                    idTvStatusBar.isIndeterminate = false
+                    idProgressText.text = percentageValue.roundToInt().toString() + " %"
+                    idTvStatusBar.progress = percentageValue.roundToInt()
+                    idTvStatusBarMain.progress = percentageValue.roundToInt()
+                    idTvStatusBarMain.isIndeterminate = false
+                }
+            }
+            flowInteger.value = -1
         }
     }
 
@@ -115,7 +145,7 @@ class SetGoalsAdapter(
 
         val oneDayEpoch = 86400.toDouble()
         val now = Calendar.getInstance().timeInMillis / 1000
-        val endData = (initData.toDouble() + timeGoalDays.toDouble()*oneDayEpoch)
+        val endData = (initData.toDouble() + timeGoalDays.toDouble() * oneDayEpoch)
         val days = ((endData - now) / (oneDayEpoch))
 //        val currentData = SimpleDateFormat.getInstance().format(Date())
 //        val date = SimpleDateFormat("dd-MM")
@@ -126,7 +156,10 @@ class SetGoalsAdapter(
         val daysRoundOff = df.format(days)
 
 
-        Log.d("days", "now: $now - endData: $endData -- days: $days and roundoff: $daysRoundOff --- timeGoalDays: $timeGoalDays")
+        Log.d(
+            "days",
+            "now: $now - endData: $endData -- days: $days and roundoff: $daysRoundOff --- timeGoalDays: $timeGoalDays"
+        )
 
         return if ((days.toInt()) >= timeGoalDays.toInt() || days.toInt() <= 0) {
             "0"
@@ -142,13 +175,14 @@ class SetGoalsAdapter(
         notifyDataSetChanged()
     }
 
-    fun getProgressPercentages(timeGoalDays: String, initData: String) : Double {
+    fun getProgressPercentages(timeGoalDays: String, initData: String): Double {
         val oneDayEpoch = 86400.toDouble()
         val now = Calendar.getInstance().timeInMillis / 1000
-        val endData = (initData.toDouble() + timeGoalDays.toDouble()*oneDayEpoch)
+        val endData = (initData.toDouble() + timeGoalDays.toDouble() * oneDayEpoch)
         val days = ((endData - now) / (oneDayEpoch))
 
-        val percentageValue = ((timeGoalDays.toDouble() - days.toDouble())/timeGoalDays.toDouble())*100
+        val percentageValue =
+            ((timeGoalDays.toDouble() - days.toDouble()) / timeGoalDays.toDouble()) * 100
         Log.d("value", "percantage $percentageValue")
         Log.d("value", "END DATA $endData")
         Log.d("value", "now $now")

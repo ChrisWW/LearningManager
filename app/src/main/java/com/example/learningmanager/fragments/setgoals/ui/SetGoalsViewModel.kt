@@ -32,7 +32,12 @@ class SetGoalsViewModel @Inject constructor(
     private val updateDateGoalElementItemUseCase: UpdateDateGoalElementItemUseCase
 ) : BaseViewModel() {
     val setGoalsData = MutableStateFlow<List<SetGoalsData>>(emptyList())
-    val triggerAcceptDeclineButton = MutableStateFlow<CustomSetGoalsDialogData>(CustomSetGoalsDialogData(-1, "", ""))
+    val triggerAcceptDeclineButton =
+        MutableStateFlow<CustomSetGoalsDialogData>(CustomSetGoalsDialogData(-1, "", ""))
+    val triggerMinusDeclineButton = MutableStateFlow(CustomSetGoalsDialogData(-1, "", ""))
+    val triggerAddDeclineButton = MutableStateFlow(CustomSetGoalsDialogData(-1, "", ""))
+
+
     init {
         getActualState()
     }
@@ -71,10 +76,29 @@ class SetGoalsViewModel @Inject constructor(
     }
 
     fun onItemButtonQuestionClicked(customSetGoalsDialogData: CustomSetGoalsDialogData) {
-        triggerAcceptDeclineButton.value = CustomSetGoalsDialogData(customSetGoalsDialogData.id, customSetGoalsDialogData.title, customSetGoalsDialogData.data)
-        }
+        triggerAcceptDeclineButton.value = CustomSetGoalsDialogData(
+            customSetGoalsDialogData.id,
+            customSetGoalsDialogData.title,
+            customSetGoalsDialogData.data
+        )
     }
 
+    fun onItemMinusClicked(customSetGoalsDialogData: CustomSetGoalsDialogData) {
+        triggerMinusDeclineButton.value = CustomSetGoalsDialogData(
+            customSetGoalsDialogData.id,
+            customSetGoalsDialogData.title,
+            customSetGoalsDialogData.data
+        )
+    }
+
+    fun onItemAddClicked(customSetGoalsDialogData: CustomSetGoalsDialogData) {
+        triggerAddDeclineButton.value = CustomSetGoalsDialogData(
+            customSetGoalsDialogData.id,
+            customSetGoalsDialogData.title,
+            customSetGoalsDialogData.data
+        )
+    }
+}
 //    private fun showDialog(title: String) {
 //        val dialog = Dialog(activity)
 //        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)

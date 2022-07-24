@@ -6,12 +6,10 @@ import com.example.learningmanager.fragments.inspirationquotes.data.InspirationQ
 import com.example.learningmanager.fragments.inspirationquotes.data.remote.InspirationQuotesApi
 import javax.inject.Inject
 
-class GetPictureItemUseCase @Inject constructor(private val api: InspirationQuotesApi) :
-    BaseApiRequestUseCase<GetPictureItemUseCase.Params, InspirationQuotesDetailsResponse>() {
+class PostInspirationQuote @Inject constructor(private val api: InspirationQuotesApi) :
+    BaseApiRequestUseCase<Unit, InspirationQuotesDetailsResponse>() {
 
-    override fun create(params: Params) = flowSingle {
-        api.getInspirationQuote(params.pictureId)
+    override fun create(params: Unit) = flowSingle {
+        api.postQuote()
     }
-
-    data class Params(val pictureId: String)
 }

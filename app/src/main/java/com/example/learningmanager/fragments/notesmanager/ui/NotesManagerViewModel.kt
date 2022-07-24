@@ -4,7 +4,6 @@ import androidx.lifecycle.viewModelScope
 import android.app.Application
 import android.util.Log
 import com.example.learningmanager.base.ui.BaseViewModel
-import com.example.learningmanager.fragments.inspirationquotes.data.InspirationQuotesDetailsResponse
 import com.example.learningmanager.fragments.notesmanager.data.NoteData
 import com.example.learningmanager.fragments.notesmanager.data.NoteDataDetailsResponse
 import com.example.learningmanager.fragments.notesmanager.domain.*

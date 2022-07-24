@@ -25,6 +25,7 @@ import com.example.learningmanager.fragments.setgoals.data.CustomSetGoalsDialogD
 import com.example.learningmanager.fragments.setgoals.helpers.CustomSetGoalsDialog
 import com.google.android.material.transition.MaterialElevationScale
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.MutableStateFlow
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -34,6 +35,7 @@ class SetGoalsFragment @Inject constructor() :
     ) {
     override val vm: SetGoalsViewModel by viewModels()
     private val setGoalsAdapter: SetGoalsAdapter by initItemsAdapter()
+    private val mutableStateAdapterFlow = MutableStateFlow(-1)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -44,6 +46,8 @@ class SetGoalsFragment @Inject constructor() :
         collectGoalsItems()
         onFabClicked()
         onAcceptDeclineTodayWork()
+        onAddDayWork()
+        onMinusDayWork()
     }
 
     override fun onDestroyView() {
@@ -101,6 +105,33 @@ class SetGoalsFragment @Inject constructor() :
         }
     }
 
+    private fun onAddDayWork() {
+        vm.triggerAddDeclineButton.collectWith(viewLifecycleOwner) { value ->
+            if(value.isSelected()) {
+                val updatedData = (value.data.toInt() + 1).toString()
+                vm.updateGoalData(value.id, updatedData)
+                mutableStateAdapterFlow.value = value.id
+            }
+            vm.triggerAddDeclineButton.value = CustomSetGoalsDialogData.empty
+            collectGoalsItems()
+            setGoalsAdapter.notifyDataSetChanged()
+        }
+
+    }
+
+    private fun onMinusDayWork() {
+        vm.triggerMinusDeclineButton.collectWith(viewLifecycleOwner) { value ->
+            if(value.isSelected()) {
+                val updatedData = (value.data.toInt() - 1).toString()
+                vm.updateGoalData(value.id, updatedData)
+                mutableStateAdapterFlow.value = value.id
+            }
+            vm.triggerMinusDeclineButton.value = CustomSetGoalsDialogData.empty
+            collectGoalsItems()
+            setGoalsAdapter.notifyDataSetChanged()
+        }
+    }
+
     private fun onCustomSetGoalsDialogResult(response: String, id: Int, title: String, data: String) {
         if(response == CustomSetGoalsDialog.ResponseType.YES.name) {
             Log.d("onCustomSetGoalsDialogResult", "TRIGGERED YES")
@@ -109,8 +140,10 @@ class SetGoalsFragment @Inject constructor() :
         if(response == CustomSetGoalsDialog.ResponseType.NO.name) {
             Log.d("onCustomSetGoalsDialogResult", "TRIGGERED NO")
             val updatedData = (data.toInt() + 1).toString()
+            mutableStateAdapterFlow.value = id
             vm.updateGoalData(id, updatedData)
             collectGoalsItems()
+            setGoalsAdapter.notifyDataSetChanged()
         }
         if(response == CustomSetGoalsDialog.ResponseType.CANCEL.name) {
             Log.d("onCustomSetGoalsDialogResult", "TRIGGERED CANCEL")
@@ -118,8 +151,12 @@ class SetGoalsFragment @Inject constructor() :
         }
     }
 
+    override fun onPause() {
+        super.onPause()
+        mutableStateAdapterFlow.value = -1
+    }
     private fun initItemsAdapter() = lazy {
-        SetGoalsAdapter(vm::deleteItem, vm::onItemClicked, vm::onItemButtonQuestionClicked)
+        SetGoalsAdapter(vm::deleteItem, vm::onItemClicked, vm::onItemButtonQuestionClicked, vm::onItemMinusClicked, vm::onItemAddClicked, mutableStateAdapterFlow)
     }
 // TODO
 //    // Declare the launcher at the top of your Activity/Fragment:

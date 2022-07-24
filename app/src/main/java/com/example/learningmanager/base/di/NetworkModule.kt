@@ -46,6 +46,6 @@ object NetworkModule {
         Retrofit.Builder()
             .addConverterFactory(factory)
 //            .client(client)
-            .baseUrl(BuildConfig.BASE_URL)
+            .baseUrl("https://random.org")
             .build()
 }
